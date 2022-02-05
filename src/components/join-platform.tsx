@@ -12,42 +12,40 @@ export default function JoinPlatform({
   setErrors,
 }: Props) {
   const [accessToken, setAccessToken] = useState<string>();
+  const [isJoining, setIsJoining] = useState(false);
+
   useEffect(() => {
     axios
       .post(`${BASE_URL}/v1/auth/login`, { email, password })
       .then(({ data }) => {
         setAccessToken(data.accessToken);
       })
-      .catch(({ response: { data, status } }) => {
-        console.log(data, status);
+      .catch(({ response: { data } }) => {
+        setErrors([data.message]);
       });
   }, []);
 
-  const joinPlatform = () => {
-    axios
-      .post(`${BASE_URL}/v1/platforms/${platformId}/join`, undefined, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-      .then(() => {
-        axios
-          .post(
-            `${BASE_URL}/v1/auth/code?platformId=${platformId}&callback=${callback}`,
-            { email, password },
-          )
-          .then(({ data }) => {
-            if (data.code) {
-              if (typeof window !== 'undefined') {
-                window.open(`https://${callback}?code=${data.code}`, '_blank');
-              }
-            }
-          })
-          .catch(({ response: { data } }) => {
-            setErrors([data.message]);
-          });
-      })
-      .catch(({ data, status }) => {
-        console.log(data, status);
-      });
+  const joinPlatform = async () => {
+    setIsJoining(true);
+    try {
+      await axios.post(
+        `${BASE_URL}/v1/platforms/${platformId}/join`,
+        undefined,
+        {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        },
+      );
+      const { data: codeData } = await axios.post(
+        `${BASE_URL}/v1/auth/code?platformId=${platformId}&callback=${callback}`,
+        { email, password },
+      );
+      if (typeof window !== 'undefined') {
+        window.open(`https://${callback}?code=${codeData.code}`, '_blank');
+      }
+    } catch (error: any) {
+      setErrors([error.response.data.message]);
+    }
+    setIsJoining(false);
   };
 
   return (
@@ -55,7 +53,7 @@ export default function JoinPlatform({
       <Button
         colorScheme="teal"
         onClick={joinPlatform}
-        isLoading={!accessToken}
+        isLoading={!accessToken || isJoining}
       >
         Join Platform!
       </Button>

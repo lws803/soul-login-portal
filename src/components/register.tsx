@@ -39,7 +39,11 @@ export default function Register({
         })
         .catch(({ response: { data, status } }) => {
           if (status === 400 && data.error === 'VALIDATION_ERROR') {
-            setErrors(['Password is too weak!']);
+            formik.setErrors({
+              password: 'Password is too weak!',
+            });
+          } else if (status === 409) {
+            formik.setErrors({ email: data.message });
           } else {
             setErrors([data.message]);
           }

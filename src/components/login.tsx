@@ -44,22 +44,16 @@ export default function Login({
             }
           }
         })
-        .catch(({ response: { data, status } }) => {
-          if (status === 404) {
-            if (data.error === 'USER_NOT_FOUND') {
-              setFormState('register');
-            } else if (data.error === 'PLATFORM_USER_NOT_FOUND') {
-              setJoinPlatform(true);
-            } else {
-              setErrors([data.message]);
-            }
+        .catch(({ response: { data } }) => {
+          if (data.error === 'USER_NOT_FOUND') {
+            setFormState('register');
+          } else if (data.error === 'PLATFORM_USER_NOT_FOUND') {
+            setJoinPlatform(true);
+          } else if (data.error === 'VALIDATION_ERROR') {
+            setErrors(['PlatformId and callback is not present.']);
           } else {
             // TODO: Add option to resend email verification if email is not verified
-            if (data.message instanceof Array) {
-              setErrors(['PlatformId and callback is not present.']);
-            } else {
-              setErrors([data.message]);
-            }
+            setErrors([data.message]);
           }
         })
         .finally(() => setIsLoggingIn(false));
