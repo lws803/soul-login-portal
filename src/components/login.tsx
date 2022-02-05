@@ -8,8 +8,12 @@ import {
   HStack,
 } from '@chakra-ui/react';
 import { useFormik } from 'formik';
+import { useState } from 'preact/hooks';
 import * as Yup from 'yup';
 import axios from 'axios';
+
+import { BASE_URL } from '../constants';
+import JoinPlatform from './join-platform';
 
 export default function Login({
   setError,
@@ -17,6 +21,7 @@ export default function Login({
   platformId,
   callback,
 }: Props) {
+  const [joinPlatform, setJoinPlatform] = useState(false);
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -26,7 +31,7 @@ export default function Login({
       setError(undefined);
       axios
         .post(
-          `http://127.0.0.1:3000/v1/auth/code?platformId=${platformId}&callback=${callback}`,
+          `${BASE_URL}/v1/auth/code?platformId=${platformId}&callback=${callback}`,
           values,
         )
         .then(({ data }) => {
@@ -42,9 +47,10 @@ export default function Login({
               setFormState('register');
             }
             if (data.error === 'PLATFORM_USER_NOT_FOUND') {
-              setFormState('join-platform');
+              setJoinPlatform(true);
             }
           } else {
+            // TODO: Add option to resend email verification if email is not verified
             setError(data.message);
           }
         });
@@ -55,6 +61,18 @@ export default function Login({
     }),
     validateOnChange: false,
   });
+
+  if (joinPlatform) {
+    return (
+      <JoinPlatform
+        email={formik.values.email}
+        password={formik.values.password}
+        platformId={platformId}
+        callback={callback}
+        setError={setError}
+      />
+    );
+  }
 
   return (
     <form onSubmit={(e) => formik.handleSubmit(e as any)}>
@@ -104,7 +122,7 @@ export default function Login({
 
 type Props = {
   setError: (error: string | undefined) => void;
-  setFormState: (state: 'login' | 'register' | 'join-platform') => void;
+  setFormState: (state: 'login' | 'register') => void;
   platformId: number;
   callback: string;
 };

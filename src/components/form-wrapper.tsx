@@ -19,10 +19,8 @@ export default function FormWrapper() {
             callback={callback}
             platformId={parseInt(platformId, 10)}
           />
-        ) : formState === 'register' ? (
-          <Register setFormState={setFormState} setError={setError} />
         ) : (
-          <div>join platform</div>
+          <Register setFormState={setFormState} setError={setError} />
         )}
         {error && (
           <Text marginTop={8} textColor="red.600" fontSize="lg">
@@ -43,4 +41,4 @@ const useQueryParams = (): Record<string, string> => {
   return result;
 };
 
-type FormStates = 'login' | 'register' | 'join-platform';
+type FormStates = 'login' | 'register';

@@ -16,6 +16,7 @@
     "build/*"
   ],
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx-source": "^7.16.7",
     "@types/react": "^17.0.39",
     "eslint": "^7.17.0",
     "eslint-config-preact": "^1.1.3",
