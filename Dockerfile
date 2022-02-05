@@ -12,4 +12,4 @@ COPY . ./
 
 RUN npm run build
 EXPOSE 8080
-ENTRYPOINT ["npm", "run", "serve"]
+ENTRYPOINT ["npm", "run", "serve", "-- --host"]

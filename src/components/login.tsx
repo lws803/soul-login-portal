@@ -45,9 +45,10 @@ export default function Login({
           if (status === 404) {
             if (data.error === 'USER_NOT_FOUND') {
               setFormState('register');
-            }
-            if (data.error === 'PLATFORM_USER_NOT_FOUND') {
+            } else if (data.error === 'PLATFORM_USER_NOT_FOUND') {
               setJoinPlatform(true);
+            } else {
+              setError(data.message);
             }
           } else {
             // TODO: Add option to resend email verification if email is not verified
