@@ -7,13 +7,19 @@ import {
   HStack,
   Button,
 } from '@chakra-ui/react';
+import { useState } from 'preact/hooks';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
 
 import { BASE_URL } from '../constants';
 
-export default function Register({ setError, setFormState }: Props) {
+export default function Register({
+  setErrors: setErrors,
+  setFormState,
+}: Props) {
+  const [isRegistering, setIsRegistering] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -21,7 +27,9 @@ export default function Register({ setError, setFormState }: Props) {
       username: '',
     },
     onSubmit: (values) => {
-      setError(undefined);
+      setErrors([]);
+      setIsRegistering(true);
+
       axios
         .post(`${BASE_URL}/v1/users`, values)
         .then(({ data }) => {
@@ -31,11 +39,16 @@ export default function Register({ setError, setFormState }: Props) {
         })
         .catch(({ response: { data, status } }) => {
           if (status === 400 && data.error === 'VALIDATION_ERROR') {
-            setError('Password is too weak!');
+            formik.setErrors({
+              password: 'Password is too weak!',
+            });
+          } else if (status === 409) {
+            formik.setErrors({ email: data.message });
           } else {
-            setError(data.message);
+            setErrors([data.message]);
           }
-        });
+        })
+        .finally(() => setIsRegistering(false));
     },
     validationSchema: Yup.object({
       email: Yup.string().email().required(),
@@ -101,7 +114,7 @@ export default function Register({ setError, setFormState }: Props) {
         )}
       </FormControl>
       <HStack mt={8}>
-        <Button colorScheme="teal" type="submit">
+        <Button colorScheme="teal" type="submit" isLoading={isRegistering}>
           Register
         </Button>
       </HStack>
@@ -110,6 +123,6 @@ export default function Register({ setError, setFormState }: Props) {
 }
 
 type Props = {
-  setError: (error: string | undefined) => void;
+  setErrors: (errors: string[]) => void;
   setFormState: (state: 'login') => void;
 };
