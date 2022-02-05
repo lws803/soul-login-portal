@@ -1,4 +1,4 @@
-import { Button } from '@chakra-ui/react';
+import { Button, Center } from '@chakra-ui/react';
 import { useEffect, useState } from 'preact/hooks';
 import axios from 'axios';
 
@@ -51,9 +51,15 @@ export default function JoinPlatform({
   };
 
   return (
-    <Button colorScheme="teal" onClick={joinPlatform} isLoading={!accessToken}>
-      Join Platform!
-    </Button>
+    <Center width="100%">
+      <Button
+        colorScheme="teal"
+        onClick={joinPlatform}
+        isLoading={!accessToken}
+      >
+        Join Platform!
+      </Button>
+    </Center>
   );
 }
 
