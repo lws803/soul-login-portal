@@ -1,0 +1,1 @@
+- Add Sentry monitoring to this project

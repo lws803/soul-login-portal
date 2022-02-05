@@ -11,5 +11,5 @@ RUN npm ci
 COPY . ./
 
 RUN npm run build
-EXPOSE 8080
+EXPOSE 3001
 ENTRYPOINT ["npm", "run", "serve"]
