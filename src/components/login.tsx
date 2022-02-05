@@ -26,7 +26,7 @@ export default function Login({
       setError(undefined);
       axios
         .post(
-          `http://localhost:3000/v1/auth/code?platformId=${platformId}&callback=${callback}`,
+          `http://127.0.0.1:3000/v1/auth/code?platformId=${platformId}&callback=${callback}`,
           values,
         )
         .then(({ data }) => {
@@ -48,10 +48,6 @@ export default function Login({
             setError(data.message);
           }
         });
-
-      if (typeof window !== 'undefined') {
-        // window.open(`https://${callback}`, '_blank');
-      }
     },
     validationSchema: Yup.object({
       email: Yup.string().email().required(),
