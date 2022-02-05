@@ -1,1 +1,6 @@
+- add more explanation in README and link it to the main repo
+- add stock image on top of the login form
+- add better browser icon and title for the login page
+- add loading animation on buttons when fetching requests
+- cover more possible errors and display it at footer
 - Add Sentry monitoring to this project

@@ -9,7 +9,7 @@ export default function JoinPlatform({
   password,
   platformId,
   callback,
-  setError,
+  setErrors,
 }: Props) {
   const [accessToken, setAccessToken] = useState<string>();
   useEffect(() => {
@@ -42,7 +42,7 @@ export default function JoinPlatform({
             }
           })
           .catch(({ response: { data } }) => {
-            setError(data.message);
+            setErrors([data.message]);
           });
       })
       .catch(({ data, status }) => {
@@ -68,5 +68,5 @@ type Props = {
   password: string;
   platformId: number;
   callback: string;
-  setError: (error: string | undefined) => void;
+  setErrors: (error: string[]) => void;
 };

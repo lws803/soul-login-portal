@@ -16,19 +16,22 @@ import { BASE_URL } from '../constants';
 import JoinPlatform from './join-platform';
 
 export default function Login({
-  setError,
+  setErrors,
   setFormState,
   platformId,
   callback,
 }: Props) {
   const [joinPlatform, setJoinPlatform] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
     onSubmit: (values) => {
-      setError(undefined);
+      setErrors([]);
+      setIsLoggingIn(true);
+
       axios
         .post(
           `${BASE_URL}/v1/auth/code?platformId=${platformId}&callback=${callback}`,
@@ -48,13 +51,18 @@ export default function Login({
             } else if (data.error === 'PLATFORM_USER_NOT_FOUND') {
               setJoinPlatform(true);
             } else {
-              setError(data.message);
+              setErrors([data.message]);
             }
           } else {
             // TODO: Add option to resend email verification if email is not verified
-            setError(data.message);
+            if (data.message instanceof Array) {
+              setErrors(['PlatformId and callback is not present.']);
+            } else {
+              setErrors([data.message]);
+            }
           }
-        });
+        })
+        .finally(() => setIsLoggingIn(false));
     },
     validationSchema: Yup.object({
       email: Yup.string().email().required(),
@@ -70,7 +78,7 @@ export default function Login({
         password={formik.values.password}
         platformId={platformId}
         callback={callback}
-        setError={setError}
+        setErrors={setErrors}
       />
     );
   }
@@ -110,10 +118,14 @@ export default function Login({
         )}
       </FormControl>
       <HStack mt={8}>
-        <Button colorScheme="teal" type="submit">
+        <Button colorScheme="teal" type="submit" isLoading={isLoggingIn}>
           Login
         </Button>
-        <Button colorScheme="teal" onClick={() => setFormState('register')}>
+        <Button
+          colorScheme="teal"
+          onClick={() => setFormState('register')}
+          disabled={isLoggingIn}
+        >
           Register
         </Button>
       </HStack>
@@ -122,7 +134,7 @@ export default function Login({
 }
 
 type Props = {
-  setError: (error: string | undefined) => void;
+  setErrors: (error: string[]) => void;
   setFormState: (state: 'login' | 'register') => void;
   platformId: number;
   callback: string;
