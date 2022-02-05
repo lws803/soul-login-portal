@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "preact build",
-    "serve": "sirv build --port 8080 --cors --single",
+    "serve-ssr": "sirv build --port 5000 --cors --single",
+    "serve": "serve -s build -l 3001",
     "dev": "preact watch",
     "lint": "eslint src"
   },
@@ -33,6 +34,7 @@
     "framer-motion": "^5.6.0",
     "preact": "^10.1.0",
     "preact-render-to-string": "^5.1.2",
+    "serve": "^13.0.2",
     "yup": "^0.32.11"
   }
 }
