@@ -40,7 +40,7 @@ export default function Login({
         .then(({ data }) => {
           if (data.code) {
             if (typeof window !== 'undefined') {
-              window.open(`https://${callback}?code=${data.code}`, '_blank');
+              window.open(`${callback}?code=${data.code}`, '_blank');
             }
           }
         })

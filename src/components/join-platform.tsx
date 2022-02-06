@@ -40,7 +40,7 @@ export default function JoinPlatform({
         { email, password },
       );
       if (typeof window !== 'undefined') {
-        window.open(`https://${callback}?code=${codeData.code}`, '_blank');
+        window.open(`${callback}?code=${codeData.code}`, '_blank');
       }
     } catch (error: any) {
       setErrors([error.response.data.message]);
