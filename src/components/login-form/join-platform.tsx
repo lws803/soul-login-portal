@@ -2,7 +2,7 @@ import { Button, Center } from '@chakra-ui/react';
 import { useEffect, useState } from 'preact/hooks';
 import axios from 'axios';
 
-import { BASE_URL } from '../constants';
+import { BASE_URL } from '../../constants';
 
 export default function JoinPlatform({
   email,

@@ -1,27 +1,20 @@
 import { useState } from 'preact/hooks';
 import { Box, Center, Text } from '@chakra-ui/react';
 
-import Login from './login';
-import Register from './register';
+import Login from './login-form/login';
 
-export default function FormWrapper() {
+export default function LoginForm({}: { path: string }) {
   const { callback, platformId } = useQueryParams();
   const [errors, setErrors] = useState<string[]>([]);
-  const [formState, setFormState] = useState<FormStates>('login');
 
   return (
     <Center>
       <Box p={8} width={500}>
-        {formState === 'login' ? (
-          <Login
-            setErrors={setErrors}
-            setFormState={setFormState}
-            callback={callback}
-            platformId={parseInt(platformId, 10)}
-          />
-        ) : (
-          <Register setFormState={setFormState} setErrors={setErrors} />
-        )}
+        <Login
+          setErrors={setErrors}
+          callback={callback}
+          platformId={parseInt(platformId, 10)}
+        />
         {errors.length > 0 &&
           errors.map((error) => (
             <Text marginTop={8} textColor="red.600" fontSize="lg">
@@ -41,5 +34,3 @@ const useQueryParams = (): Record<string, string> => {
   });
   return result;
 };
-
-type FormStates = 'login' | 'register';
