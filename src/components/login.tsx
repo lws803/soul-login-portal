@@ -12,7 +12,7 @@ export default function Login() {
     if (!query.get('callback') || !query.get('platformId')) {
       setErrors(['PlatformId and callback is not present.']);
     }
-  }, []);
+  }, [query]);
 
   return (
     <Center>
