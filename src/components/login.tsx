@@ -2,16 +2,16 @@ import { useState, useMemo } from 'react';
 import { Box, Center, Text } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 
-import Login from './login-form/login';
+import LoginForm from './login-form/login-form';
 
-export default function LoginForm() {
+export default function Login() {
   const query = useQuery();
   const [errors, setErrors] = useState<string[]>([]);
 
   return (
     <Center>
       <Box p={8} width={500}>
-        <Login
+        <LoginForm
           setErrors={setErrors}
           callback={query.get('callback')!}
           platformId={parseInt(query.get('platformId')!, 10)}

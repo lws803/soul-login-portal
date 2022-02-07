@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { Box, Center, Text } from '@chakra-ui/react';
 
-import Register from './register-form/register';
+import RegisterForm from './register-form/register-form';
 
-export default function RegisterForm() {
+export default function Register() {
   const [errors, setErrors] = useState<string[]>([]);
 
   return (
     <Center>
       <Box p={8} width={500}>
-        <Register setErrors={setErrors} />
+        <RegisterForm setErrors={setErrors} />
         {errors.length > 0 &&
           errors.map((error) => (
             <Text marginTop={8} textColor="red.600" fontSize="lg">

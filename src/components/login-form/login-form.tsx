@@ -13,10 +13,11 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
-import { BASE_URL } from '../../constants';
 import JoinPlatform from './join-platform';
 
-export default function Login({ setErrors, platformId, callback }: Props) {
+import { BASE_URL } from '../../constants';
+
+export default function LoginForm({ setErrors, platformId, callback }: Props) {
   const navigate = useNavigate();
   const { search } = useLocation();
   const [joinPlatform, setJoinPlatform] = useState(false);
