@@ -1,9 +1,9 @@
-import { useState, useMemo, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 import LoginForm from './login/login-form';
 
 import Page from '../components/page';
+import useQuery from '../hooks/useQuery';
 
 export default function Login() {
   const query = useQuery();
@@ -25,9 +25,4 @@ export default function Login() {
       />
     </Page>
   );
-}
-
-function useQuery() {
-  const { search } = useLocation();
-  return useMemo(() => new URLSearchParams(search), [search]);
 }
