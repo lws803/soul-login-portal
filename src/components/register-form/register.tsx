@@ -11,13 +11,11 @@ import { useState } from 'preact/hooks';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
+import { route } from 'preact-router';
 
-import { BASE_URL } from '../constants';
+import { BASE_URL } from '../../constants';
 
-export default function Register({
-  setErrors: setErrors,
-  setFormState,
-}: Props) {
+export default function Register({ setErrors: setErrors }: Props) {
   const [isRegistering, setIsRegistering] = useState(false);
 
   const formik = useFormik({
@@ -34,7 +32,7 @@ export default function Register({
         .post(`${BASE_URL}/v1/users`, values)
         .then(({ data }) => {
           if (data.id) {
-            setFormState('login');
+            route('/');
           }
         })
         .catch(({ response: { data, status } }) => {
@@ -124,5 +122,4 @@ export default function Register({
 
 type Props = {
   setErrors: (errors: string[]) => void;
-  setFormState: (state: 'login') => void;
 };

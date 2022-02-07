@@ -1,12 +1,13 @@
 import { ChakraProvider } from '@chakra-ui/react';
 
-import FormWrapper from './components/form-wrapper';
+import Main from './components/main';
+
 import './style';
 
 export default function App() {
   return (
     <ChakraProvider>
-      <FormWrapper />
+      <Main />
     </ChakraProvider>
   );
 }

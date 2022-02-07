@@ -7,20 +7,16 @@ import {
   Button,
   HStack,
 } from '@chakra-ui/react';
+import { route } from 'preact-router';
 import { useFormik } from 'formik';
 import { useState } from 'preact/hooks';
 import * as Yup from 'yup';
 import axios from 'axios';
 
-import { BASE_URL } from '../constants';
+import { BASE_URL } from '../../constants';
 import JoinPlatform from './join-platform';
 
-export default function Login({
-  setErrors,
-  setFormState,
-  platformId,
-  callback,
-}: Props) {
+export default function Login({ setErrors, platformId, callback }: Props) {
   const [joinPlatform, setJoinPlatform] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const formik = useFormik({
@@ -41,12 +37,13 @@ export default function Login({
           if (data.code) {
             if (typeof window !== 'undefined') {
               window.open(`${callback}?code=${data.code}`, '_blank');
+              route('/logging-in');
             }
           }
         })
         .catch(({ response: { data } }) => {
           if (data.error === 'USER_NOT_FOUND') {
-            setFormState('register');
+            route('/register');
           } else if (data.error === 'PLATFORM_USER_NOT_FOUND') {
             setJoinPlatform(true);
           } else if (data.error === 'VALIDATION_ERROR') {
@@ -117,7 +114,7 @@ export default function Login({
         </Button>
         <Button
           colorScheme="teal"
-          onClick={() => setFormState('register')}
+          onClick={() => route('/register')}
           disabled={isLoggingIn}
         >
           Register
@@ -129,7 +126,6 @@ export default function Login({
 
 type Props = {
   setErrors: (error: string[]) => void;
-  setFormState: (state: 'login' | 'register') => void;
   platformId: number;
   callback: string;
 };
