@@ -8,7 +8,7 @@ import {
   Button,
   HStack,
 } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
@@ -18,6 +18,7 @@ import JoinPlatform from './join-platform';
 
 export default function Login({ setErrors, platformId, callback }: Props) {
   const navigate = useNavigate();
+  const { search } = useLocation();
   const [joinPlatform, setJoinPlatform] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const formik = useFormik({
@@ -44,7 +45,7 @@ export default function Login({ setErrors, platformId, callback }: Props) {
         })
         .catch(({ response: { data } }) => {
           if (data.error === 'USER_NOT_FOUND') {
-            navigate('/register');
+            navigate(`/register${search}`);
           } else if (data.error === 'PLATFORM_USER_NOT_FOUND') {
             setJoinPlatform(true);
           } else if (data.error === 'VALIDATION_ERROR') {
@@ -115,7 +116,7 @@ export default function Login({ setErrors, platformId, callback }: Props) {
         </Button>
         <Button
           colorScheme="teal"
-          onClick={() => navigate('/register')}
+          onClick={() => navigate(`/register${search}`)}
           disabled={isLoggingIn}
         >
           Register

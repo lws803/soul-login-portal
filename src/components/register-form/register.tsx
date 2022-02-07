@@ -11,12 +11,14 @@ import {
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { BASE_URL } from '../../constants';
 
 export default function Register({ setErrors }: Props) {
   const navigate = useNavigate();
+  const { search } = useLocation();
+
   const [isRegistering, setIsRegistering] = useState(false);
 
   const formik = useFormik({
@@ -33,7 +35,7 @@ export default function Register({ setErrors }: Props) {
         .post(`${BASE_URL}/v1/users`, values)
         .then(({ data }) => {
           if (data.id) {
-            navigate('/'); // FIXME: preserve the platformId and callback params
+            navigate(`/${search}`);
           }
         })
         .catch(({ response: { data, status } }) => {
