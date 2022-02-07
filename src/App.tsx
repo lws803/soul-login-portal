@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 
-import LoggingIn from './components/logging-in';
-import Login from './components/login';
-import Register from './components/register';
+import LoggingIn from './pages/logging-in';
+import Login from './pages/login';
+import Register from './pages/register';
 
 function App() {
   return (
