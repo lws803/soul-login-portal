@@ -1,6 +1,5 @@
 # TODO
 
-- add checks on parameter platformId and callback url
 - split the api login stuff into modules and use `react-query` maybe
 - add routes and pages for confirming email or password reset
 - add CI/CD for login-portal and add testing for the login page as well
