@@ -13,10 +13,16 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 
-import { BASE_URL } from '../../constants';
 import JoinPlatform from './join-platform';
 
-export default function Login({ setErrors, platformId, callback }: Props) {
+import { BASE_URL } from '../../constants';
+
+export default function LoginForm({
+  setErrors,
+  platformId,
+  callback,
+  disabled,
+}: Props) {
   const navigate = useNavigate();
   const { search } = useLocation();
   const [joinPlatform, setJoinPlatform] = useState(false);
@@ -85,6 +91,7 @@ export default function Login({ setErrors, platformId, callback }: Props) {
           name="email"
           onChange={formik.handleChange}
           value={formik.values.email}
+          disabled={disabled}
         />
         {!formik.errors.email && (
           <FormHelperText>We'll never share your email.</FormHelperText>
@@ -105,19 +112,25 @@ export default function Login({ setErrors, platformId, callback }: Props) {
           type="password"
           onChange={formik.handleChange}
           value={formik.values.password}
+          disabled={disabled}
         />
         {formik.errors.password && (
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
         )}
       </FormControl>
       <HStack mt={8}>
-        <Button colorScheme="teal" type="submit" isLoading={isLoggingIn}>
+        <Button
+          colorScheme="teal"
+          type="submit"
+          isLoading={isLoggingIn}
+          disabled={disabled}
+        >
           Login
         </Button>
         <Button
           colorScheme="teal"
           onClick={() => navigate(`/register${search}`)}
-          disabled={isLoggingIn}
+          disabled={isLoggingIn || disabled}
         >
           Register
         </Button>
@@ -130,4 +143,5 @@ type Props = {
   setErrors: (error: string[]) => void;
   platformId: number;
   callback: string;
+  disabled: boolean;
 };

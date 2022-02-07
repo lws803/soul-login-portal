@@ -25,7 +25,7 @@ export default function JoinPlatform({
       .catch(({ response: { data } }) => {
         setErrors([data.message]);
       });
-  }, []);
+  }, [email, password, setErrors]);
 
   const joinPlatform = async () => {
     setIsJoining(true);
