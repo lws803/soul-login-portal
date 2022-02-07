@@ -1,0 +1,29 @@
+name: pr-merge tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js from .nvmrc
+        uses: actions/setup-node@v2
+        with:
+          node-version-file: '.nvmrc'
+
+      - run: npm ci
+
+      # - name: Lint code
+      #   run: npm run lint
+
+      - name: Run unit tests
+        run: CI=true npm test
+
+      - run: CI=true npm run build
