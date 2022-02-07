@@ -1,5 +1,6 @@
 # TODO
 
+- preserve params for login route after registering, configure react router
 - add routes and pages for confirming email or password reset
 - add CI/CD for login-portal and add testing for the login page as well
   - split the api login stuff into modules and use `react-query` maybe

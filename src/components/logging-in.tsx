@@ -1,6 +1,6 @@
 import { Box, Center, Text } from '@chakra-ui/react';
 
-export default function LoggingIn({}: { path: string }) {
+export default function LoggingIn() {
   return (
     <Center>
       <Box p={8} width={500}>

@@ -1,9 +1,9 @@
-import { useState } from 'preact/hooks';
+import { useState } from 'react';
 import { Box, Center, Text } from '@chakra-ui/react';
 
 import Login from './login-form/login';
 
-export default function LoginForm({}: { path: string }) {
+export default function LoginForm() {
   const { callback, platformId } = useQueryParams();
   const [errors, setErrors] = useState<string[]>([]);
 

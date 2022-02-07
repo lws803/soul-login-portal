@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react';
 import { Button, Center } from '@chakra-ui/react';
-import { useEffect, useState } from 'preact/hooks';
 import axios from 'axios';
-import { route } from 'preact-router';
+import { useNavigate } from 'react-router-dom';
 
 import { BASE_URL } from '../../constants';
 
@@ -12,6 +12,7 @@ export default function JoinPlatform({
   callback,
   setErrors,
 }: Props) {
+  const navigate = useNavigate();
   const [accessToken, setAccessToken] = useState<string>();
   const [isJoining, setIsJoining] = useState(false);
 
@@ -42,7 +43,7 @@ export default function JoinPlatform({
       );
       if (typeof window !== 'undefined') {
         window.open(`${callback}?code=${codeData.code}`, '_blank');
-        route('/logging-in');
+        navigate('/logging-in');
       }
     } catch (error: any) {
       setErrors([error.response.data.message]);
