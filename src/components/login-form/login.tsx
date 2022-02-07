@@ -37,6 +37,7 @@ export default function Login({ setErrors, platformId, callback }: Props) {
           if (data.code) {
             if (typeof window !== 'undefined') {
               window.open(`${callback}?code=${data.code}`, '_blank');
+              route('/logging-in');
             }
           }
         })
