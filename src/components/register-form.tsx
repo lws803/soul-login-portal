@@ -1,10 +1,9 @@
-import { useState } from 'preact/hooks';
-import { route } from 'preact-router';
+import { useState } from 'react';
 import { Box, Center, Text } from '@chakra-ui/react';
 
 import Register from './register-form/register';
 
-export default function RegisterForm({}: { path: string }) {
+export default function RegisterForm() {
   const [errors, setErrors] = useState<string[]>([]);
 
   return (

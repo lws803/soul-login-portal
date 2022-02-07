@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -7,9 +8,8 @@ import {
   Button,
   HStack,
 } from '@chakra-ui/react';
-import { route } from 'preact-router';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { useState } from 'preact/hooks';
 import * as Yup from 'yup';
 import axios from 'axios';
 
@@ -17,6 +17,8 @@ import { BASE_URL } from '../../constants';
 import JoinPlatform from './join-platform';
 
 export default function Login({ setErrors, platformId, callback }: Props) {
+  const navigate = useNavigate();
+  const { search } = useLocation();
   const [joinPlatform, setJoinPlatform] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const formik = useFormik({
@@ -37,13 +39,13 @@ export default function Login({ setErrors, platformId, callback }: Props) {
           if (data.code) {
             if (typeof window !== 'undefined') {
               window.open(`${callback}?code=${data.code}`, '_blank');
-              route('/logging-in');
+              navigate('/logging-in');
             }
           }
         })
         .catch(({ response: { data } }) => {
           if (data.error === 'USER_NOT_FOUND') {
-            route('/register');
+            navigate(`/register${search}`);
           } else if (data.error === 'PLATFORM_USER_NOT_FOUND') {
             setJoinPlatform(true);
           } else if (data.error === 'VALIDATION_ERROR') {
@@ -114,7 +116,7 @@ export default function Login({ setErrors, platformId, callback }: Props) {
         </Button>
         <Button
           colorScheme="teal"
-          onClick={() => route('/register')}
+          onClick={() => navigate(`/register${search}`)}
           disabled={isLoggingIn}
         >
           Register

@@ -1,10 +1,11 @@
-import { useState } from 'preact/hooks';
+import { useState, useMemo } from 'react';
 import { Box, Center, Text } from '@chakra-ui/react';
+import { useLocation } from 'react-router-dom';
 
 import Login from './login-form/login';
 
-export default function LoginForm({}: { path: string }) {
-  const { callback, platformId } = useQueryParams();
+export default function LoginForm() {
+  const query = useQuery();
   const [errors, setErrors] = useState<string[]>([]);
 
   return (
@@ -12,8 +13,8 @@ export default function LoginForm({}: { path: string }) {
       <Box p={8} width={500}>
         <Login
           setErrors={setErrors}
-          callback={callback}
-          platformId={parseInt(platformId, 10)}
+          callback={query.get('callback')!}
+          platformId={parseInt(query.get('platformId')!, 10)}
         />
         {errors.length > 0 &&
           errors.map((error) => (
@@ -26,11 +27,7 @@ export default function LoginForm({}: { path: string }) {
   );
 }
 
-const useQueryParams = (): Record<string, string> => {
-  const result: Record<string, string> = {};
-  const search = typeof window !== 'undefined' ? window.location.search : '';
-  new URLSearchParams(search).forEach((value, key) => {
-    result[key] = value;
-  });
-  return result;
-};
+function useQuery() {
+  const { search } = useLocation();
+  return useMemo(() => new URLSearchParams(search), [search]);
+}

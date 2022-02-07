@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -7,15 +8,17 @@ import {
   HStack,
   Button,
 } from '@chakra-ui/react';
-import { useState } from 'preact/hooks';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { route } from 'preact-router';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import { BASE_URL } from '../../constants';
 
-export default function Register({ setErrors: setErrors }: Props) {
+export default function Register({ setErrors }: Props) {
+  const navigate = useNavigate();
+  const { search } = useLocation();
+
   const [isRegistering, setIsRegistering] = useState(false);
 
   const formik = useFormik({
@@ -32,7 +35,7 @@ export default function Register({ setErrors: setErrors }: Props) {
         .post(`${BASE_URL}/v1/users`, values)
         .then(({ data }) => {
           if (data.id) {
-            route('/');
+            navigate(`/${search}`);
           }
         })
         .catch(({ response: { data, status } }) => {
