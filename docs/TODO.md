@@ -1,6 +1,8 @@
 # TODO
 
 - add routes and pages for confirming email or password reset
+- add send verification email again button in login page
+- add forget password button in login page
 - add tests for this application
 - add some examples of using the login portal -> or create a new repo for it
 - create verified email page and a reset password page
