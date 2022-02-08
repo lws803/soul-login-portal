@@ -33,9 +33,6 @@ export default function ResetPassword() {
           `${BASE_URL}/v1/users/password-reset?token=${query.get('token')}`,
           values,
         )
-        .then(() => {
-          setIsResetting(false);
-        })
         .catch(({ response: { data, status } }) => {
           if (status === 400 && data.error === 'VALIDATION_ERROR') {
             formik.setErrors({
@@ -44,6 +41,9 @@ export default function ResetPassword() {
           } else {
             setErrors([data.message]);
           }
+        })
+        .finally(() => {
+          setIsResetting(false);
         });
     },
     validationSchema: Yup.object({
@@ -82,7 +82,6 @@ export default function ResetPassword() {
           </Button>
         </HStack>
       </form>
-      );
     </Page>
   );
 }
