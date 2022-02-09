@@ -17,7 +17,7 @@ import JoinPlatform from './join-platform';
 
 import { BASE_URL } from '../../constants';
 
-export default function LoginForm({
+export default function Form({
   setErrors,
   platformId,
   callback,

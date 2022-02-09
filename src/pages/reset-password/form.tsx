@@ -13,7 +13,7 @@ import * as Yup from 'yup';
 
 import { BASE_URL } from '../../constants';
 
-export default function ResetPasswordForm({ token, setErrors }: Props) {
+export default function Form({ token, setErrors }: Props) {
   const [isResetting, setIsResetting] = useState(false);
 
   const formik = useFormik({

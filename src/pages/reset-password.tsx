@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Page from '../components/page';
 import useQuery from '../hooks/useQuery';
-import ResetPasswordForm from './reset-password/reset-password-form';
+import Form from './reset-password/form';
 
 export default function ResetPassword() {
   const query = useQuery();
@@ -10,7 +10,7 @@ export default function ResetPassword() {
 
   return (
     <Page errors={errors}>
-      <ResetPasswordForm setErrors={setErrors} token={query.get('token')} />
+      <Form setErrors={setErrors} token={query.get('token')} />
     </Page>
   );
 }

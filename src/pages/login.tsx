@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import LoginForm from './login/login-form';
+import Form from './login/form';
 
 import Page from '../components/page';
 import useQuery from '../hooks/useQuery';
@@ -17,7 +17,7 @@ export default function Login() {
 
   return (
     <Page errors={errors}>
-      <LoginForm
+      <Form
         setErrors={setErrors}
         callback={query.get('callback')!}
         platformId={parseInt(query.get('platformId')!, 10)}

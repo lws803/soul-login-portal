@@ -15,7 +15,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import { BASE_URL } from '../../constants';
 
-export default function RegisterForm({ setErrors }: Props) {
+export default function Form({ setErrors }: Props) {
   const navigate = useNavigate();
   const { search } = useLocation();
 
