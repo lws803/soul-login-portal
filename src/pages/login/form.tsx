@@ -11,11 +11,9 @@ import {
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
 
 import JoinPlatform from './join-platform';
-
-import { BASE_URL } from '../../constants';
+import { login } from './api';
 
 export default function Form({
   setErrors,
@@ -33,36 +31,29 @@ export default function Form({
       email: '',
       password: '',
     },
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       setErrors([]);
       setIsLoggingIn(true);
-
-      axios
-        .post(
-          `${BASE_URL}/v1/auth/code?platformId=${platformId}&callback=${callback}`,
-          values,
-        )
-        .then(({ data }) => {
-          if (data.code) {
-            if (typeof window !== 'undefined') {
-              window.open(`${callback}?code=${data.code}`, '_blank');
-              setIsSuccess(true);
-            }
-          }
-        })
-        .catch(({ response: { data } }) => {
-          if (data.error === 'USER_NOT_FOUND') {
-            navigate(`/register${search}`);
-          } else if (data.error === 'PLATFORM_USER_NOT_FOUND') {
-            setJoinPlatform(true);
-          } else if (data.error === 'VALIDATION_ERROR') {
-            setErrors(['PlatformId and callback is not present.']);
-          } else {
-            // TODO: Add option to resend email verification if email is not verified
-            setErrors([data.message]);
-          }
-        })
-        .finally(() => setIsLoggingIn(false));
+      const { data, error } = await login({ values, platformId, callback });
+      if (error) {
+        if (error.error === 'USER_NOT_FOUND') {
+          navigate(`/register${search}`);
+        } else if (error.error === 'PLATFORM_USER_NOT_FOUND') {
+          setJoinPlatform(true);
+        } else if (error.error === 'VALIDATION_ERROR') {
+          setErrors(['PlatformId and callback is not present.']);
+        } else {
+          // TODO: Add option to resend email verification if email is not verified
+          setErrors([error.message]);
+        }
+      }
+      if (data?.code) {
+        if (typeof window !== 'undefined') {
+          window.open(`${callback}?code=${data.code}`, '_blank');
+          setIsSuccess(true);
+        }
+      }
+      setIsLoggingIn(false);
     },
     validationSchema: Yup.object({
       email: Yup.string().email().required(),
