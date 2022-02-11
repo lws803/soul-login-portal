@@ -1,13 +1,17 @@
 import { Box, Center, Text } from '@chakra-ui/react';
 
-export default function LoggingIn() {
+export default function Status({ status }: Props) {
   return (
     <Center>
       <Box p={8} width={500}>
         <Text fontSize="lg" mt={10}>
-          Logging you in...
+          {status}
         </Text>
       </Box>
     </Center>
   );
 }
+
+type Props = {
+  status: string;
+};

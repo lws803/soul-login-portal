@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Button, Center } from '@chakra-ui/react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
-import { BASE_URL } from '../../constants';
+import { login, joinPlatformAndLogin } from './api';
 
 export default function JoinPlatform({
   email,
@@ -11,42 +9,41 @@ export default function JoinPlatform({
   platformId,
   callback,
   setErrors,
+  setIsSuccess,
 }: Props) {
-  const navigate = useNavigate();
   const [accessToken, setAccessToken] = useState<string>();
   const [isJoining, setIsJoining] = useState(false);
 
   useEffect(() => {
-    axios
-      .post(`${BASE_URL}/v1/auth/login`, { email, password })
-      .then(({ data }) => {
+    const preLogin = async () => {
+      const { data, error } = await login({ email, password });
+      if (error) {
+        setErrors([error.message]);
+      }
+      if (data) {
         setAccessToken(data.accessToken);
-      })
-      .catch(({ response: { data } }) => {
-        setErrors([data.message]);
-      });
+      }
+    };
+    preLogin();
   }, [email, password, setErrors]);
 
   const joinPlatform = async () => {
     setIsJoining(true);
-    try {
-      await axios.post(
-        `${BASE_URL}/v1/platforms/${platformId}/join`,
-        undefined,
-        {
-          headers: { Authorization: `Bearer ${accessToken}` },
-        },
-      );
-      const { data: codeData } = await axios.post(
-        `${BASE_URL}/v1/auth/code?platformId=${platformId}&callback=${callback}`,
-        { email, password },
-      );
+    const { data, error } = await joinPlatformAndLogin({
+      platformId,
+      callback,
+      email,
+      password,
+      accessToken: accessToken!,
+    });
+    if (error) {
+      setErrors([error.message]);
+    }
+    if (data) {
       if (typeof window !== 'undefined') {
-        window.open(`${callback}?code=${codeData.code}`, '_blank');
-        navigate('/logging-in');
+        window.open(`${callback}?code=${data.code}`, '_blank');
+        setIsSuccess(true);
       }
-    } catch (error: any) {
-      setErrors([error.response.data.message]);
     }
     setIsJoining(false);
   };
@@ -70,4 +67,5 @@ type Props = {
   platformId: number;
   callback: string;
   setErrors: (error: string[]) => void;
+  setIsSuccess: (isSuccess: boolean) => void;
 };
