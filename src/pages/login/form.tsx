@@ -19,6 +19,7 @@ import { BASE_URL } from '../../constants';
 
 export default function Form({
   setErrors,
+  setIsSuccess,
   platformId,
   callback,
   disabled,
@@ -45,7 +46,7 @@ export default function Form({
           if (data.code) {
             if (typeof window !== 'undefined') {
               window.open(`${callback}?code=${data.code}`, '_blank');
-              navigate('/logging-in');
+              setIsSuccess(true);
             }
           }
         })
@@ -141,6 +142,7 @@ export default function Form({
 
 type Props = {
   setErrors: (error: string[]) => void;
+  setIsSuccess: (isSuccess: boolean) => void;
   platformId: number;
   callback: string;
   disabled: boolean;
