@@ -13,7 +13,7 @@ import * as Yup from 'yup';
 
 import { BASE_URL } from '../../constants';
 
-export default function ResetPasswordForm({ token, setErrors }: Props) {
+export default function Form({ token, setErrors, setIsSuccess }: Props) {
   const [isResetting, setIsResetting] = useState(false);
 
   const formik = useFormik({
@@ -25,6 +25,7 @@ export default function ResetPasswordForm({ token, setErrors }: Props) {
       setIsResetting(true);
       axios
         .post(`${BASE_URL}/v1/users/password-reset?token=${token}`, values)
+        .then(() => setIsSuccess(true))
         .catch(({ response: { data, status } }) => {
           if (status === 400 && data.error === 'VALIDATION_ERROR') {
             formik.setErrors({
@@ -78,5 +79,6 @@ export default function ResetPasswordForm({ token, setErrors }: Props) {
 
 type Props = {
   setErrors: (error: string[]) => void;
+  setIsSuccess: (isSuccess: boolean) => void;
   token?: string | null;
 };

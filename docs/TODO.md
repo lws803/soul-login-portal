@@ -1,6 +1,5 @@
 # TODO
 
-- add better UX for reset password page -> redirect users to a success page if successful
 - add send verification email again button in login page
 - add forget password button in login page
 - add tests for this application

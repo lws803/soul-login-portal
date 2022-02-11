@@ -10,12 +10,11 @@ import {
 } from '@chakra-ui/react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { BASE_URL } from '../../constants';
+import { register } from './api';
 
-export default function RegisterForm({ setErrors }: Props) {
+export default function Form({ setErrors }: Props) {
   const navigate = useNavigate();
   const { search } = useLocation();
 
@@ -27,29 +26,26 @@ export default function RegisterForm({ setErrors }: Props) {
       password: '',
       username: '',
     },
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       setErrors([]);
       setIsRegistering(true);
 
-      axios
-        .post(`${BASE_URL}/v1/users`, values)
-        .then(({ data }) => {
-          if (data.id) {
-            navigate(`/${search}`);
-          }
-        })
-        .catch(({ response: { data, status } }) => {
-          if (status === 400 && data.error === 'VALIDATION_ERROR') {
-            formik.setErrors({
-              password: 'Password is too weak!',
-            });
-          } else if (status === 409) {
-            formik.setErrors({ email: data.message });
-          } else {
-            setErrors([data.message]);
-          }
-        })
-        .finally(() => setIsRegistering(false));
+      const { data, error } = await register({ values });
+      if (error) {
+        if (error.status === 400 && error.data.error === 'VALIDATION_ERROR') {
+          formik.setErrors({
+            password: 'Password is too weak!',
+          });
+        } else if (error.status === 409) {
+          formik.setErrors({ email: error.data.message });
+        } else {
+          setErrors([error.data.message]);
+        }
+      }
+      if (data?.id) {
+        navigate(`/${search}`);
+      }
+      setIsRegistering(false);
     },
     validationSchema: Yup.object({
       email: Yup.string().email().required(),
