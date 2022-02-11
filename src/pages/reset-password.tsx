@@ -1,16 +1,27 @@
 import { useState } from 'react';
 
+import Form from './reset-password/form';
+import Status from './status';
+
 import Page from '../components/page';
 import useQuery from '../hooks/useQuery';
-import Form from './reset-password/form';
 
 export default function ResetPassword() {
   const query = useQuery();
   const [errors, setErrors] = useState<string[]>([]);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   return (
     <Page errors={errors}>
-      <Form setErrors={setErrors} token={query.get('token')} />
+      {isSuccess ? (
+        <Status status="Password reset successfully! Please close this page" />
+      ) : (
+        <Form
+          setErrors={setErrors}
+          setIsSuccess={setIsSuccess}
+          token={query.get('token')}
+        />
+      )}
     </Page>
   );
 }
