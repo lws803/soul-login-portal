@@ -13,7 +13,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import JoinPlatform from './join-platform';
-import { login } from './api';
+import { loginWithPlatform } from './api';
 
 export default function Form({
   setErrors,
@@ -34,7 +34,11 @@ export default function Form({
     onSubmit: async (values) => {
       setErrors([]);
       setIsLoggingIn(true);
-      const { data, error } = await login({ values, platformId, callback });
+      const { data, error } = await loginWithPlatform({
+        values,
+        platformId,
+        callback,
+      });
       if (error) {
         if (error.error === 'USER_NOT_FOUND') {
           navigate(`/register${search}`);
@@ -70,6 +74,7 @@ export default function Form({
         platformId={platformId}
         callback={callback}
         setErrors={setErrors}
+        setIsSuccess={setIsSuccess}
       />
     );
   }
