@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { BASE_URL } from '../../constants';
-
 import { ApiError } from '../../shared/api-types';
 
 export const sendPasswordReset = async ({ email }: { email: string }) => {
