@@ -74,6 +74,22 @@ exports[`renders login page 1`] = `
           </button>
         </div>
       </form>
+      <div
+        class="chakra-stack css-1iiq7kh"
+      >
+        <a
+          class="chakra-link css-f4h6uy"
+          href="/request-password-reset"
+        >
+          Request password reset
+        </a>
+        <a
+          class="chakra-link css-f4h6uy"
+          href="/request-email-verification"
+        >
+          Request email verification
+        </a>
+      </div>
       <p
         class="chakra-text css-4j7iwf"
       >

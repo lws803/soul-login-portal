@@ -23,6 +23,7 @@ export default function Form({ token, setErrors, setIsSuccess }: Props) {
     onSubmit: (values) => {
       setErrors([]);
       setIsResetting(true);
+      // TODO: refactor this one out
       axios
         .post(`${BASE_URL}/v1/users/password-reset?token=${token}`, values)
         .then(() => setIsSuccess(true))

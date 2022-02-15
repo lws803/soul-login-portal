@@ -26,6 +26,7 @@ export default function Form({
   const { search } = useLocation();
   const [joinPlatform, setJoinPlatform] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -47,7 +48,6 @@ export default function Form({
         } else if (error.error === 'VALIDATION_ERROR') {
           setErrors(['PlatformId and callback is not present.']);
         } else {
-          // TODO: Add option to resend email verification if email is not verified
           setErrors([error.message]);
         }
       }
@@ -65,6 +65,8 @@ export default function Form({
     }),
     validateOnChange: false,
   });
+
+  // TODO: Add option to resend email verification if email is not verified
 
   if (joinPlatform) {
     return (
@@ -97,7 +99,6 @@ export default function Form({
           <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
         )}
       </FormControl>
-
       <FormControl
         isInvalid={!!formik.errors.password && formik.touched.password}
         marginTop={8}
