@@ -1,7 +1,6 @@
 # TODO
 
 - add reconfirm form submission
-- add eslint for this application
 - add tests for this application
 - add some examples of using the login portal -> or create a new repo for it
 - create verified email page and a reset password page
