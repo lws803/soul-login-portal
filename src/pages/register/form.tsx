@@ -87,7 +87,7 @@ export default function Form({ setErrors }: Props) {
           value={formik.values.email}
         />
         {!formik.errors.email && (
-          <FormHelperText>We'll never share your email.</FormHelperText>
+          <FormHelperText>We&apos;ll never share your email.</FormHelperText>
         )}
         {formik.errors.email && (
           <FormErrorMessage>{formik.errors.email}</FormErrorMessage>

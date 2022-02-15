@@ -93,7 +93,7 @@ export default function Form({
           disabled={disabled}
         />
         {!formik.errors.email && (
-          <FormHelperText>We'll never share your email.</FormHelperText>
+          <FormHelperText>We&apos;ll never share your email.</FormHelperText>
         )}
         {formik.errors.email && (
           <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
