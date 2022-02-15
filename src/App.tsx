@@ -6,8 +6,8 @@ import Login from './pages/login';
 import Register from './pages/register';
 import EmailConfirmation from './pages/email-confirmation';
 import ResetPassword from './pages/reset-password';
-import RequestPasswordReset from './pages/requesst-password-reset';
-import RequestEmailVerification from './pages/requesst-email-verification';
+import RequestPasswordReset from './pages/request-password-reset';
+import RequestEmailVerification from './pages/request-email-verification';
 
 function App() {
   return (
