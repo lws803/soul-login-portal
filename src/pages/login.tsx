@@ -33,6 +33,9 @@ export default function Login() {
           />
           <VStack mt={6} alignItems="left">
             <Link href="/request-password-reset">Request password reset</Link>
+            <Link href="/request-email-verification">
+              Request email verification
+            </Link>
           </VStack>
         </>
       )}

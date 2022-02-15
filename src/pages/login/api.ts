@@ -82,14 +82,3 @@ export const joinPlatformAndLogin = async ({
     return { data: null, error: data as ApiError };
   }
 };
-
-export const sendEmailConfirmation = async ({ email }: { email: string }) => {
-  try {
-    await axios.post(
-      `${BASE_URL}/v1/users/resend-confirmation-token?email=${email}`,
-    );
-    return { error: null };
-  } catch ({ response: { data } }) {
-    return { error: data as ApiError };
-  }
-};

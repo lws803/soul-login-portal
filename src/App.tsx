@@ -7,6 +7,7 @@ import Register from './pages/register';
 import EmailConfirmation from './pages/email-confirmation';
 import ResetPassword from './pages/reset-password';
 import RequestPasswordReset from './pages/requesst-password-reset';
+import RequestEmailVerification from './pages/requesst-email-verification';
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
           <Route
             path="/request-password-reset"
             element={<RequestPasswordReset />}
+          />
+          <Route
+            path="/request-email-verification"
+            element={<RequestEmailVerification />}
           />
         </Routes>
       </BrowserRouter>
