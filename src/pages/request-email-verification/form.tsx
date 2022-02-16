@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -13,12 +13,15 @@ import {
 import { sendEmailConfirmation } from './api';
 
 export default function Form({ setErrors, setIsSuccess }: Props) {
+  const [isSending, setIsSending] = useState(false);
+
   const formik = useFormik({
     initialValues: {
       email: '',
     },
     onSubmit: async (values) => {
       setErrors([]);
+      setIsSending(true);
       const { error } = await sendEmailConfirmation(values);
 
       if (error) {
@@ -26,6 +29,7 @@ export default function Form({ setErrors, setIsSuccess }: Props) {
       } else {
         setIsSuccess(true);
       }
+      setIsSending(false);
     },
     validationSchema: Yup.object({
       email: Yup.string().email().required(),
@@ -51,7 +55,12 @@ export default function Form({ setErrors, setIsSuccess }: Props) {
         )}
       </FormControl>
       <HStack mt={8}>
-        <Button colorScheme="teal" type="submit">
+        <Button
+          colorScheme="teal"
+          type="submit"
+          isLoading={isSending}
+          loadingText="Sending verification email"
+        >
           Request email verification
         </Button>
       </HStack>

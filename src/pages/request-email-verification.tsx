@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import Form from './request-password-reset/form';
 import Status from './status';
+import Form from './request-email-verification/form';
 
 import Page from '../components/page';
 
