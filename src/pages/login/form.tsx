@@ -7,6 +7,8 @@ import {
   FormErrorMessage,
   Button,
   HStack,
+  VStack,
+  Link,
 } from '@chakra-ui/react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -82,58 +84,66 @@ export default function Form({
   }
 
   return (
-    <form onSubmit={(e) => formik.handleSubmit(e as any)}>
-      <FormControl isInvalid={!!formik.errors.email && formik.touched.email}>
-        <FormLabel htmlFor="email">Email</FormLabel>
-        <Input
-          id="email"
-          name="email"
-          onChange={formik.handleChange}
-          value={formik.values.email}
-          disabled={disabled}
-        />
-        {!formik.errors.email && (
-          <FormHelperText>We&apos;ll never share your email.</FormHelperText>
-        )}
-        {formik.errors.email && (
-          <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
-        )}
-      </FormControl>
-      <FormControl
-        isInvalid={!!formik.errors.password && formik.touched.password}
-        marginTop={8}
-      >
-        <FormLabel htmlFor="password">Password</FormLabel>
-        <Input
-          id="password"
-          name="password"
-          type="password"
-          onChange={formik.handleChange}
-          value={formik.values.password}
-          disabled={disabled}
-        />
-        {formik.errors.password && (
-          <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-        )}
-      </FormControl>
-      <HStack mt={8}>
-        <Button
-          colorScheme="teal"
-          type="submit"
-          isLoading={isLoggingIn}
-          disabled={disabled}
+    <>
+      <form onSubmit={(e) => formik.handleSubmit(e as any)}>
+        <FormControl isInvalid={!!formik.errors.email && formik.touched.email}>
+          <FormLabel htmlFor="email">Email</FormLabel>
+          <Input
+            id="email"
+            name="email"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            disabled={disabled}
+          />
+          {!formik.errors.email && (
+            <FormHelperText>We&apos;ll never share your email.</FormHelperText>
+          )}
+          {formik.errors.email && (
+            <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+          )}
+        </FormControl>
+        <FormControl
+          isInvalid={!!formik.errors.password && formik.touched.password}
+          marginTop={8}
         >
-          Login
-        </Button>
-        <Button
-          colorScheme="teal"
-          onClick={() => navigate(`/register${search}`)}
-          disabled={isLoggingIn || disabled}
-        >
-          Register
-        </Button>
-      </HStack>
-    </form>
+          <FormLabel htmlFor="password">Password</FormLabel>
+          <Input
+            id="password"
+            name="password"
+            type="password"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+            disabled={disabled}
+          />
+          {formik.errors.password && (
+            <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
+          )}
+        </FormControl>
+        <HStack mt={8}>
+          <Button
+            colorScheme="teal"
+            type="submit"
+            isLoading={isLoggingIn}
+            disabled={disabled}
+          >
+            Login
+          </Button>
+          <Button
+            colorScheme="teal"
+            onClick={() => navigate(`/register${search}`)}
+            disabled={isLoggingIn || disabled}
+          >
+            Register
+          </Button>
+        </HStack>
+      </form>
+      <VStack mt={6} alignItems="left">
+        <Link href="/request-password-reset">Request password reset</Link>
+        <Link href="/request-email-verification">
+          Request email verification
+        </Link>
+      </VStack>
+    </>
   );
 }
 
