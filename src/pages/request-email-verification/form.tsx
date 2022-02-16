@@ -10,7 +10,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 
-import { sendPasswordReset } from './api';
+import { sendEmailConfirmation } from './api';
 
 export default function Form({ setErrors, setIsSuccess }: Props) {
   const formik = useFormik({
@@ -19,7 +19,7 @@ export default function Form({ setErrors, setIsSuccess }: Props) {
     },
     onSubmit: async (values) => {
       setErrors([]);
-      const { error } = await sendPasswordReset(values);
+      const { error } = await sendEmailConfirmation(values);
 
       if (error) {
         setErrors([error.message]);
