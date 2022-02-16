@@ -41,8 +41,8 @@ export default function JoinPlatform({
     }
     if (data) {
       if (typeof window !== 'undefined') {
-        window.open(`${callback}?code=${data.code}`, '_blank');
         setIsSuccess(true);
+        window.open(`${callback}?code=${data.code}`, '_self');
       }
     }
     setIsJoining(false);

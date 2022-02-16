@@ -53,8 +53,8 @@ export default function Form({
       }
       if (data?.code) {
         if (typeof window !== 'undefined') {
-          window.open(`${callback}?code=${data.code}`, '_blank');
           setIsSuccess(true);
+          window.open(`${callback}?code=${data.code}`, '_self');
         }
       }
       setIsLoggingIn(false);
