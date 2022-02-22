@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RequestEmailVerification renders 1`] = `
+<div>
+  <div
+    class="css-gmuwbf"
+  >
+    <div
+      class="css-3qxem8"
+    >
+      <form>
+        <div
+          class="chakra-form-control css-164r41r"
+          role="group"
+        >
+          <label
+            class="chakra-form__label css-uvho5g"
+            for="email"
+            id="field-1-label"
+          >
+            Email
+          </label>
+          <input
+            class="chakra-input css-0"
+            id="email"
+            name="email"
+            value=""
+          />
+        </div>
+        <div
+          class="chakra-stack css-nzla2i"
+        >
+          <button
+            class="chakra-button css-5c2176"
+            type="submit"
+          >
+            Request email verification
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

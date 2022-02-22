@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmailConfirmation renders 1`] = `
+<div>
+  <div
+    class="css-gmuwbf"
+  >
+    <div
+      class="css-3qxem8"
+    >
+      <div
+        class="css-1yfye7s"
+      >
+        <div
+          class="chakra-spinner css-1y7joxr"
+        >
+          <span
+            class="css-f8n5zr"
+          >
+            Loading...
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
