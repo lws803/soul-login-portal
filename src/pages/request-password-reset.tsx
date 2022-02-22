@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import Form from './request-password-reset/form';
-import Status from './status';
 
+import Status from '../components/status';
 import Page from '../components/page';
 
 export default function RequestPasswordReset() {
