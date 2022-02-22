@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import Status from './status';
 import Form from './request-email-verification/form';
 
+import Status from '../components/status';
 import Page from '../components/page';
 
 export default function RequestEmailVerification() {

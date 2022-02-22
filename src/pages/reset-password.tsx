@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import Form from './reset-password/form';
-import Status from './status';
 
+import Status from '../components/status';
 import Page from '../components/page';
 import useQuery from '../hooks/useQuery';
 

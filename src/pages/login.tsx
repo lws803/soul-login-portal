@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
 import Form from './login/form';
-import Status from './status';
 
 import Page from '../components/page';
+import Status from '../components/status';
 import useQuery from '../hooks/useQuery';
 
 export default function Login() {
