@@ -5,11 +5,11 @@ import { MemoryRouter } from 'react-router-dom';
 import Login from './login';
 
 describe(Login, () => {
+  const path = '/?platformId=1&callback=https://www.example.com';
+
   it('renders', async () => {
     const { container } = render(
-      <MemoryRouter
-        initialEntries={['/?platformId=1&callback=https://www.example.com']}
-      >
+      <MemoryRouter initialEntries={[path]}>
         <Login />
       </MemoryRouter>,
     );
