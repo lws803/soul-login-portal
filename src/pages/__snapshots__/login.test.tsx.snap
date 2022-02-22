@@ -22,6 +22,7 @@ exports[`Login renders 1`] = `
           </label>
           <input
             aria-describedby="field-1-helptext"
+            aria-label="Email input"
             class="chakra-input css-0"
             id="email"
             name="email"
@@ -46,6 +47,7 @@ exports[`Login renders 1`] = `
             Password
           </label>
           <input
+            aria-label="Password input"
             class="chakra-input css-0"
             id="password"
             name="password"

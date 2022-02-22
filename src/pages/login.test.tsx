@@ -29,8 +29,8 @@ describe(Login, () => {
     ).toBeInTheDocument();
   });
 
-  it.only('logs in successfully', async () => {
-    const windowOpen = jest.spyOn(window, 'open');
+  it('logs in successfully', async () => {
+    window.open = jest.fn();
     const loginWithPlatform = jest
       .spyOn(api, 'loginWithPlatform')
       .mockResolvedValue({ data: { code: 'CODE' }, error: null });
@@ -61,5 +61,6 @@ describe(Login, () => {
         password: 'PASSWORD',
       },
     });
+    expect(window.open).toHaveBeenCalled();
   });
 });
