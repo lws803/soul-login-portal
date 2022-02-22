@@ -6,6 +6,15 @@ import Login from './login';
 import * as api from './login/api';
 
 describe(Login, () => {
+  let navigate: jest.Mock;
+
+  beforeEach(() => {
+    navigate = jest.fn();
+    jest.doMock('react-router-dom', () => ({
+      ...(jest.requireActual('react-router-dom') as any),
+      useNavigate: () => () => navigate,
+    }));
+  });
   const path = '/?platformId=1&callback=https://www.example.com';
 
   it('renders', async () => {
