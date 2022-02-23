@@ -22,6 +22,7 @@ exports[`Register renders 1`] = `
           </label>
           <input
             aria-describedby="field-1-helptext"
+            aria-label="Username input"
             class="chakra-input css-0"
             id="username"
             name="username"
@@ -47,6 +48,7 @@ exports[`Register renders 1`] = `
           </label>
           <input
             aria-describedby="field-2-helptext"
+            aria-label="Email input"
             class="chakra-input css-0"
             id="email"
             name="email"
@@ -71,6 +73,7 @@ exports[`Register renders 1`] = `
             Password
           </label>
           <input
+            aria-label="Password input"
             class="chakra-input css-0"
             id="password"
             name="password"
