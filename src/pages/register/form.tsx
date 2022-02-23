@@ -66,6 +66,7 @@ export default function Form({ setErrors }: Props) {
           name="username"
           onChange={formik.handleChange}
           value={formik.values.username}
+          aria-label="Username input"
         />
         {!formik.errors.email && (
           <FormHelperText>Choose an awesome username!</FormHelperText>
@@ -85,6 +86,7 @@ export default function Form({ setErrors }: Props) {
           name="email"
           onChange={formik.handleChange}
           value={formik.values.email}
+          aria-label="Email input"
         />
         {!formik.errors.email && (
           <FormHelperText>We&apos;ll never share your email.</FormHelperText>
@@ -105,6 +107,7 @@ export default function Form({ setErrors }: Props) {
           type="password"
           onChange={formik.handleChange}
           value={formik.values.password}
+          aria-label="Password input"
         />
         {formik.errors.password && (
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>

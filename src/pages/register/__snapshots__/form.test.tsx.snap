@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form renders 1`] = `
+<div>
+  <form>
+    <div
+      class="chakra-form-control css-0"
+      role="group"
+    >
+      <label
+        class="chakra-form__label css-uvho5g"
+        for="username"
+        id="field-1-label"
+      >
+        Username
+      </label>
+      <input
+        aria-describedby="field-1-helptext"
+        aria-label="Username input"
+        class="chakra-input css-0"
+        id="username"
+        name="username"
+        value=""
+      />
+      <div
+        class="chakra-form__helper-text css-0"
+        id="field-1-helptext"
+      >
+        Choose an awesome username!
+      </div>
+    </div>
+    <div
+      class="chakra-form-control css-164r41r"
+      role="group"
+    >
+      <label
+        class="chakra-form__label css-uvho5g"
+        for="email"
+        id="field-2-label"
+      >
+        Email
+      </label>
+      <input
+        aria-describedby="field-2-helptext"
+        aria-label="Email input"
+        class="chakra-input css-0"
+        id="email"
+        name="email"
+        value=""
+      />
+      <div
+        class="chakra-form__helper-text css-0"
+        id="field-2-helptext"
+      >
+        We'll never share your email.
+      </div>
+    </div>
+    <div
+      class="chakra-form-control css-164r41r"
+      role="group"
+    >
+      <label
+        class="chakra-form__label css-uvho5g"
+        for="password"
+        id="field-3-label"
+      >
+        Password
+      </label>
+      <input
+        aria-label="Password input"
+        class="chakra-input css-0"
+        id="password"
+        name="password"
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      class="chakra-stack css-nzla2i"
+    >
+      <button
+        class="chakra-button css-5c2176"
+        type="submit"
+      >
+        Register
+      </button>
+    </div>
+  </form>
+</div>
+`;

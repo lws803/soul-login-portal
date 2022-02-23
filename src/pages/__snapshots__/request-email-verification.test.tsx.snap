@@ -21,6 +21,7 @@ exports[`RequestEmailVerification renders 1`] = `
             Email
           </label>
           <input
+            aria-label="Email input"
             class="chakra-input css-0"
             id="email"
             name="email"

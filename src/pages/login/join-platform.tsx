@@ -54,6 +54,7 @@ export default function JoinPlatform({
         colorScheme="teal"
         onClick={joinPlatform}
         isLoading={!accessToken || isJoining}
+        aria-label="Join platform button"
       >
         Join Platform!
       </Button>
