@@ -59,6 +59,7 @@ export default function Form({ token, setErrors, setIsSuccess }: Props) {
           onChange={formik.handleChange}
           value={formik.values.password}
           disabled={!token}
+          aria-label="Password input"
         />
         {formik.errors.password && (
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
