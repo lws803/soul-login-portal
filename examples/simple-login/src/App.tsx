@@ -4,31 +4,31 @@ import axios from 'axios';
 import './App.css';
 import './Button.css';
 
-function App() {
-  const platformId = 2;
-  const callback = 'http://localhost:3000';
+const PLATFORM_ID = 2;
+const CALLBACK = 'http://localhost:3000';
 
+function App() {
   const [username, setUsername] = useState<string | undefined>();
+
+  const loginAndGetUsername = async (code: string) => {
+    const {
+      data: { accessToken },
+    } = await axios.post(
+      `http://api.soul-network.com/v1/auth/verify?callback=${CALLBACK}&code=${code}`,
+    );
+    const {
+      data: { username },
+    } = await axios.get('https://api.soul-network.com/v1/users/me', {
+      headers: {
+        'Content-type': 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+    setUsername(username);
+  };
   useEffect(() => {
     const params = getSearchParams<{ code: string }>();
-    if (params.code) {
-      axios
-        .post(
-          `http://api.soul-network.com/v1/auth/verify?callback=${callback}&code=${params.code}`,
-        )
-        .then(({ data: { accessToken } }) => {
-          axios
-            .get('https://api.soul-network.com/v1/users/me', {
-              headers: {
-                'Content-type': 'application/json',
-                Authorization: `Bearer ${accessToken}`,
-              },
-            })
-            .then(({ data: { username } }) => {
-              setUsername(username);
-            });
-        });
-    }
+    if (params.code) loginAndGetUsername(params.code);
   }, []);
 
   return (
@@ -43,7 +43,7 @@ function App() {
             onClick={() => {
               if (window?.open !== undefined) {
                 window.open(
-                  `https://login.soul-network.com/?platformId=${platformId}&callback=${callback}`,
+                  `https://login.soul-network.com/?platformId=${PLATFORM_ID}&callback=${CALLBACK}`,
                   '_self',
                 );
               }
