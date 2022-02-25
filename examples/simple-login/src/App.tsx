@@ -26,6 +26,7 @@ function App() {
     });
     setUsername(username);
   };
+
   useEffect(() => {
     const params = getSearchParams<{ code: string }>();
     if (params.code) loginAndGetUsername(params.code);
