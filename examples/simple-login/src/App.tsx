@@ -57,7 +57,10 @@ function App() {
     <div className="App">
       <div style={{ paddingTop: '200px' }}>
         {username ? (
-          <h1 style={{ color: 'white' }}>Welcome, {username}</h1>
+          <>
+            <h1 style={{ color: 'white' }}>Welcome, {username}</h1>
+            <button onClick={() => removeCookies('soul-token')}>Logout</button>
+          </>
         ) : (
           <button
             className="glow-on-hover"
