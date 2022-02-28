@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useCookies } from 'react-cookie';
 import axios from 'axios';
 
 import './App.css';
@@ -9,34 +10,57 @@ const CALLBACK = 'http://localhost:3000';
 
 function App() {
   const [username, setUsername] = useState<string | undefined>();
-
-  const loginAndGetUsername = async (code: string) => {
-    const {
-      data: { accessToken },
-    } = await axios.post(
-      `http://api.soul-network.com/v1/auth/verify?callback=${CALLBACK}&code=${code}`,
-    );
-    const {
-      data: { username },
-    } = await axios.get('https://api.soul-network.com/v1/users/me', {
-      headers: {
-        'Content-type': 'application/json',
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-    setUsername(username);
-  };
+  const [cookies, setCookie, removeCookies] = useCookies(['soul-token']);
 
   useEffect(() => {
+    const login = async (code: string) => {
+      const {
+        data: { accessToken },
+      } = await axios.post(
+        `http://api.soul-network.com/v1/auth/verify?callback=${CALLBACK}&code=${code}`,
+      );
+      setCookie('soul-token', accessToken, { path: '/' });
+      if (window?.open !== undefined && window?.location !== undefined) {
+        const url = window.location.origin + window.location.pathname;
+        window.open(url, '_self');
+      }
+    };
+
     const params = getSearchParams<{ code: string }>();
-    if (params.code) loginAndGetUsername(params.code);
-  }, []);
+    if (params.code) login(params.code);
+  }, [setCookie]);
+
+  useEffect(() => {
+    const loginAndSetUsername = async () => {
+      try {
+        const {
+          data: { username },
+        } = await axios.get('https://api.soul-network.com/v1/users/me', {
+          headers: {
+            'Content-type': 'application/json',
+            Authorization: `Bearer ${cookies['soul-token']}`,
+          },
+        });
+        setUsername(username);
+      } catch (_error) {
+        removeCookies('soul-token');
+      }
+    };
+    if (cookies['soul-token']) {
+      loginAndSetUsername();
+    } else {
+      setUsername(undefined);
+    }
+  }, [cookies, removeCookies]);
 
   return (
     <div className="App">
       <div style={{ paddingTop: '200px' }}>
         {username ? (
-          <h1 style={{ color: 'white' }}>Welcome, {username}</h1>
+          <>
+            <h1 style={{ color: 'white' }}>Welcome, {username}</h1>
+            <button onClick={() => removeCookies('soul-token')}>Logout</button>
+          </>
         ) : (
           <button
             className="glow-on-hover"
