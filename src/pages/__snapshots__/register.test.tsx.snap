@@ -8,6 +8,14 @@ exports[`Register renders 1`] = `
     <div
       class="css-3qxem8"
     >
+      <div
+        class="css-gmuwbf"
+      >
+        <img
+          class="chakra-image css-1hbd3g7"
+          src="logo.png"
+        />
+      </div>
       <form>
         <div
           class="chakra-form-control css-0"
