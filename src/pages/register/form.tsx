@@ -5,14 +5,14 @@ import {
   Input,
   FormHelperText,
   FormErrorMessage,
-  HStack,
-  Button,
+  Box,
 } from '@chakra-ui/react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { register } from './api';
+import RegisterButton from './form/register-button';
 
 export default function Form({ setErrors }: Props) {
   const navigate = useNavigate();
@@ -113,16 +113,9 @@ export default function Form({ setErrors }: Props) {
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
         )}
       </FormControl>
-      <HStack mt={8}>
-        <Button
-          colorScheme="teal"
-          type="submit"
-          isLoading={isRegistering}
-          width="100%"
-        >
-          Register
-        </Button>
-      </HStack>
+      <Box mt={8}>
+        <RegisterButton isRegistering={isRegistering} />
+      </Box>
     </form>
   );
 }

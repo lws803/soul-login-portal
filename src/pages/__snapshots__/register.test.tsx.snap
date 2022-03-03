@@ -82,13 +82,17 @@ exports[`Register renders 1`] = `
           />
         </div>
         <div
-          class="chakra-stack css-nzla2i"
+          class="css-164r41r"
         >
           <button
-            class="chakra-button css-uxt1e8"
+            class="css-1f0go79"
             type="submit"
           >
-            Register
+            <div
+              class="css-tkevr6"
+            >
+              Register
+            </div>
           </button>
         </div>
       </form>

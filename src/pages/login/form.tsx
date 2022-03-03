@@ -5,7 +5,6 @@ import {
   Input,
   FormHelperText,
   FormErrorMessage,
-  Button,
   Link,
   VStack,
   Box,
@@ -16,6 +15,7 @@ import * as Yup from 'yup';
 
 import JoinPlatform from './join-platform';
 import { loginWithPlatform } from './api';
+import LoginButton from './form/login-button';
 
 export default function Form({
   setErrors,
@@ -124,16 +124,9 @@ export default function Form({
         <Box mt={4}>
           <Link href="/request-password-reset">Forgot password?</Link>
         </Box>
-        <Button
-          mt={8}
-          colorScheme="teal"
-          type="submit"
-          isLoading={isLoggingIn}
-          disabled={disabled}
-          width="100%"
-        >
-          Login
-        </Button>
+        <Box mt={8}>
+          <LoginButton isLoggingIn={isLoggingIn} disabled={disabled} />
+        </Box>
       </form>
       <VStack mt={6} alignItems="left">
         <p>

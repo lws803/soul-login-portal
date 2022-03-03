@@ -59,12 +59,20 @@ exports[`Form renders 1`] = `
         Forgot password?
       </a>
     </div>
-    <button
-      class="chakra-button css-1bb0bzi"
-      type="submit"
+    <div
+      class="css-164r41r"
     >
-      Login
-    </button>
+      <button
+        class="css-y6mgpv"
+        type="submit"
+      >
+        <div
+          class="css-tkevr6"
+        >
+          Login
+        </div>
+      </button>
+    </div>
   </form>
   <div
     class="chakra-stack css-1apmzls"
