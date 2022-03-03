@@ -1,26 +1,41 @@
 import { Center, Spinner } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 
-export default function RegisterButton({ isRegistering }: Props) {
+export default function FancyButton({
+  isLoading,
+  disabled,
+  type,
+  ariaLabel,
+  children,
+  ...props
+}: Props) {
   return (
-    <RegisterButtonUI isRegistering={isRegistering} type="submit">
+    <LoginButtonUI
+      disabled={disabled}
+      isLoading={isLoading}
+      type={type}
+      aria-label={ariaLabel}
+      {...props}
+    >
       <Center height="100%">
-        {isRegistering ? (
+        {isLoading ? (
           <Spinner size="md" color="white" thickness="3px" />
         ) : (
-          'Register'
+          children
         )}
       </Center>
-    </RegisterButtonUI>
+    </LoginButtonUI>
   );
 }
 
 type Props = {
-  isRegistering: boolean;
-};
+  isLoading: boolean;
+  ariaLabel?: string;
+} & React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-const RegisterButtonUI = styled.button<{
-  isRegistering: boolean;
+const LoginButtonUI = styled.button<{
+  isLoading?: boolean;
+  disabled?: boolean;
 }>`
   width: 100%;
   height: 50px;
@@ -37,7 +52,8 @@ const RegisterButtonUI = styled.button<{
   box-shadow: none;
   background-color: transparent;
   background-position: top center;
-  cursor: ${(props) => (props.isRegistering ? 'default' : 'pointer')};
+  cursor: ${(props) =>
+    props.disabled || props.isLoading ? 'default' : 'pointer'};
   transition: 0.3s ease-in-out;
   transition-property: background, color;
 
@@ -75,13 +91,15 @@ const RegisterButtonUI = styled.button<{
     transition: opacity 0.2s;
   }
 
-  &:hover {
-    animation: gradientRotate 2s infinite;
-    &::before {
-      opacity: 1;
+  ${(props) =>
+    !props.disabled &&
+    `&:hover {
       animation: gradientRotate 2s infinite;
-    }
-  }
+      &::before {
+        opacity: 1;
+        animation: gradientRotate 2s infinite;
+      }
+    }`}
 
   &:active {
     color: #c3c4d5;

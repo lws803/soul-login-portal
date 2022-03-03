@@ -15,7 +15,8 @@ import * as Yup from 'yup';
 
 import JoinPlatform from './join-platform';
 import { loginWithPlatform } from './api';
-import LoginButton from './form/login-button';
+
+import FancyButton from '../../components/fancy-button';
 
 export default function Form({
   setErrors,
@@ -125,7 +126,13 @@ export default function Form({
           <Link href="/request-password-reset">Forgot password?</Link>
         </Box>
         <Box mt={8}>
-          <LoginButton isLoggingIn={isLoggingIn} disabled={disabled} />
+          <FancyButton
+            isLoading={isLoggingIn}
+            disabled={disabled}
+            type="submit"
+          >
+            Login
+          </FancyButton>
         </Box>
       </form>
       <VStack mt={6} alignItems="left">

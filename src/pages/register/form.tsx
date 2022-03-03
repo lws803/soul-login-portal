@@ -12,7 +12,8 @@ import { useFormik } from 'formik';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { register } from './api';
-import RegisterButton from './form/register-button';
+import FancyButton from '../../components/fancy-button';
+// import RegisterButton from './form/register-button';
 
 export default function Form({ setErrors }: Props) {
   const navigate = useNavigate();
@@ -114,7 +115,9 @@ export default function Form({ setErrors }: Props) {
         )}
       </FormControl>
       <Box mt={8}>
-        <RegisterButton isRegistering={isRegistering} />
+        <FancyButton isLoading={isRegistering} type="submit">
+          Register
+        </FancyButton>
       </Box>
     </form>
   );
