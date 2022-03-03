@@ -6,9 +6,8 @@ import {
   FormHelperText,
   FormErrorMessage,
   Button,
-  HStack,
-  VStack,
   Link,
+  VStack,
 } from '@chakra-ui/react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -121,28 +120,27 @@ export default function Form({
             <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
           )}
         </FormControl>
-        <HStack mt={8}>
-          <Button
-            colorScheme="teal"
-            type="submit"
-            isLoading={isLoggingIn}
-            disabled={disabled}
-          >
-            Login
-          </Button>
-          <Button
-            colorScheme="teal"
-            onClick={() => navigate(`/register${search}`)}
-            disabled={isLoggingIn || disabled}
-          >
-            Register
-          </Button>
-        </HStack>
+        <Link href="/request-password-reset">Forgot password?</Link>
+        <Button
+          mt={8}
+          colorScheme="teal"
+          type="submit"
+          isLoading={isLoggingIn}
+          disabled={disabled}
+          width="100%"
+        >
+          Login
+        </Button>
       </form>
       <VStack mt={6} alignItems="left">
-        <Link href="/request-password-reset">Request password reset</Link>
+        <p>
+          Not a member yet?{' '}
+          <Link href={`/register/${search}`}>
+            <strong>Register Now</strong>
+          </Link>
+        </p>
         <Link href="/request-email-verification">
-          Request email verification
+          Resend email verification
         </Link>
       </VStack>
     </>
