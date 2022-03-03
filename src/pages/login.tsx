@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { Center, Image } from '@chakra-ui/react';
 
 import Form from './login/form';
 
 import Page from '../components/page';
 import Status from '../components/status';
 import useQuery from '../hooks/useQuery';
+import logo from '../images/logo.png';
 
 export default function Login() {
   const query = useQuery();
@@ -22,13 +24,18 @@ export default function Login() {
       {isSuccess ? (
         <Status status="Login successful" />
       ) : (
-        <Form
-          setErrors={setErrors}
-          callback={query.get('callback')!}
-          platformId={parseInt(query.get('platformId')!, 10)}
-          disabled={!query.get('callback') || !query.get('platformId')}
-          setIsSuccess={setIsSuccess}
-        />
+        <>
+          <Center>
+            <Image src={logo} height="250px" />
+          </Center>
+          <Form
+            setErrors={setErrors}
+            callback={query.get('callback')!}
+            platformId={parseInt(query.get('platformId')!, 10)}
+            disabled={!query.get('callback') || !query.get('platformId')}
+            setIsSuccess={setIsSuccess}
+          />
+        </>
       )}
     </Page>
   );
