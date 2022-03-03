@@ -26,7 +26,7 @@ exports[`Form renders 1`] = `
       class="chakra-stack css-nzla2i"
     >
       <button
-        class="chakra-button css-1uc9ich"
+        class="chakra-button css-7hzv4g"
         type="submit"
       >
         Request email verification
