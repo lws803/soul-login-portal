@@ -6,6 +6,10 @@ const theme = extendTheme({
       pink: '#F72585',
     },
   },
+  config: {
+    initialColorMode: 'dark',
+    useSystemColorMode: false,
+  },
 });
 
 export default theme;
