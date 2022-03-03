@@ -57,39 +57,40 @@ exports[`renders login page 1`] = `
             value=""
           />
         </div>
-        <div
-          class="chakra-stack css-1a5csaf"
-        >
-          <button
-            class="chakra-button css-f6n2t5"
-            disabled=""
-            type="submit"
-          >
-            Login
-          </button>
-          <button
-            class="chakra-button css-f6n2t5"
-            disabled=""
-            type="button"
-          >
-            Register
-          </button>
-        </div>
-      </form>
-      <div
-        class="chakra-stack css-1iiq7kh"
-      >
         <a
           class="chakra-link css-f4h6uy"
           href="/request-password-reset"
         >
-          Request password reset
+          Forgot password?
         </a>
+        <button
+          class="chakra-button css-1npw6rp"
+          disabled=""
+          type="submit"
+        >
+          Login
+        </button>
+      </form>
+      <div
+        class="chakra-stack css-1iiq7kh"
+      >
+        <p>
+          Not a member yet?
+           
+          <a
+            class="chakra-link css-f4h6uy"
+            href="/register/"
+          >
+            <strong>
+              Register Now
+            </strong>
+          </a>
+        </p>
         <a
           class="chakra-link css-f4h6uy"
           href="/request-email-verification"
         >
-          Request email verification
+          Resend email verification
         </a>
       </div>
       <p

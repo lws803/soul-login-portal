@@ -85,7 +85,7 @@ exports[`Register renders 1`] = `
           class="chakra-stack css-nzla2i"
         >
           <button
-            class="chakra-button css-5c2176"
+            class="chakra-button css-uxt1e8"
             type="submit"
           >
             Register

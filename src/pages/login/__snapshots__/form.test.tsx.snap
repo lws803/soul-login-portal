@@ -49,37 +49,39 @@ exports[`Form renders 1`] = `
         value=""
       />
     </div>
-    <div
-      class="chakra-stack css-nzla2i"
-    >
-      <button
-        class="chakra-button css-5c2176"
-        type="submit"
-      >
-        Login
-      </button>
-      <button
-        class="chakra-button css-5c2176"
-        type="button"
-      >
-        Register
-      </button>
-    </div>
-  </form>
-  <div
-    class="chakra-stack css-1apmzls"
-  >
     <a
       class="chakra-link css-0"
       href="/request-password-reset"
     >
-      Request password reset
+      Forgot password?
     </a>
+    <button
+      class="chakra-button css-1bb0bzi"
+      type="submit"
+    >
+      Login
+    </button>
+  </form>
+  <div
+    class="chakra-stack css-1apmzls"
+  >
+    <p>
+      Not a member yet?
+       
+      <a
+        class="chakra-link css-0"
+        href="/register/?SEARCH"
+      >
+        <strong>
+          Register Now
+        </strong>
+      </a>
+    </p>
     <a
       class="chakra-link css-0"
       href="/request-email-verification"
     >
-      Request email verification
+      Resend email verification
     </a>
   </div>
 </div>
