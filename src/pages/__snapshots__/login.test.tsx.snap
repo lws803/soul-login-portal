@@ -55,12 +55,16 @@ exports[`Login renders 1`] = `
             value=""
           />
         </div>
-        <a
-          class="chakra-link css-0"
-          href="/request-password-reset"
+        <div
+          class="css-1fhgjcy"
         >
-          Forgot password?
-        </a>
+          <a
+            class="chakra-link css-0"
+            href="/request-password-reset"
+          >
+            Forgot password?
+          </a>
+        </div>
         <button
           class="chakra-button css-1bb0bzi"
           type="submit"

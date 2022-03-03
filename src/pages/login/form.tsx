@@ -8,6 +8,7 @@ import {
   Button,
   Link,
   VStack,
+  Box,
 } from '@chakra-ui/react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -120,7 +121,9 @@ export default function Form({
             <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
           )}
         </FormControl>
-        <Link href="/request-password-reset">Forgot password?</Link>
+        <Box mt={4}>
+          <Link href="/request-password-reset">Forgot password?</Link>
+        </Box>
         <Button
           mt={8}
           colorScheme="teal"
