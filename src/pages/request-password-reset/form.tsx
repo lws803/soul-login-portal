@@ -57,11 +57,14 @@ export default function Form({ setErrors, setIsSuccess }: Props) {
       </FormControl>
       <HStack mt={8}>
         <Button
-          colorScheme="teal"
           type="submit"
           isLoading={isSending}
           loadingText="Sending password reset email"
           width="100%"
+          bg="grey"
+          color="white"
+          _hover={{ bg: '#F72585' }}
+          _active={{ bg: '#F72585' }}
         >
           Request password reset
         </Button>

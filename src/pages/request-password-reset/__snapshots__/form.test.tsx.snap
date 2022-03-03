@@ -26,7 +26,7 @@ exports[`Form renders 1`] = `
       class="chakra-stack css-nzla2i"
     >
       <button
-        class="chakra-button css-uxt1e8"
+        class="chakra-button css-uzzw1u"
         type="submit"
       >
         Request password reset
