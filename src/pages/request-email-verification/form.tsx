@@ -57,10 +57,14 @@ export default function Form({ setErrors, setIsSuccess }: Props) {
       </FormControl>
       <HStack mt={8}>
         <Button
-          colorScheme="teal"
+          color="white"
           type="submit"
           isLoading={isSending}
           loadingText="Sending verification email"
+          width="100%"
+          bg="grey"
+          _hover={{ bg: 'soul.pink' }}
+          _active={{ bg: 'soul.pink' }}
         >
           Request email verification
         </Button>

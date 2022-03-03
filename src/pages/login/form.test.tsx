@@ -101,6 +101,10 @@ describe(Form, () => {
       data: null,
       error: { error: 'PLATFORM_USER_NOT_FOUND', message: '' },
     });
+    jest.spyOn(api, 'login').mockResolvedValue({
+      data: { accessToken: 'ACCESS_TOKEN' },
+      error: null,
+    });
 
     const { getByLabelText, getByText, findByText } = render(
       <MemoryRouter>

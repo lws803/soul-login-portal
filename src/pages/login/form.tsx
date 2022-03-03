@@ -5,10 +5,9 @@ import {
   Input,
   FormHelperText,
   FormErrorMessage,
-  Button,
-  HStack,
-  VStack,
   Link,
+  VStack,
+  Box,
 } from '@chakra-ui/react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -16,6 +15,8 @@ import * as Yup from 'yup';
 
 import JoinPlatform from './join-platform';
 import { loginWithPlatform } from './api';
+
+import FancyButton from '../../components/fancy-button';
 
 export default function Form({
   setErrors,
@@ -121,28 +122,28 @@ export default function Form({
             <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
           )}
         </FormControl>
-        <HStack mt={8}>
-          <Button
-            colorScheme="teal"
-            type="submit"
+        <Box mt={4}>
+          <Link href="/request-password-reset">Forgot password?</Link>
+        </Box>
+        <Box mt={8}>
+          <FancyButton
             isLoading={isLoggingIn}
             disabled={disabled}
+            type="submit"
           >
             Login
-          </Button>
-          <Button
-            colorScheme="teal"
-            onClick={() => navigate(`/register${search}`)}
-            disabled={isLoggingIn || disabled}
-          >
-            Register
-          </Button>
-        </HStack>
+          </FancyButton>
+        </Box>
       </form>
       <VStack mt={6} alignItems="left">
-        <Link href="/request-password-reset">Request password reset</Link>
+        <p>
+          Not a member yet?{' '}
+          <Link href={`/register/${search}`}>
+            <strong>Register Now</strong>
+          </Link>
+        </p>
         <Link href="/request-email-verification">
-          Request email verification
+          Resend email verification
         </Link>
       </VStack>
     </>

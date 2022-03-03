@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, waitFor, act } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 
 import JoinPlatform from './join-platform';
 import * as api from './api';
@@ -37,7 +37,6 @@ describe(JoinPlatform, () => {
     const { findByText } = render(
       <JoinPlatform {...props} setIsSuccess={setIsSuccess} />,
     );
-    await act(async () => {});
 
     fireEvent.click(await findByText('Join Platform!'));
 

@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Button, Center } from '@chakra-ui/react';
+import { Center } from '@chakra-ui/react';
 
 import { login, joinPlatformAndLogin } from './api';
+import FancyButton from '../../components/fancy-button';
 
 export default function JoinPlatform({
   email,
@@ -50,14 +51,13 @@ export default function JoinPlatform({
 
   return (
     <Center width="100%">
-      <Button
-        colorScheme="teal"
+      <FancyButton
         onClick={joinPlatform}
         isLoading={!accessToken || isJoining}
         aria-label="Join platform button"
       >
         Join Platform!
-      </Button>
+      </FancyButton>
     </Center>
   );
 }

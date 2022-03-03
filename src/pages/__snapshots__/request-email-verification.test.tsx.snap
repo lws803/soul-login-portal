@@ -32,7 +32,7 @@ exports[`RequestEmailVerification renders 1`] = `
           class="chakra-stack css-nzla2i"
         >
           <button
-            class="chakra-button css-5c2176"
+            class="chakra-button css-7hzv4g"
             type="submit"
           >
             Request email verification
