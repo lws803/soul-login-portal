@@ -61,6 +61,7 @@ export default function Form({ setErrors, setIsSuccess }: Props) {
           type="submit"
           isLoading={isSending}
           loadingText="Sending password reset email"
+          width="100%"
         >
           Request password reset
         </Button>

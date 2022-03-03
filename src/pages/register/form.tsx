@@ -114,7 +114,12 @@ export default function Form({ setErrors }: Props) {
         )}
       </FormControl>
       <HStack mt={8}>
-        <Button colorScheme="teal" type="submit" isLoading={isRegistering}>
+        <Button
+          colorScheme="teal"
+          type="submit"
+          isLoading={isRegistering}
+          width="100%"
+        >
           Register
         </Button>
       </HStack>
