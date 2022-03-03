@@ -8,10 +8,11 @@ import EmailConfirmation from './pages/email-confirmation';
 import ResetPassword from './pages/reset-password';
 import RequestPasswordReset from './pages/request-password-reset';
 import RequestEmailVerification from './pages/request-email-verification';
+import theme from './theme';
 
 function App() {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />

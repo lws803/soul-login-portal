@@ -63,8 +63,8 @@ export default function Form({ setErrors, setIsSuccess }: Props) {
           width="100%"
           bg="grey"
           color="white"
-          _hover={{ bg: '#F72585' }}
-          _active={{ bg: '#F72585' }}
+          _hover={{ bg: 'soul.pink' }}
+          _active={{ bg: 'soul.pink' }}
         >
           Request password reset
         </Button>

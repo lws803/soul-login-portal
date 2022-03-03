@@ -63,8 +63,8 @@ export default function Form({ setErrors, setIsSuccess }: Props) {
           loadingText="Sending verification email"
           width="100%"
           bg="grey"
-          _hover={{ bg: '#F72585' }}
-          _active={{ bg: '#F72585' }}
+          _hover={{ bg: 'soul.pink' }}
+          _active={{ bg: 'soul.pink' }}
         >
           Request email verification
         </Button>
