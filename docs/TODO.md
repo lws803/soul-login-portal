@@ -1,7 +1,6 @@
 # TODO
 
 - reorganize the layout a little bit more
-- Take a screenshot of the login page and paste it on README
 ---
 - integrate sentry monitoring to login page
 - migrate to nextjs for automatic image optimization
