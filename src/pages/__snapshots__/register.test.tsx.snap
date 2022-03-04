@@ -116,24 +116,24 @@ exports[`Register renders 1`] = `
       class="css-gmuwbf"
     >
       <div
-        class="chakra-stack css-zldu2j"
+        class="chakra-stack css-esy13k"
       >
         <a
-          class="chakra-link css-0"
+          class="chakra-link css-epvm6"
           href="https://github.com/soul-project/login-portal"
           target="_blank"
         >
           Github
         </a>
         <a
-          class="chakra-link css-0"
+          class="chakra-link css-epvm6"
           href="https://github.com/soul-project/soul"
           target="_blank"
         >
           Soul Network"s Github
         </a>
         <a
-          class="chakra-link css-0"
+          class="chakra-link css-epvm6"
           href="mailto:lws803@gmail.com"
           target="_blank"
         >

@@ -5,8 +5,8 @@ import {
   VStack,
   Alert,
   AlertIcon,
-  HStack,
   Link,
+  Stack,
 } from '@chakra-ui/react';
 
 export default function Page({
@@ -35,7 +35,9 @@ export default function Page({
         </Box>
       </Center>
       <Center>
-        <HStack
+        <Stack
+          direction={['column', 'row']}
+          w={[400]}
           margin="16px 0px"
           gap={4}
           borderWidth="1px"
@@ -45,16 +47,25 @@ export default function Page({
           <Link
             href="https://github.com/soul-project/login-portal"
             target="_blank"
+            whiteSpace="nowrap"
           >
             Github
           </Link>
-          <Link href="https://github.com/soul-project/soul" target="_blank">
+          <Link
+            href="https://github.com/soul-project/soul"
+            target="_blank"
+            whiteSpace="nowrap"
+          >
             Soul Network&quot;s Github
           </Link>
-          <Link href="mailto:lws803@gmail.com" target="_blank">
+          <Link
+            href="mailto:lws803@gmail.com"
+            target="_blank"
+            whiteSpace="nowrap"
+          >
             Contact me
           </Link>
-        </HStack>
+        </Stack>
       </Center>
     </Box>
   );
