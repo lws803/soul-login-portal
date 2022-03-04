@@ -12,7 +12,10 @@ export default function RequestEmailVerification() {
   return (
     <Page errors={errors}>
       {isSuccess ? (
-        <Status status="Sent email verification, please check your email." />
+        <Status
+          status="Request submitted!"
+          message="Sent email verification, please check your email."
+        />
       ) : (
         <Form setErrors={setErrors} setIsSuccess={setIsSuccess} />
       )}

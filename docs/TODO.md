@@ -2,7 +2,9 @@
 
 - reorganize the layout a little bit more
 - add a footer for all pages to let folks know who to contact
+  - add github link to soul there
 - Take a screenshot of the login page and paste it on README
+---
 - integrate sentry monitoring to login page
 - migrate to nextjs for automatic image optimization
 - add more explanation in README and link it to the main repo

@@ -5,7 +5,7 @@ import {
   AlertTitle,
 } from '@chakra-ui/react';
 
-export default function Status({ status }: Props) {
+export default function Status({ status, message }: Props) {
   return (
     <Alert
       status="success"
@@ -18,13 +18,14 @@ export default function Status({ status }: Props) {
     >
       <AlertIcon boxSize="40px" mr={0} />
       <AlertTitle mt={4} mb={1} fontSize="lg">
-        Request submitted!
+        {status}
       </AlertTitle>
-      <AlertDescription maxWidth="sm">{status}</AlertDescription>
+      <AlertDescription maxWidth="sm">{message}</AlertDescription>
     </Alert>
   );
 }
 
 type Props = {
   status: string;
+  message: string;
 };

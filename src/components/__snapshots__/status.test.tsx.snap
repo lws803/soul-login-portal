@@ -23,12 +23,12 @@ exports[`Status renders 1`] = `
     <div
       class="chakra-alert__title css-wrynpv"
     >
-      Request submitted!
+      STATUS
     </div>
     <div
       class="chakra-alert__desc css-1d5tdh6"
     >
-      STATUS
+      MESSAGE
     </div>
   </div>
 </div>
