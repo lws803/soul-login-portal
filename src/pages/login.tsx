@@ -22,11 +22,11 @@ export default function Login() {
   return (
     <Page errors={errors}>
       {isSuccess ? (
-        <Status status="Login successful" />
+        <Status status="Login successful" message="Redirecting you back..." />
       ) : (
         <>
           <Center>
-            <Image src={logo} height="250px" />
+            <Image src={logo} maxHeight="200px" />
           </Center>
           <Form
             setErrors={setErrors}

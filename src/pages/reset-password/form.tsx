@@ -67,10 +67,13 @@ export default function Form({ token, setErrors, setIsSuccess }: Props) {
       </FormControl>
       <HStack mt={8}>
         <Button
-          colorScheme="teal"
           type="submit"
           isLoading={isResetting}
           disabled={!token}
+          bg="soul.pink.light"
+          _hover={{ bg: 'soul.pink.dark' }}
+          _active={{ bg: 'soul.pink.dark' }}
+          width="100%"
         >
           Reset password
         </Button>

@@ -12,7 +12,10 @@ export default function RequestPasswordReset() {
   return (
     <Page errors={errors}>
       {isSuccess ? (
-        <Status status="Password reset requested, please check your email." />
+        <Status
+          status="Request submitted!"
+          message="Password reset requested, please check your email."
+        />
       ) : (
         <Form setErrors={setErrors} setIsSuccess={setIsSuccess} />
       )}

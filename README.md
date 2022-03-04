@@ -2,7 +2,7 @@
 
 Soul Login portal to support application OAuth2.0
 
-<!-- TODO: Include screenshot of the login page here -->
+<img src="resources/screenshot.png" height="500px" />
 
 ## Examples
 

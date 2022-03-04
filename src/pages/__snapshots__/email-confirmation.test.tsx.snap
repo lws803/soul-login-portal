@@ -3,23 +3,59 @@
 exports[`EmailConfirmation renders 1`] = `
 <div>
   <div
-    class="css-gmuwbf"
+    class="css-0"
   >
     <div
-      class="css-3qxem8"
+      class="css-gmuwbf"
     >
       <div
-        class="css-1yfye7s"
+        class="css-3qxem8"
       >
         <div
-          class="chakra-spinner css-1y7joxr"
+          class="css-1yfye7s"
         >
-          <span
-            class="css-f8n5zr"
+          <div
+            class="chakra-spinner css-1y7joxr"
           >
-            Loading...
-          </span>
+            <span
+              class="css-f8n5zr"
+            >
+              Loading...
+            </span>
+          </div>
         </div>
+        <div
+          class="chakra-stack css-untcqu"
+        />
+      </div>
+    </div>
+    <div
+      class="css-gmuwbf"
+    >
+      <div
+        class="chakra-stack css-1n74s52"
+      >
+        <a
+          class="chakra-link css-0"
+          href="https://github.com/soul-project/login-portal"
+          target="_blank"
+        >
+          Github
+        </a>
+        <a
+          class="chakra-link css-0"
+          href="https://github.com/soul-project/soul"
+          target="_blank"
+        >
+          Soul Network"s Github
+        </a>
+        <a
+          class="chakra-link css-0"
+          href="mailto:lws803@gmail.com"
+          target="_blank"
+        >
+          Contact me
+        </a>
       </div>
     </div>
   </div>

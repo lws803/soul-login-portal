@@ -6,14 +6,16 @@ import {
   FormHelperText,
   FormErrorMessage,
   Box,
+  Progress,
 } from '@chakra-ui/react';
 import * as Yup from 'yup';
+import zxcvbn from 'zxcvbn';
 import { useFormik } from 'formik';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { register } from './api';
+
 import FancyButton from '../../components/fancy-button';
-// import RegisterButton from './form/register-button';
 
 export default function Form({ setErrors }: Props) {
   const navigate = useNavigate();
@@ -100,8 +102,15 @@ export default function Form({ setErrors }: Props) {
         isInvalid={!!formik.errors.password && formik.touched.password}
         marginTop={8}
       >
-        {/* TODO: Add password checker, with complexity indicator */}
         <FormLabel htmlFor="password">Password</FormLabel>
+        {formik.values.password.length > 0 && (
+          <Progress
+            value={((zxcvbn(formik.values.password).score + 1) / 5) * 100}
+            colorScheme="soul.green"
+            size="xs"
+            mb={1}
+          />
+        )}
         <Input
           id="password"
           name="password"

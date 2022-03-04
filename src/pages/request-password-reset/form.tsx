@@ -61,10 +61,9 @@ export default function Form({ setErrors, setIsSuccess }: Props) {
           isLoading={isSending}
           loadingText="Sending password reset email"
           width="100%"
-          bg="grey"
-          color="white"
-          _hover={{ bg: 'soul.pink' }}
-          _active={{ bg: 'soul.pink' }}
+          bg="soul.pink.light"
+          _hover={{ bg: 'soul.pink.dark' }}
+          _active={{ bg: 'soul.pink.dark' }}
         >
           Request password reset
         </Button>

@@ -1,17 +1,31 @@
-import { Box, Center, Text } from '@chakra-ui/react';
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+} from '@chakra-ui/react';
 
-export default function Status({ status }: Props) {
+export default function Status({ status, message }: Props) {
   return (
-    <Center>
-      <Box p={8} width={500}>
-        <Text fontSize="lg" mt={10}>
-          {status}
-        </Text>
-      </Box>
-    </Center>
+    <Alert
+      status="success"
+      variant="subtle"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      textAlign="center"
+      minHeight="200px"
+    >
+      <AlertIcon boxSize="40px" mr={0} />
+      <AlertTitle mt={4} mb={1} fontSize="lg">
+        {status}
+      </AlertTitle>
+      <AlertDescription maxWidth="sm">{message}</AlertDescription>
+    </Alert>
   );
 }
 
 type Props = {
   status: string;
+  message: string;
 };

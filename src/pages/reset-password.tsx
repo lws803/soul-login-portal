@@ -14,7 +14,10 @@ export default function ResetPassword() {
   return (
     <Page errors={errors}>
       {isSuccess ? (
-        <Status status="Password reset successfully! Please close this page" />
+        <Status
+          status="Password reset!"
+          message="Success! Please close this page and sign in again."
+        />
       ) : (
         <Form
           setErrors={setErrors}
