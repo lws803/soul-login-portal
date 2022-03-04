@@ -1,6 +1,5 @@
 # TODO
 
-- use custom alert composition for the success status pages -> https://chakra-ui.com/docs/components/feedback/alert
 - add password checker to register page
 - reorganize the layout a little bit more
 - add a footer for all pages to let folks know who to contact
