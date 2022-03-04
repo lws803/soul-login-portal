@@ -3,116 +3,149 @@
 exports[`Login renders 1`] = `
 <div>
   <div
-    class="css-gmuwbf"
+    class="css-0"
   >
     <div
-      class="css-3qxem8"
+      class="css-gmuwbf"
     >
       <div
-        class="css-gmuwbf"
+        class="css-3qxem8"
       >
-        <img
-          class="chakra-image css-1a7twpa"
-          src="logo.png"
+        <div
+          class="css-gmuwbf"
+        >
+          <img
+            class="chakra-image css-1a7twpa"
+            src="logo.png"
+          />
+        </div>
+        <form>
+          <div
+            class="chakra-form-control css-0"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-uvho5g"
+              for="email"
+              id="field-1-label"
+            >
+              Email
+            </label>
+            <input
+              aria-describedby="field-1-helptext"
+              aria-label="Email input"
+              class="chakra-input css-0"
+              id="email"
+              name="email"
+              value=""
+            />
+            <div
+              class="chakra-form__helper-text css-0"
+              id="field-1-helptext"
+            >
+              We'll never share your email.
+            </div>
+          </div>
+          <div
+            class="chakra-form-control css-164r41r"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-uvho5g"
+              for="password"
+              id="field-2-label"
+            >
+              Password
+            </label>
+            <input
+              aria-label="Password input"
+              class="chakra-input css-0"
+              id="password"
+              name="password"
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            class="css-1fhgjcy"
+          >
+            <a
+              class="chakra-link css-0"
+              href="/request-password-reset"
+            >
+              Forgot password?
+            </a>
+          </div>
+          <div
+            class="css-164r41r"
+          >
+            <button
+              class="css-y6mgpv"
+              type="submit"
+            >
+              <div
+                class="css-tkevr6"
+              >
+                Login
+              </div>
+            </button>
+          </div>
+        </form>
+        <div
+          class="chakra-stack css-1apmzls"
+        >
+          <p>
+            Not a member yet?
+             
+            <a
+              class="chakra-link css-0"
+              href="/register/?platformId=1&callback=https://www.example.com"
+            >
+              <strong>
+                Register Now
+              </strong>
+            </a>
+          </p>
+          <a
+            class="chakra-link css-0"
+            href="/request-email-verification"
+          >
+            Resend email verification
+          </a>
+        </div>
+        <div
+          class="chakra-stack css-untcqu"
         />
       </div>
-      <form>
-        <div
-          class="chakra-form-control css-0"
-          role="group"
-        >
-          <label
-            class="chakra-form__label css-uvho5g"
-            for="email"
-            id="field-1-label"
-          >
-            Email
-          </label>
-          <input
-            aria-describedby="field-1-helptext"
-            aria-label="Email input"
-            class="chakra-input css-0"
-            id="email"
-            name="email"
-            value=""
-          />
-          <div
-            class="chakra-form__helper-text css-0"
-            id="field-1-helptext"
-          >
-            We'll never share your email.
-          </div>
-        </div>
-        <div
-          class="chakra-form-control css-164r41r"
-          role="group"
-        >
-          <label
-            class="chakra-form__label css-uvho5g"
-            for="password"
-            id="field-2-label"
-          >
-            Password
-          </label>
-          <input
-            aria-label="Password input"
-            class="chakra-input css-0"
-            id="password"
-            name="password"
-            type="password"
-            value=""
-          />
-        </div>
-        <div
-          class="css-1fhgjcy"
-        >
-          <a
-            class="chakra-link css-0"
-            href="/request-password-reset"
-          >
-            Forgot password?
-          </a>
-        </div>
-        <div
-          class="css-164r41r"
-        >
-          <button
-            class="css-y6mgpv"
-            type="submit"
-          >
-            <div
-              class="css-tkevr6"
-            >
-              Login
-            </div>
-          </button>
-        </div>
-      </form>
+    </div>
+    <div
+      class="css-gmuwbf"
+    >
       <div
-        class="chakra-stack css-1apmzls"
+        class="chakra-stack css-1n74s52"
       >
-        <p>
-          Not a member yet?
-           
-          <a
-            class="chakra-link css-0"
-            href="/register/?platformId=1&callback=https://www.example.com"
-          >
-            <strong>
-              Register Now
-            </strong>
-          </a>
-        </p>
         <a
           class="chakra-link css-0"
-          href="/request-email-verification"
+          href="https://github.com/soul-project/login-portal"
+          target="_blank"
         >
-          Resend email verification
+          Github
+        </a>
+        <a
+          class="chakra-link css-0"
+          href="https://github.com/soul-project/soul"
+          target="_blank"
+        >
+          Soul Network"s Github
+        </a>
+        <a
+          class="chakra-link css-0"
+          href="mailto:lws803@gmail.com"
+          target="_blank"
+        >
+          Contact me
         </a>
       </div>
-      <div
-        class="chakra-stack css-untcqu"
-      />
     </div>
   </div>
 </div>
