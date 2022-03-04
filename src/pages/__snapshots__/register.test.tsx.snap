@@ -130,7 +130,7 @@ exports[`Register renders 1`] = `
           href="https://github.com/soul-project/soul"
           target="_blank"
         >
-          Soul Network"s Github
+          Soul Network's Github
         </a>
         <a
           class="chakra-link css-epvm6"

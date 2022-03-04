@@ -56,7 +56,7 @@ export default function Page({
             target="_blank"
             whiteSpace="nowrap"
           >
-            Soul Network&quot;s Github
+            Soul Network&apos;s Github
           </Link>
           <Link
             href="mailto:lws803@gmail.com"
