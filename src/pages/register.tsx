@@ -12,7 +12,7 @@ export default function Register() {
   return (
     <Page errors={errors}>
       <Center>
-        <Image src={logo} height="250px" />
+        <Image src={logo} maxHeight="200px" />
       </Center>
       <Form setErrors={setErrors} />
     </Page>

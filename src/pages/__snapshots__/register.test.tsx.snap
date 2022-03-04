@@ -12,7 +12,7 @@ exports[`Register renders 1`] = `
         class="css-gmuwbf"
       >
         <img
-          class="chakra-image css-1hbd3g7"
+          class="chakra-image css-1a7twpa"
           src="logo.png"
         />
       </div>
@@ -104,6 +104,9 @@ exports[`Register renders 1`] = `
           </button>
         </div>
       </form>
+      <div
+        class="chakra-stack css-untcqu"
+      />
     </div>
   </div>
 </div>

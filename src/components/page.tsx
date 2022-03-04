@@ -1,5 +1,5 @@
 import React from 'react';
-import { Center, Box, Text } from '@chakra-ui/react';
+import { Center, Box, VStack, Alert, AlertIcon } from '@chakra-ui/react';
 
 export default function Page({
   errors,
@@ -9,12 +9,15 @@ export default function Page({
     <Center>
       <Box p={8} width={500}>
         {children}
-        {errors.length > 0 &&
-          errors.map((error) => (
-            <Text marginTop={8} textColor="red.600" fontSize="lg" key={error}>
-              {error}
-            </Text>
-          ))}
+        <VStack spacing={2} mt={8}>
+          {errors.length > 0 &&
+            errors.map((error) => (
+              <Alert status="error" variant="solid" bgColor="red.500">
+                <AlertIcon />
+                {error}
+              </Alert>
+            ))}
+        </VStack>
       </Box>
     </Center>
   );

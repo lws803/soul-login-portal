@@ -39,6 +39,9 @@ exports[`RequestEmailVerification renders 1`] = `
           </button>
         </div>
       </form>
+      <div
+        class="chakra-stack css-untcqu"
+      />
     </div>
   </div>
 </div>

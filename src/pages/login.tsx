@@ -26,7 +26,7 @@ export default function Login() {
       ) : (
         <>
           <Center>
-            <Image src={logo} height="250px" />
+            <Image src={logo} maxHeight="200px" />
           </Center>
           <Form
             setErrors={setErrors}

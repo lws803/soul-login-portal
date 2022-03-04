@@ -12,7 +12,7 @@ exports[`Login renders 1`] = `
         class="css-gmuwbf"
       >
         <img
-          class="chakra-image css-1hbd3g7"
+          class="chakra-image css-1a7twpa"
           src="logo.png"
         />
       </div>
@@ -110,6 +110,9 @@ exports[`Login renders 1`] = `
           Resend email verification
         </a>
       </div>
+      <div
+        class="chakra-stack css-untcqu"
+      />
     </div>
   </div>
 </div>
