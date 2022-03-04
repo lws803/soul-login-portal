@@ -63,4 +63,3 @@ export default function Page({
 type Props = {
   errors: string[];
 };
-// TODO: add test for this
