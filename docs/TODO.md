@@ -1,6 +1,5 @@
 # TODO
 
-- add password checker to register page
 - reorganize the layout a little bit more
 - add a footer for all pages to let folks know who to contact
 - Take a screenshot of the login page and paste it on README
