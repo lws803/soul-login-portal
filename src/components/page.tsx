@@ -21,7 +21,12 @@ export default function Page({
           <VStack spacing={2} mt={8}>
             {errors.length > 0 &&
               errors.map((error) => (
-                <Alert status="error" variant="solid" bgColor="red.500">
+                <Alert
+                  status="error"
+                  variant="solid"
+                  bgColor="red.500"
+                  key={error}
+                >
                   <AlertIcon />
                   {error}
                 </Alert>
@@ -31,8 +36,8 @@ export default function Page({
       </Center>
       <Center>
         <HStack
-          mt={16}
-          gap={8}
+          margin="16px 0px"
+          gap={4}
           borderWidth="1px"
           borderRadius="lg"
           padding="8px 16px"
@@ -58,3 +63,4 @@ export default function Page({
 type Props = {
   errors: string[];
 };
+// TODO: add test for this
