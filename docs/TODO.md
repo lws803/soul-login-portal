@@ -1,5 +1,6 @@
 # TODO
 
+- fix center div of footer bar
 - reorganize the layout a little bit more
 - fix sentry for login portal
 ---
