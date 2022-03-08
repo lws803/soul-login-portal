@@ -37,6 +37,14 @@ export default function Login() {
           />
         </>
       )}
+      <button
+        type="button"
+        onClick={() => {
+          throw new Error('Test error');
+        }}
+      >
+        test
+      </button>
     </Page>
   );
 }
