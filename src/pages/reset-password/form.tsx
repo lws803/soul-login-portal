@@ -6,10 +6,12 @@ import {
   FormErrorMessage,
   HStack,
   Button,
+  Progress,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import zxcvbn from 'zxcvbn';
 
 import { BASE_URL } from '../../constants';
 
@@ -23,7 +25,7 @@ export default function Form({ token, setErrors, setIsSuccess }: Props) {
     onSubmit: (values) => {
       setErrors([]);
       setIsResetting(true);
-      // TODO: refactor this one out
+
       axios
         .post(`${BASE_URL}/v1/users/password-reset?token=${token}`, values)
         .then(() => setIsSuccess(true))
@@ -52,6 +54,14 @@ export default function Form({ token, setErrors, setIsSuccess }: Props) {
         isInvalid={!!formik.errors.password && formik.touched.password}
       >
         <FormLabel htmlFor="password">Password</FormLabel>
+        {formik.values.password.length > 0 && (
+          <Progress
+            value={((zxcvbn(formik.values.password).score + 1) / 5) * 100}
+            colorScheme="soul.green"
+            size="xs"
+            mb={1}
+          />
+        )}
         <Input
           id="password"
           name="password"
