@@ -37,6 +37,9 @@ export default function Login() {
           />
         </>
       )}
+      <p>
+        {process.env.REACT_APP_ENVIRONMENT} {process.env.REACT_APP_SENTRY_DSN}
+      </p>
     </Page>
   );
 }
