@@ -25,8 +25,8 @@ export default function Login() {
         <Status status="Login successful" message="Redirecting you back..." />
       ) : (
         <>
-          <Center>
-            <Image src={logo} maxHeight="200px" />
+          <Center mt={10} mb={10}>
+            <Image src={logo} maxHeight="150px" />
           </Center>
           <Form
             setErrors={setErrors}
