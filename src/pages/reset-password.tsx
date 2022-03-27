@@ -5,6 +5,7 @@ import Form from './reset-password/form';
 import Status from '../components/status';
 import Page from '../components/page';
 import useQuery from '../hooks/useQuery';
+import Title from '../components/title';
 
 export default function ResetPassword() {
   const query = useQuery();
@@ -19,11 +20,14 @@ export default function ResetPassword() {
           message="Success! Please close this page and sign in again."
         />
       ) : (
-        <Form
-          setErrors={setErrors}
-          setIsSuccess={setIsSuccess}
-          token={query.get('token')}
-        />
+        <>
+          <Title title="Reset new password" />
+          <Form
+            setErrors={setErrors}
+            setIsSuccess={setIsSuccess}
+            token={query.get('token')}
+          />
+        </>
       )}
     </Page>
   );

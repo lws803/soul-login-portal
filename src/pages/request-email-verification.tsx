@@ -4,6 +4,7 @@ import Form from './request-email-verification/form';
 
 import Status from '../components/status';
 import Page from '../components/page';
+import Title from '../components/title';
 
 export default function RequestEmailVerification() {
   const [errors, setErrors] = useState<string[]>([]);
@@ -17,7 +18,10 @@ export default function RequestEmailVerification() {
           message="Sent email verification, please check your email."
         />
       ) : (
-        <Form setErrors={setErrors} setIsSuccess={setIsSuccess} />
+        <>
+          <Title title="Resend email verification" />
+          <Form setErrors={setErrors} setIsSuccess={setIsSuccess} />
+        </>
       )}
     </Page>
   );
