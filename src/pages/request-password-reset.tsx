@@ -4,6 +4,7 @@ import Form from './request-password-reset/form';
 
 import Status from '../components/status';
 import Page from '../components/page';
+import Title from '../components/title';
 
 export default function RequestPasswordReset() {
   const [errors, setErrors] = useState<string[]>([]);
@@ -17,7 +18,10 @@ export default function RequestPasswordReset() {
           message="Password reset requested, please check your email."
         />
       ) : (
-        <Form setErrors={setErrors} setIsSuccess={setIsSuccess} />
+        <>
+          <Title title="Request new password" />
+          <Form setErrors={setErrors} setIsSuccess={setIsSuccess} />
+        </>
       )}
     </Page>
   );

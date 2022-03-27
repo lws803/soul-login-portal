@@ -50,6 +50,8 @@ export default function Form({ setErrors, setIsSuccess }: Props) {
           onChange={formik.handleChange}
           value={formik.values.email}
           aria-label="Email input"
+          variant="filled"
+          placeholder="Enter your email"
         />
         {formik.errors.email && (
           <FormErrorMessage>{formik.errors.email}</FormErrorMessage>

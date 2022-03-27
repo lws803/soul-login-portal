@@ -11,6 +11,13 @@ const theme = extendTheme({
     initialColorMode: 'dark',
     useSystemColorMode: false,
   },
+  styles: {
+    global: {
+      body: {
+        bg: '#141516',
+      },
+    },
+  },
 });
 
 export default theme;

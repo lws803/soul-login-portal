@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Title renders 1`] = `
+<div>
+  <div
+    class="css-10ib5jr"
+  >
+    <p
+      class="chakra-text css-odt1ir"
+    >
+      Title
+    </p>
+    Sub title
+  </div>
+</div>
+`;

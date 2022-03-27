@@ -1,19 +1,29 @@
 import { useState } from 'react';
-import { Center, Image } from '@chakra-ui/react';
+import { Text, Link } from '@chakra-ui/react';
+import { useLocation } from 'react-router-dom';
 
 import Form from './register/form';
 
 import Page from '../components/page';
-import logo from '../images/logo.png';
+import Title from '../components/title';
 
 export default function Register() {
   const [errors, setErrors] = useState<string[]>([]);
+  const { search } = useLocation();
 
   return (
     <Page errors={errors}>
-      <Center mt={10} mb={10}>
-        <Image src={logo} maxHeight="150px" />
-      </Center>
+      <Title
+        title="Create new account"
+        subTitle={
+          <Text>
+            Already a member?{' '}
+            <Link href={`/${search}`} target="_self" whiteSpace="nowrap">
+              Log in
+            </Link>
+          </Text>
+        }
+      />
       <Form setErrors={setErrors} />
     </Page>
   );

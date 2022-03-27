@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  Center,
-  Box,
-  VStack,
-  Alert,
-  AlertIcon,
-  Link,
-  Stack,
-} from '@chakra-ui/react';
+import { Box, VStack, Alert, AlertIcon } from '@chakra-ui/react';
+
+import Footer from './page/footer';
 
 export default function Page({
   errors,
@@ -15,8 +9,8 @@ export default function Page({
 }: React.PropsWithChildren<Props>) {
   return (
     <Box>
-      <Center>
-        <Box p={8} width={500}>
+      <Box paddingTop="40px" minHeight="100vh">
+        <Box p={8} maxWidth="500px" marginLeft="auto" marginRight="auto">
           {children}
           <VStack spacing={2} mt={8}>
             {errors.length > 0 &&
@@ -33,40 +27,8 @@ export default function Page({
               ))}
           </VStack>
         </Box>
-      </Center>
-      <Center>
-        <Stack
-          direction={['column', 'row']}
-          w={[400]}
-          margin="16px 0px"
-          gap={4}
-          borderWidth="1px"
-          borderRadius="lg"
-          padding="8px 16px"
-        >
-          <Link
-            href="https://github.com/soul-project/login-portal"
-            target="_blank"
-            whiteSpace="nowrap"
-          >
-            Github
-          </Link>
-          <Link
-            href="https://github.com/soul-project/soul"
-            target="_blank"
-            whiteSpace="nowrap"
-          >
-            Soul Network&apos;s Github
-          </Link>
-          <Link
-            href="mailto:lws803@gmail.com"
-            target="_blank"
-            whiteSpace="nowrap"
-          >
-            Contact me
-          </Link>
-        </Stack>
-      </Center>
+      </Box>
+      <Footer />
     </Box>
   );
 }
