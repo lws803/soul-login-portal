@@ -20,6 +20,7 @@ exports[`Form renders 1`] = `
         class="chakra-input css-0"
         id="username"
         name="username"
+        placeholder="Your username"
         value=""
       />
       <div
@@ -46,6 +47,7 @@ exports[`Form renders 1`] = `
         class="chakra-input css-0"
         id="email"
         name="email"
+        placeholder="Your email"
         value=""
       />
       <div
@@ -71,6 +73,7 @@ exports[`Form renders 1`] = `
         class="chakra-input css-0"
         id="password"
         name="password"
+        placeholder="Your password"
         type="password"
         value=""
       />

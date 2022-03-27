@@ -3,7 +3,7 @@
 exports[`Login renders 1`] = `
 <div>
   <div
-    class="css-0"
+    class="css-y1gt6f"
   >
     <div
       class="css-gmuwbf"
@@ -12,12 +12,13 @@ exports[`Login renders 1`] = `
         class="css-3qxem8"
       >
         <div
-          class="css-1qhd7u4"
+          class="css-10ib5jr"
         >
-          <img
-            class="chakra-image css-ivy5hw"
-            src="logo.png"
-          />
+          <p
+            class="chakra-text css-odt1ir"
+          >
+            Login to your account
+          </p>
         </div>
         <form>
           <div
@@ -37,6 +38,7 @@ exports[`Login renders 1`] = `
               class="chakra-input css-0"
               id="email"
               name="email"
+              placeholder="Your email"
               value=""
             />
             <div
@@ -62,6 +64,7 @@ exports[`Login renders 1`] = `
               class="chakra-input css-0"
               id="password"
               name="password"
+              placeholder="Your password"
               type="password"
               value=""
             />

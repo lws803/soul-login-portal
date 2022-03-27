@@ -3,7 +3,7 @@
 exports[`Register renders 1`] = `
 <div>
   <div
-    class="css-0"
+    class="css-y1gt6f"
   >
     <div
       class="css-gmuwbf"
@@ -12,12 +12,26 @@ exports[`Register renders 1`] = `
         class="css-3qxem8"
       >
         <div
-          class="css-1qhd7u4"
+          class="css-10ib5jr"
         >
-          <img
-            class="chakra-image css-ivy5hw"
-            src="logo.png"
-          />
+          <p
+            class="chakra-text css-odt1ir"
+          >
+            Create new account
+          </p>
+          <p
+            class="chakra-text css-0"
+          >
+            Already a member?
+             
+            <a
+              class="chakra-link css-epvm6"
+              href="/?platformId=1&callback=https://www.example.com"
+              target="_self"
+            >
+              Log in
+            </a>
+          </p>
         </div>
         <form>
           <div
@@ -37,6 +51,7 @@ exports[`Register renders 1`] = `
               class="chakra-input css-0"
               id="username"
               name="username"
+              placeholder="Your username"
               value=""
             />
             <div
@@ -63,6 +78,7 @@ exports[`Register renders 1`] = `
               class="chakra-input css-0"
               id="email"
               name="email"
+              placeholder="Your email"
               value=""
             />
             <div
@@ -88,6 +104,7 @@ exports[`Register renders 1`] = `
               class="chakra-input css-0"
               id="password"
               name="password"
+              placeholder="Your password"
               type="password"
               value=""
             />

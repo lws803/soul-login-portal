@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Center, Image } from '@chakra-ui/react';
 
 import Form from './login/form';
 
 import Page from '../components/page';
 import Status from '../components/status';
 import useQuery from '../hooks/useQuery';
-import logo from '../images/logo.png';
+import Title from '../components/title';
 
 export default function Login() {
   const query = useQuery();
@@ -25,9 +24,7 @@ export default function Login() {
         <Status status="Login successful" message="Redirecting you back..." />
       ) : (
         <>
-          <Center mt={10} mb={10}>
-            <Image src={logo} maxHeight="150px" />
-          </Center>
+          <Title title="Login to your account" />
           <Form
             setErrors={setErrors}
             callback={query.get('callback')!}

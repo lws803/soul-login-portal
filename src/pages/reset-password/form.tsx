@@ -70,6 +70,8 @@ export default function Form({ token, setErrors, setIsSuccess }: Props) {
           value={formik.values.password}
           disabled={!token}
           aria-label="Password input"
+          variant="filled"
+          placeholder="Enter your new password"
         />
         {formik.errors.password && (
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>

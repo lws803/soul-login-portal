@@ -96,6 +96,8 @@ export default function Form({
             value={formik.values.email}
             disabled={disabled}
             aria-label="Email input"
+            variant="filled"
+            placeholder="Your email"
           />
           {!formik.errors.email && (
             <FormHelperText>We&apos;ll never share your email.</FormHelperText>
@@ -117,6 +119,8 @@ export default function Form({
             value={formik.values.password}
             disabled={disabled}
             aria-label="Password input"
+            variant="filled"
+            placeholder="Your password"
           />
           {formik.errors.password && (
             <FormErrorMessage>{formik.errors.password}</FormErrorMessage>

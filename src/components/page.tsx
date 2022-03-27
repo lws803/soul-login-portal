@@ -14,7 +14,7 @@ export default function Page({
   children,
 }: React.PropsWithChildren<Props>) {
   return (
-    <Box>
+    <Box marginTop="40px">
       <Center>
         <Box p={8} width={500}>
           {children}
