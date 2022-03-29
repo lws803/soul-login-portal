@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form renders 1`] = `
+<div>
+  <form>
+    <div
+      class="chakra-form-control css-0"
+      role="group"
+    >
+      <label
+        class="chakra-form__label css-uvho5g"
+        for="password"
+        id="field-1-label"
+      >
+        Password
+      </label>
+      <input
+        aria-label="Password input"
+        class="chakra-input css-0"
+        id="password"
+        name="password"
+        placeholder="Enter your new password"
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      class="chakra-stack css-nzla2i"
+    >
+      <button
+        class="chakra-button css-a0tdue"
+        type="submit"
+      >
+        Reset password
+      </button>
+    </div>
+  </form>
+</div>
+`;
