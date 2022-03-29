@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import Form from './reset-password/form';
+import Form from './ResetPassword/Form';
 
-import Status from '../components/status';
-import Page from '../components/page';
+import Status from '../components/Status';
+import Page from '../components/Page';
 import useQuery from '../hooks/useQuery';
-import Title from '../components/title';
+import Title from '../components/Title';
 
 export default function ResetPassword() {
   const query = useQuery();

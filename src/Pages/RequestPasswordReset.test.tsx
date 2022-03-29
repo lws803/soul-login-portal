@@ -2,13 +2,13 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-import RequestEmailVerification from './request-email-verification';
+import RequestPasswordReset from './RequestPasswordReset';
 
-describe(RequestEmailVerification, () => {
+describe(RequestPasswordReset, () => {
   it('renders', async () => {
     const { container } = render(
       <MemoryRouter>
-        <RequestEmailVerification />
+        <RequestPasswordReset />
       </MemoryRouter>,
     );
 

@@ -1,13 +1,12 @@
 import axios from 'axios';
 
 import { BASE_URL } from '../../constants';
+import { ApiError } from '../../shared/apiTypes';
 
-import { ApiError } from '../../shared/api-types';
-
-export const sendPasswordReset = async ({ email }: { email: string }) => {
+export const sendEmailConfirmation = async ({ email }: { email: string }) => {
   try {
     await axios.post(
-      `${BASE_URL}/v1/users/request-password-reset-token?email=${email}`,
+      `${BASE_URL}/v1/users/resend-confirmation-token?email=${email}`,
     );
     return { error: null };
   } catch ({ response: { data } }) {

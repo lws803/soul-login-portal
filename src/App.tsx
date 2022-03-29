@@ -2,12 +2,12 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 
-import Login from './pages/login';
-import Register from './pages/register';
-import EmailConfirmation from './pages/email-confirmation';
-import ResetPassword from './pages/reset-password';
-import RequestPasswordReset from './pages/request-password-reset';
-import RequestEmailVerification from './pages/request-email-verification';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import EmailConfirmation from './Pages/EmailConfirmation';
+import ResetPassword from './Pages/ResetPassword';
+import RequestPasswordReset from './Pages/RequestPasswordReset';
+import RequestEmailVerification from './Pages/RequestEmailVerification';
 import theme from './theme';
 
 function App() {

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Center, Spinner, Text } from '@chakra-ui/react';
 
 import { BASE_URL } from '../constants';
-import Page from '../components/page';
+import Page from '../components/Page';
 import useQuery from '../hooks/useQuery';
 
 export default function EmailConfirmation() {

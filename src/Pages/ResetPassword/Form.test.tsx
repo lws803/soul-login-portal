@@ -2,7 +2,7 @@ import React from 'react';
 import { render, waitFor, fireEvent, act } from '@testing-library/react';
 import axios from 'axios';
 
-import Form from './form';
+import Form from './Form';
 
 describe(Form, () => {
   const props: React.ComponentProps<typeof Form> = {

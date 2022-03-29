@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Center } from '@chakra-ui/react';
 
 import { login, joinPlatformAndLogin } from './api';
-import FancyButton from '../../components/fancy-button';
+import FancyButton from '../../components/FancyButton';
 
 export default function JoinPlatform({
   email,

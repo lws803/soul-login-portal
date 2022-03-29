@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-import Form from './request-email-verification/form';
+import Form from './RequestEmailVerification/Form';
 
-import Status from '../components/status';
-import Page from '../components/page';
-import Title from '../components/title';
+import Status from '../components/Status';
+import Page from '../components/Page';
+import Title from '../components/Title';
 
 export default function RequestEmailVerification() {
   const [errors, setErrors] = useState<string[]>([]);

@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
-import FancyButton from './fancy-button';
+import FancyButton from './FancyButton';
 
 describe(FancyButton, () => {
   const props: React.ComponentProps<typeof FancyButton> = {

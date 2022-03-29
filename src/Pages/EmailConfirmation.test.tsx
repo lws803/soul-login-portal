@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import axios from 'axios';
 
-import EmailConfirmation from './email-confirmation';
+import EmailConfirmation from './EmailConfirmation';
 
 describe(EmailConfirmation, () => {
   const path = '/?token=CODE';

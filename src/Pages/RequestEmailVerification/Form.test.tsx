@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, act, fireEvent, waitFor } from '@testing-library/react';
 
-import Form from './form';
+import Form from './Form';
 import * as api from './api';
 
 describe(Form, () => {
@@ -18,7 +18,7 @@ describe(Form, () => {
   it('requests for email verification', async () => {
     const setIsSuccess = jest.fn();
     const sendEmailConfirmation = jest
-      .spyOn(api, 'sendPasswordReset')
+      .spyOn(api, 'sendEmailConfirmation')
       .mockResolvedValue({ error: null });
 
     const { getByLabelText, getByText } = render(
@@ -31,7 +31,7 @@ describe(Form, () => {
       });
     });
 
-    fireEvent.click(getByText('Request password reset'));
+    fireEvent.click(getByText('Request email verification'));
 
     await waitFor(() => {
       expect(sendEmailConfirmation).toHaveBeenCalledWith({

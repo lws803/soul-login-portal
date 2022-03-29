@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 
-import JoinPlatform from './join-platform';
+import JoinPlatform from './JoinPlatform';
 import * as api from './api';
 
 describe(JoinPlatform, () => {
