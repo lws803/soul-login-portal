@@ -25,6 +25,18 @@ describe('Login', () => {
     );
   });
 
+  it('navigates to request password reset', () => {
+    cy.visit('/?platformId=2&callback=https://www.example.com');
+    cy.contains('Forgot password?').click();
+    cy.location('pathname').should('eq', '/request-password-reset');
+  });
+
+  it('navigates to resend email verification', () => {
+    cy.visit('/?platformId=2&callback=https://www.example.com');
+    cy.contains('Resend email verification').click();
+    cy.location('pathname').should('eq', '/request-email-verification');
+  });
+
   it('log in successfully', () => {
     const code = 'AUTH_CODE';
     cy.intercept(
