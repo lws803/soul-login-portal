@@ -101,4 +101,54 @@ describe('Login', () => {
 
     cy.contains('Create new account');
   });
+
+  it('joins platform when user has not joined', () => {
+    const code = 'AUTH_CODE';
+    cy.intercept(
+      {
+        method: 'POST',
+        url: 'https://api.soul-network.com/v1/auth/code?platformId=2&callback=http://test.localhost:3000',
+      },
+      { statusCode: 404, body: { error: 'PLATFORM_USER_NOT_FOUND' } },
+    ).as('loginUser');
+    cy.intercept(
+      {
+        method: 'POST',
+        url: 'https://api.soul-network.com/v1/auth/login',
+      },
+      { accessToken: 'ACCESS_TOKEN' },
+    ).as('loginUserWithoutPlatform');
+    cy.intercept(
+      {
+        method: 'POST',
+        url: 'https://api.soul-network.com/v1/platforms/2/join',
+      },
+      { accessToken: 'ACCESS_TOKEN' },
+    ).as('joinPlatform');
+    cy.intercept(
+      {
+        method: 'GET',
+        url: 'http://test.localhost:3000/*',
+      },
+      code,
+    ).as('exampleSite');
+
+    cy.visit('/?platformId=2&callback=http://test.localhost:3000');
+    cy.get('input[name="email"]').type('test@mail.com');
+    cy.get('input[name="password"]').type('password');
+    cy.get('button:contains("Login")').click();
+
+    cy.contains('Join Platform!');
+
+    cy.intercept(
+      {
+        method: 'POST',
+        url: 'https://api.soul-network.com/v1/auth/code?platformId=2&callback=http://test.localhost:3000',
+      },
+      { code },
+    ).as('loginUser');
+
+    cy.get('button:contains("Join Platform!")').click();
+    cy.contains(code);
+  });
 });
