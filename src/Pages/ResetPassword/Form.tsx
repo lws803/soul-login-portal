@@ -13,7 +13,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import zxcvbn from 'zxcvbn';
 
-import { BASE_URL } from '../../constants';
+import { BASE_URL } from 'src/constants';
 
 export default function Form({ token, setErrors, setIsSuccess }: Props) {
   const [isResetting, setIsResetting] = useState(false);

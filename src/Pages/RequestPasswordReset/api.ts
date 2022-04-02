@@ -1,8 +1,10 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 
-import { BASE_URL } from '../../constants';
+import { BASE_URL } from 'src/constants';
+import { ApiError } from 'src/shared/apiTypes';
 
-import { ApiError } from '../../shared/apiTypes';
+axiosRetry(axios, { retryDelay: axiosRetry.exponentialDelay, retries: 3 });
 
 export const sendPasswordReset = async ({ email }: { email: string }) => {
   try {

@@ -13,9 +13,9 @@ import zxcvbn from 'zxcvbn';
 import { useFormik } from 'formik';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { register } from './api';
+import FancyButton from 'src/components/FancyButton';
 
-import FancyButton from '../../components/FancyButton';
+import { register } from './api';
 
 export default function Form({ setErrors }: Props) {
   const navigate = useNavigate();

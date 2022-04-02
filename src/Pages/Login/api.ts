@@ -1,7 +1,10 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 
-import { BASE_URL } from '../../constants';
-import { ApiError } from '../../shared/apiTypes';
+import { BASE_URL } from 'src/constants';
+import { ApiError } from 'src/shared/apiTypes';
+
+axiosRetry(axios, { retryDelay: axiosRetry.exponentialDelay, retries: 3 });
 
 export const loginWithPlatform = async ({
   platformId,
