@@ -14,7 +14,7 @@ Run `npm i` and you're all set!
 
 ## Start the application
 
-Run `npm run start` to start the application in dev mode
+Run `npm run start` to start the application in dev mode.
 
 ## Deploy the application
 
