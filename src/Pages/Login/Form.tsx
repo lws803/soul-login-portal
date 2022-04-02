@@ -13,10 +13,10 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
+import FancyButton from 'src/components/FancyButton';
+
 import JoinPlatform from './JoinPlatform';
 import { loginWithPlatform } from './api';
-
-import FancyButton from '../../components/FancyButton';
 
 export default function Form({
   setErrors,
