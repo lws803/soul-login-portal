@@ -30,7 +30,3 @@ Soul login portal uses cypress for e2e integration tests.
 
 1. Make sure the application has been started before running integration tests.
 2. Run `npm run cy:open` to open the cypress interface and click on "run all integration tests" to open a chrome browser and begin testing!
-
-## Examples
-
-1. [simple-login](https://github.com/soul-project/login-portal/blob/main/examples/simple-login)
