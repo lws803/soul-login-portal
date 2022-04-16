@@ -77,6 +77,19 @@ describe('Register', () => {
   });
 
   it('fails due to weak password', () => {
+    cy.intercept(
+      {
+        method: 'POST',
+        url: 'https://api.soul-network.com/v1/users',
+      },
+      {
+        statusCode: 400,
+        body: {
+          error: 'VALIDATION_ERROR',
+        },
+      },
+    ).as('registerUser');
+
     cy.visit('/register/?platformId=2&callback=http://test.localhost:3000');
     cy.get('input[name="username"]').type('username');
     cy.get('input[name="email"]').type('test@mail.com');
