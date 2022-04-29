@@ -15,7 +15,11 @@ export default function RequestPasswordReset() {
       {isSuccess ? (
         <Status
           status="Request submitted!"
-          message="Password reset requested, please check your email."
+          message={
+            'Password reset requested, you will receive an email shortly if your ' +
+            'email address exists in our database. Please check your spam inbox if ' +
+            "you haven't received an email after a few minutes."
+          }
         />
       ) : (
         <>

@@ -15,7 +15,11 @@ export default function RequestEmailVerification() {
       {isSuccess ? (
         <Status
           status="Request submitted!"
-          message="Sent email verification, please check your email."
+          message={
+            'Email verification requested, you will receive an email shortly if your ' +
+            'email address exists in our database. Please check your spam inbox if ' +
+            "you haven't received an email after a few minutes."
+          }
         />
       ) : (
         <>
