@@ -45,11 +45,9 @@ describe('Login', () => {
     cy.intercept(
       {
         method: 'POST',
-        url:
-          'https://api.soul-network.com/v1/auth/code?platformId=2' +
-          `&callback=http://test.localhost:3000&state=${state}`,
+        url: `https://api.soul-network.com/v1/auth/code?platformId=2&callback=http:%2F%2Ftest.localhost:3000&state=${state}`,
       },
-      { code },
+      { code, state },
     ).as('loginUser');
     cy.intercept(
       {
@@ -118,7 +116,7 @@ describe('Login', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: `https://api.soul-network.com/v1/auth/code?platformId=2&callback=http://test.localhost:3000&state=${state}`,
+        url: `https://api.soul-network.com/v1/auth/code?platformId=2&callback=http:%2F%2Ftest.localhost:3000&state=${state}`,
       },
       { statusCode: 404, body: { error: 'PLATFORM_USER_NOT_FOUND' } },
     ).as('loginUser');
@@ -156,7 +154,7 @@ describe('Login', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: `https://api.soul-network.com/v1/auth/code?platformId=2&callback=http://test.localhost:3000&state=${state}`,
+        url: `https://api.soul-network.com/v1/auth/code?platformId=2&callback=http:%2F%2Ftest.localhost:3000&state=${state}`,
       },
       { code, state },
     ).as('loginUser');
