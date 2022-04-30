@@ -9,7 +9,9 @@ axiosRetry(axios, { retryDelay: axiosRetry.exponentialDelay, retries: 3 });
 export const sendPasswordReset = async ({ email }: { email: string }) => {
   try {
     await axios.post(
-      `${BASE_URL}/v1/users/request-password-reset-token?email=${email}`,
+      `${BASE_URL}/v1/users/request-password-reset-token`,
+      {},
+      { params: { email } },
     );
     return { error: null };
   } catch ({ response: { data } }) {

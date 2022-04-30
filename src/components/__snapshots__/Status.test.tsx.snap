@@ -3,7 +3,7 @@
 exports[`Status renders 1`] = `
 <div>
   <div
-    class="chakra-alert css-whnht2"
+    class="chakra-alert css-uxjdv3"
     role="alert"
   >
     <span
@@ -26,7 +26,7 @@ exports[`Status renders 1`] = `
       STATUS
     </div>
     <div
-      class="chakra-alert__desc css-1d5tdh6"
+      class="chakra-alert__desc css-1w05py7"
     >
       MESSAGE
     </div>

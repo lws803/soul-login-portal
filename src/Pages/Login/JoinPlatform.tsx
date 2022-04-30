@@ -4,6 +4,7 @@ import { Center } from '@chakra-ui/react';
 import FancyButton from 'src/components/FancyButton';
 
 import { login, joinPlatformAndLogin } from './api';
+import { redirectToCallback } from './utils';
 
 export default function JoinPlatform({
   email,
@@ -11,7 +12,6 @@ export default function JoinPlatform({
   platformId,
   callback,
   setErrors,
-  setIsSuccess,
   state,
 }: Props) {
   const [accessToken, setAccessToken] = useState<string>();
@@ -44,13 +44,7 @@ export default function JoinPlatform({
       setErrors([error.message]);
     }
     if (data) {
-      if (typeof window !== 'undefined') {
-        setIsSuccess(true);
-        window.open(
-          `${callback}?code=${data.code}&state=${data.state}`,
-          '_self',
-        );
-      }
+      redirectToCallback({ code: data.code, state: data.state, callback });
     }
     setIsJoining(false);
   };
@@ -74,6 +68,5 @@ type Props = {
   platformId: number;
   callback: string;
   setErrors: (error: string[]) => void;
-  setIsSuccess: (isSuccess: boolean) => void;
   state: string;
 };

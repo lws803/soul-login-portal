@@ -1,6 +1,12 @@
 /// <reference types="cypress" />
 
 describe('Register', () => {
+  const state = 'STATE';
+  const callback = 'http://test.localhost:3000';
+  const platformId = 2;
+
+  const rootPage = `/register/?platformId=${platformId}&callback=${callback}&state=${state}`;
+
   it('can navigate to register page', () => {
     cy.visit('/register');
 
@@ -8,12 +14,12 @@ describe('Register', () => {
   });
 
   it('navigates to login', () => {
-    cy.visit('/register/?platformId=2&callback=https://www.example.com');
+    cy.visit(rootPage);
     cy.contains('Log in').click();
     cy.location('pathname').should('eq', '/');
     cy.location('search').should(
       'eq',
-      '?platformId=2&callback=https://www.example.com',
+      `?platformId=${platformId}&callback=${callback}&state=${state}`,
     );
   });
 
@@ -34,7 +40,7 @@ describe('Register', () => {
       },
     ).as('registerUser');
 
-    cy.visit('/register/?platformId=2&callback=http://test.localhost:3000');
+    cy.visit(rootPage);
     cy.get('input[name="username"]').type('username');
     cy.get('input[name="email"]').type('test@mail.com');
     cy.get('input[name="password"]').type('DESx!&X29x8L5Scj');
@@ -45,7 +51,7 @@ describe('Register', () => {
     cy.location('pathname').should('eq', '/');
     cy.location('search').should(
       'eq',
-      '?platformId=2&callback=http://test.localhost:3000',
+      `?platformId=${platformId}&callback=${callback}&state=${state}`,
     );
   });
 
@@ -65,7 +71,7 @@ describe('Register', () => {
       },
     ).as('registerUser');
 
-    cy.visit('/register/?platformId=2&callback=http://test.localhost:3000');
+    cy.visit(rootPage);
     cy.get('input[name="username"]').type('username');
     cy.get('input[name="email"]').type(email);
     cy.get('input[name="password"]').type('DESx!&X29x8L5Scj');
@@ -90,7 +96,7 @@ describe('Register', () => {
       },
     ).as('registerUser');
 
-    cy.visit('/register/?platformId=2&callback=http://test.localhost:3000');
+    cy.visit(rootPage);
     cy.get('input[name="username"]').type('username');
     cy.get('input[name="email"]').type('test@mail.com');
     cy.get('input[name="password"]').type('password');
@@ -100,7 +106,7 @@ describe('Register', () => {
   });
 
   it('fails validation when bad email is provided', () => {
-    cy.visit('/register/?platformId=2&callback=http://test.localhost:3000');
+    cy.visit(rootPage);
     cy.get('input[name="username"]').type('username');
     cy.get('input[name="email"]').type('test@');
     cy.get('input[name="password"]').type('DESx!&X29x8L5Scj');

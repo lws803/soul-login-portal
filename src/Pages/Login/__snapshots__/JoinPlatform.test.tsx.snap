@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JoinPlatform renders 1`] = `
+<div>
+  <div
+    class="css-1lads1q"
+  >
+    <button
+      aria-label="Join platform button"
+      class="css-y6mgpv"
+    >
+      <div
+        class="css-tkevr6"
+      >
+        Join Platform!
+      </div>
+    </button>
+  </div>
+</div>
+`;

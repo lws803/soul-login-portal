@@ -11,8 +11,8 @@
     "check-types": "tsc",
     "lint:eslint": "eslint src",
     "lint": "npm run lint:eslint && npm run check-types",
-    "cy:open": "npx cypress open",
-    "cy:headless": "npx cypress run"
+    "cy:open": "cypress open",
+    "cy:headless": "cypress run"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.8.3",
