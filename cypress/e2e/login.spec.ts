@@ -3,6 +3,9 @@
 describe('Login', () => {
   const state = 'STATE';
   const rootPage = `/?platformId=2&callback=http://test.localhost:3000&state=${state}`;
+  const authCodeEndpoint =
+    `https://api.soul-network.com/v1/auth/code` +
+    `?platformId=2&callback=http:%2F%2Ftest.localhost:3000&state=${state}`;
 
   it('can navigate to the login page.', () => {
     cy.visit(rootPage);
@@ -44,13 +47,9 @@ describe('Login', () => {
 
   it('log in successfully', () => {
     const code = 'AUTH_CODE';
-    cy.intercept(
-      {
-        method: 'POST',
-        url: `https://api.soul-network.com/v1/auth/code?platformId=2&callback=http:%2F%2Ftest.localhost:3000&state=STATE`,
-      },
-      { code, state },
-    ).as('loginUser');
+    cy.intercept({ method: 'POST', url: authCodeEndpoint }, { code, state }).as(
+      'loginUser',
+    );
 
     cy.intercept(
       {
@@ -95,10 +94,7 @@ describe('Login', () => {
 
   it('redirects to register when user is not found', () => {
     cy.intercept(
-      {
-        method: 'POST',
-        url: `https://api.soul-network.com/v1/auth/code?platformId=2&callback=https:%2F%2Ftest.localhost:3000&state=${state}`,
-      },
+      { method: 'POST', url: authCodeEndpoint },
       { statusCode: 404, body: { error: 'USER_NOT_FOUND' } },
     ).as('loginUser');
 
@@ -114,10 +110,7 @@ describe('Login', () => {
     const code = 'AUTH_CODE';
 
     cy.intercept(
-      {
-        method: 'POST',
-        url: `https://api.soul-network.com/v1/auth/code?platformId=2&callback=http:%2F%2Ftest.localhost:3000&state=${state}`,
-      },
+      { method: 'POST', url: authCodeEndpoint },
       { statusCode: 404, body: { error: 'PLATFORM_USER_NOT_FOUND' } },
     ).as('loginUser');
     cy.intercept(
@@ -149,13 +142,9 @@ describe('Login', () => {
 
     cy.contains('Join Platform!');
 
-    cy.intercept(
-      {
-        method: 'POST',
-        url: `https://api.soul-network.com/v1/auth/code?platformId=2&callback=http:%2F%2Ftest.localhost:3000&state=${state}`,
-      },
-      { code, state },
-    ).as('loginUser');
+    cy.intercept({ method: 'POST', url: authCodeEndpoint }, { code, state }).as(
+      'loginUser',
+    );
 
     cy.get('button:contains("Join Platform!")').click();
 
