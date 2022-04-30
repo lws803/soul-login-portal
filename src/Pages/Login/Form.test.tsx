@@ -19,6 +19,7 @@ describe(Form, () => {
     platformId: 1,
     callback: 'https://www.example.com',
     disabled: false,
+    state: 'STATE',
   };
 
   it('renders', async () => {
@@ -37,7 +38,10 @@ describe(Form, () => {
 
     const loginWithPlatform = jest
       .spyOn(api, 'loginWithPlatform')
-      .mockResolvedValue({ data: { code: 'CODE' }, error: null });
+      .mockResolvedValue({
+        data: { code: 'CODE', state: 'STATE' },
+        error: null,
+      });
 
     const { getByLabelText, getByText } = render(
       <MemoryRouter>
@@ -64,6 +68,7 @@ describe(Form, () => {
           email: 'TEST@EMAIL.COM',
           password: 'PASSWORD',
         },
+        state: 'STATE',
       });
       expect(window.open).toHaveBeenCalled();
     });

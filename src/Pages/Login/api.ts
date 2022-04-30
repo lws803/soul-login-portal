@@ -10,6 +10,7 @@ export const loginWithPlatform = async ({
   platformId,
   callback,
   values,
+  state,
 }: {
   platformId: number;
   callback: string;
@@ -17,13 +18,14 @@ export const loginWithPlatform = async ({
     email: string;
     password: string;
   };
+  state: string;
 }): Promise<{
   data: LoginWithPlatformResponse | null;
   error: ApiError | null;
 }> => {
   try {
     const { data } = await axios.post<LoginWithPlatformResponse>(
-      `${BASE_URL}/v1/auth/code?platformId=${platformId}&callback=${callback}`,
+      `${BASE_URL}/v1/auth/code?platformId=${platformId}&callback=${callback}&state=${state}`,
       values,
     );
     return { data, error: null };
@@ -34,6 +36,7 @@ export const loginWithPlatform = async ({
 
 type LoginWithPlatformResponse = {
   code: string;
+  state: string;
 };
 
 export const login = async ({
@@ -64,12 +67,14 @@ export const joinPlatformAndLogin = async ({
   email,
   password,
   accessToken,
+  state,
 }: {
   platformId: number;
   callback: string;
   email: string;
   password: string;
   accessToken: string;
+  state: string;
 }) => {
   try {
     await axios.post(`${BASE_URL}/v1/platforms/${platformId}/join`, undefined, {
@@ -77,7 +82,7 @@ export const joinPlatformAndLogin = async ({
     });
 
     const { data: codeData } = await axios.post<LoginWithPlatformResponse>(
-      `${BASE_URL}/v1/auth/code?platformId=${platformId}&callback=${callback}`,
+      `${BASE_URL}/v1/auth/code?platformId=${platformId}&callback=${callback}&state=${state}`,
       { email, password },
     );
     return { data: codeData, error: null };

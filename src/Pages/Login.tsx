@@ -12,9 +12,14 @@ export default function Login() {
   const [errors, setErrors] = useState<string[]>([]);
   const [isSuccess, setIsSuccess] = useState(false);
 
+  const insufficientParams =
+    !query.get('platformId') || !query.get('callback') || !query.get('state');
+
   useEffect(() => {
-    if (!query.get('callback') || !query.get('platformId')) {
-      setErrors(['PlatformId and callback is not present.']);
+    if (insufficientParams) {
+      setErrors([
+        'Insufficient parameters provided in the url, a callback, platformId and state must be specified.',
+      ]);
     }
   }, [query]);
 
@@ -29,8 +34,9 @@ export default function Login() {
             setErrors={setErrors}
             callback={query.get('callback')!}
             platformId={parseInt(query.get('platformId')!, 10)}
-            disabled={!query.get('callback') || !query.get('platformId')}
+            disabled={insufficientParams}
             setIsSuccess={setIsSuccess}
+            state={query.get('state')!}
           />
         </>
       )}
