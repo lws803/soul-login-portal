@@ -12,6 +12,7 @@ export default function JoinPlatform({
   callback,
   setErrors,
   setIsSuccess,
+  state,
 }: Props) {
   const [accessToken, setAccessToken] = useState<string>();
   const [isJoining, setIsJoining] = useState(false);
@@ -36,6 +37,7 @@ export default function JoinPlatform({
       callback,
       email,
       password,
+      state,
       accessToken: accessToken!,
     });
     if (error) {
@@ -44,7 +46,10 @@ export default function JoinPlatform({
     if (data) {
       if (typeof window !== 'undefined') {
         setIsSuccess(true);
-        window.open(`${callback}?code=${data.code}`, '_self');
+        window.open(
+          `${callback}?code=${data.code}&state=${data.state}`,
+          '_self',
+        );
       }
     }
     setIsJoining(false);
@@ -70,4 +75,5 @@ type Props = {
   callback: string;
   setErrors: (error: string[]) => void;
   setIsSuccess: (isSuccess: boolean) => void;
+  state: string;
 };

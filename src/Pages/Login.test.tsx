@@ -6,7 +6,7 @@ import Login from './Login';
 import * as api from './Login/api';
 
 describe(Login, () => {
-  const path = '/?platformId=1&callback=https://www.example.com';
+  const path = '/?platformId=1&callback=https://www.example.com&state=STATE';
 
   it('renders', async () => {
     const { container } = render(
@@ -18,14 +18,16 @@ describe(Login, () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('renders warning when callback or platform id is not provided', async () => {
+  it('renders warning when callback, platform id or state is not provided', async () => {
     const { findByText } = render(
       <MemoryRouter>
         <Login />
       </MemoryRouter>,
     );
     expect(
-      await findByText('PlatformId and callback is not present.'),
+      await findByText(
+        'Insufficient parameters provided in the url, a callback, platformId and state must be specified.',
+      ),
     ).toBeInTheDocument();
   });
 
@@ -33,7 +35,10 @@ describe(Login, () => {
     window.open = jest.fn();
     const loginWithPlatform = jest
       .spyOn(api, 'loginWithPlatform')
-      .mockResolvedValue({ data: { code: 'CODE' }, error: null });
+      .mockResolvedValue({
+        data: { code: 'CODE', state: 'STATE' },
+        error: null,
+      });
 
     const { getByLabelText, getByText, findByText } = render(
       <MemoryRouter initialEntries={[path]}>
@@ -60,6 +65,7 @@ describe(Login, () => {
         email: 'TEST@EMAIL.COM',
         password: 'PASSWORD',
       },
+      state: 'STATE',
     });
     expect(window.open).toHaveBeenCalled();
   });

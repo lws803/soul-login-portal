@@ -2,47 +2,52 @@
 
 describe('Login', () => {
   it('can navigate to the login page.', () => {
-    cy.visit('/?platformId=2&callback=https://www.example.com');
+    cy.visit('/?platformId=2&callback=https://www.example.com&state=STATE');
     cy.document().contains('Login to your account');
     cy.document().contains('Email');
     cy.document().contains('Password');
   });
 
-  it('shows an error when platformId and callback are not present and login is not clickable', () => {
+  it('shows an error when platformId, callback or state are not present and login is not clickable', () => {
     cy.visit('/');
-    cy.document().contains('PlatformId and callback is not present.');
+    cy.document().contains(
+      'Insufficient parameters provided in the url, a callback, platformId and state must be specified.',
+    );
 
     cy.get('button:contains("Login")').should('be.disabled');
   });
 
   it('navigates to register', () => {
-    cy.visit('/?platformId=2&callback=https://www.example.com');
+    cy.visit('/?platformId=2&callback=https://www.example.com&state=STATE');
     cy.contains('Register Now').click();
     cy.location('pathname').should('eq', '/register/');
     cy.location('search').should(
       'eq',
-      '?platformId=2&callback=https://www.example.com',
+      '?platformId=2&callback=https://www.example.com&state=STATE',
     );
   });
 
   it('navigates to request password reset', () => {
-    cy.visit('/?platformId=2&callback=https://www.example.com');
+    cy.visit('/?platformId=2&callback=https://www.example.com&state=STATE');
     cy.contains('Forgot password?').click();
     cy.location('pathname').should('eq', '/request-password-reset');
   });
 
   it('navigates to resend email verification', () => {
-    cy.visit('/?platformId=2&callback=https://www.example.com');
+    cy.visit('/?platformId=2&callback=https://www.example.com&state=STATE');
     cy.contains('Resend email verification').click();
     cy.location('pathname').should('eq', '/request-email-verification');
   });
 
   it('log in successfully', () => {
     const code = 'AUTH_CODE';
+    const state = 'STATE';
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://api.soul-network.com/v1/auth/code?platformId=2&callback=http://test.localhost:3000',
+        url:
+          'https://api.soul-network.com/v1/auth/code?platformId=2' +
+          `&callback=http://test.localhost:3000&state=${state}`,
       },
       { code },
     ).as('loginUser');
@@ -51,18 +56,22 @@ describe('Login', () => {
         method: 'GET',
         url: 'http://test.localhost:3000/*',
       },
-      code,
+      { code, state },
     ).as('exampleSite');
 
-    cy.visit('/?platformId=2&callback=http://test.localhost:3000');
+    cy.visit(
+      `/?platformId=2&callback=http://test.localhost:3000&state=${state}`,
+    );
     cy.get('input[name="email"]').type('test@mail.com');
     cy.get('input[name="password"]').type('password');
     cy.get('button:contains("Login")').click();
+
     cy.contains(code);
+    cy.contains(state);
   });
 
   it('fails validation when no password is provided', () => {
-    cy.visit('/?platformId=2&callback=http://test.localhost:3000');
+    cy.visit('/?platformId=2&callback=http://test.localhost:3000&state=STATE');
     cy.get('input[name="email"]').type('test@mail.com');
     cy.get('button:contains("Login")').click();
 
@@ -70,7 +79,7 @@ describe('Login', () => {
   });
 
   it('fails validation when no email is provided', () => {
-    cy.visit('/?platformId=2&callback=http://test.localhost:3000');
+    cy.visit('/?platformId=2&callback=http://test.localhost:3000&state=STATE');
     cy.get('input[name="password"]').type('password');
     cy.get('button:contains("Login")').click();
 
@@ -78,7 +87,7 @@ describe('Login', () => {
   });
 
   it('fails both validation when no fields are provided', () => {
-    cy.visit('/?platformId=2&callback=http://test.localhost:3000');
+    cy.visit('/?platformId=2&callback=http://test.localhost:3000&state=STATE');
     cy.get('button:contains("Login")').click();
 
     cy.contains('password is a required field');
@@ -94,7 +103,7 @@ describe('Login', () => {
       { statusCode: 404, body: { error: 'USER_NOT_FOUND' } },
     ).as('loginUser');
 
-    cy.visit('/?platformId=2&callback=http://test.localhost:3000');
+    cy.visit('/?platformId=2&callback=http://test.localhost:3000&state=STATE');
     cy.get('input[name="email"]').type('test@mail.com');
     cy.get('input[name="password"]').type('password');
     cy.get('button:contains("Login")').click();
@@ -104,10 +113,12 @@ describe('Login', () => {
 
   it('joins platform when user has not joined', () => {
     const code = 'AUTH_CODE';
+    const state = 'STATE';
+
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://api.soul-network.com/v1/auth/code?platformId=2&callback=http://test.localhost:3000',
+        url: `https://api.soul-network.com/v1/auth/code?platformId=2&callback=http://test.localhost:3000&state=${state}`,
       },
       { statusCode: 404, body: { error: 'PLATFORM_USER_NOT_FOUND' } },
     ).as('loginUser');
@@ -130,10 +141,12 @@ describe('Login', () => {
         method: 'GET',
         url: 'http://test.localhost:3000/*',
       },
-      code,
+      { code, state },
     ).as('exampleSite');
 
-    cy.visit('/?platformId=2&callback=http://test.localhost:3000');
+    cy.visit(
+      `/?platformId=2&callback=http://test.localhost:3000&state=${state}`,
+    );
     cy.get('input[name="email"]').type('test@mail.com');
     cy.get('input[name="password"]').type('password');
     cy.get('button:contains("Login")').click();
@@ -143,12 +156,14 @@ describe('Login', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://api.soul-network.com/v1/auth/code?platformId=2&callback=http://test.localhost:3000',
+        url: `https://api.soul-network.com/v1/auth/code?platformId=2&callback=http://test.localhost:3000&state=${state}`,
       },
-      { code },
+      { code, state },
     ).as('loginUser');
 
     cy.get('button:contains("Join Platform!")').click();
+
     cy.contains(code);
+    cy.contains(state);
   });
 });

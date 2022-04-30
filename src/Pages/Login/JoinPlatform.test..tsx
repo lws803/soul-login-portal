@@ -12,6 +12,7 @@ describe(JoinPlatform, () => {
     password: 'PASSWORD',
     platformId: 1,
     callback: 'https://www.example.com',
+    state: 'STATE',
   };
 
   beforeEach(() => {
@@ -30,7 +31,10 @@ describe(JoinPlatform, () => {
   it('joins platform when clicked', async () => {
     const joinPlatformAndLogin = jest
       .spyOn(api, 'joinPlatformAndLogin')
-      .mockResolvedValue({ data: { code: 'CODE' }, error: null });
+      .mockResolvedValue({
+        data: { code: 'CODE', state: 'STATE' },
+        error: null,
+      });
     const setIsSuccess = jest.fn();
     window.open = jest.fn();
 

@@ -24,6 +24,7 @@ export default function Form({
   platformId,
   callback,
   disabled,
+  state,
 }: Props) {
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -42,6 +43,7 @@ export default function Form({
         values,
         platformId,
         callback,
+        state,
       });
       if (error) {
         if (error.error === 'USER_NOT_FOUND') {
@@ -57,7 +59,10 @@ export default function Form({
       if (data?.code) {
         if (typeof window !== 'undefined') {
           setIsSuccess(true);
-          window.open(`${callback}?code=${data.code}`, '_self');
+          window.open(
+            `${callback}?code=${data.code}&state=${data.state}`,
+            '_self',
+          );
         }
       }
       setIsLoggingIn(false);
@@ -69,8 +74,6 @@ export default function Form({
     validateOnChange: false,
   });
 
-  // TODO: Add option to resend email verification if email is not verified
-
   if (joinPlatform) {
     return (
       <JoinPlatform
@@ -80,6 +83,7 @@ export default function Form({
         callback={callback}
         setErrors={setErrors}
         setIsSuccess={setIsSuccess}
+        state={state}
       />
     );
   }
@@ -160,4 +164,5 @@ type Props = {
   platformId: number;
   callback: string;
   disabled: boolean;
+  state: string;
 };
