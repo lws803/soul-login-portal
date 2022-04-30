@@ -1,9 +1,10 @@
 import React from 'react';
-import { fireEvent, render, act } from '@testing-library/react';
+import { fireEvent, render, act, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
 import Login from './Login';
 import * as api from './Login/api';
+import * as utils from './Login/utils';
 
 describe(Login, () => {
   const path = '/?platformId=1&callback=https://www.example.com&state=STATE';
@@ -32,7 +33,6 @@ describe(Login, () => {
   });
 
   it('logs in successfully', async () => {
-    window.open = jest.fn();
     const loginWithPlatform = jest
       .spyOn(api, 'loginWithPlatform')
       .mockResolvedValue({
@@ -40,7 +40,9 @@ describe(Login, () => {
         error: null,
       });
 
-    const { getByLabelText, getByText, findByText } = render(
+    jest.spyOn(utils, 'redirectToCallback').mockImplementation();
+
+    const { getByLabelText, getByText } = render(
       <MemoryRouter initialEntries={[path]}>
         <Login />
       </MemoryRouter>,
@@ -56,17 +58,22 @@ describe(Login, () => {
     });
     fireEvent.click(getByText('Login'));
 
-    expect(await findByText('Login successful')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(loginWithPlatform).toHaveBeenCalledWith({
+        callback: 'https://www.example.com',
+        platformId: 1,
+        values: {
+          email: 'TEST@EMAIL.COM',
+          password: 'PASSWORD',
+        },
+        state: 'STATE',
+      });
 
-    expect(loginWithPlatform).toHaveBeenCalledWith({
-      callback: 'https://www.example.com',
-      platformId: 1,
-      values: {
-        email: 'TEST@EMAIL.COM',
-        password: 'PASSWORD',
-      },
-      state: 'STATE',
+      expect(utils.redirectToCallback).toHaveBeenCalledWith({
+        callback: 'https://www.example.com',
+        code: 'CODE',
+        state: 'STATE',
+      });
     });
-    expect(window.open).toHaveBeenCalled();
   });
 });

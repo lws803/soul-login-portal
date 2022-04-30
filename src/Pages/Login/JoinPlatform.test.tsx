@@ -3,11 +3,11 @@ import { render, fireEvent, waitFor } from '@testing-library/react';
 
 import JoinPlatform from './JoinPlatform';
 import * as api from './api';
+import * as utils from './utils';
 
 describe(JoinPlatform, () => {
   const props: React.ComponentProps<typeof JoinPlatform> = {
     setErrors: jest.fn(),
-    setIsSuccess: jest.fn(),
     email: 'TEST@GMAIL.COM',
     password: 'PASSWORD',
     platformId: 1,
@@ -35,12 +35,10 @@ describe(JoinPlatform, () => {
         data: { code: 'CODE', state: 'STATE' },
         error: null,
       });
-    const setIsSuccess = jest.fn();
-    window.open = jest.fn();
 
-    const { findByText } = render(
-      <JoinPlatform {...props} setIsSuccess={setIsSuccess} />,
-    );
+    jest.spyOn(utils, 'redirectToCallback').mockImplementation();
+
+    const { findByText } = render(<JoinPlatform {...props} />);
 
     fireEvent.click(await findByText('Join Platform!'));
 
@@ -51,9 +49,14 @@ describe(JoinPlatform, () => {
         email: 'TEST@GMAIL.COM',
         password: 'PASSWORD',
         platformId: 1,
+        state: 'STATE',
       });
 
-      expect(window.open).toHaveBeenCalled();
+      expect(utils.redirectToCallback).toHaveBeenCalledWith({
+        callback: 'https://www.example.com',
+        code: 'CODE',
+        state: 'STATE',
+      });
     });
   });
 });

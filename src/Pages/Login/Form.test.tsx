@@ -15,7 +15,6 @@ jest.mock('react-router-dom', () => ({
 describe(Form, () => {
   const props: React.ComponentProps<typeof Form> = {
     setErrors: jest.fn(),
-    setIsSuccess: jest.fn(),
     platformId: 1,
     callback: 'https://www.example.com',
     disabled: false,
@@ -34,7 +33,6 @@ describe(Form, () => {
 
   it('logs in successfully', async () => {
     window.open = jest.fn();
-    const setIsSuccess = jest.fn();
 
     const loginWithPlatform = jest
       .spyOn(api, 'loginWithPlatform')
@@ -45,7 +43,7 @@ describe(Form, () => {
 
     const { getByLabelText, getByText } = render(
       <MemoryRouter>
-        <Form {...props} setIsSuccess={setIsSuccess} />
+        <Form {...props} />
       </MemoryRouter>,
     );
 
@@ -60,7 +58,6 @@ describe(Form, () => {
     fireEvent.click(getByText('Login'));
 
     await waitFor(() => {
-      expect(setIsSuccess).toHaveBeenCalledWith(true);
       expect(loginWithPlatform).toHaveBeenCalledWith({
         callback: 'https://www.example.com',
         platformId: 1,

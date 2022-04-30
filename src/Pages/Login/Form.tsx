@@ -17,10 +17,10 @@ import FancyButton from 'src/components/FancyButton';
 
 import JoinPlatform from './JoinPlatform';
 import { loginWithPlatform } from './api';
+import { redirectToCallback } from './utils';
 
 export default function Form({
   setErrors,
-  setIsSuccess,
   platformId,
   callback,
   disabled,
@@ -56,14 +56,8 @@ export default function Form({
           setErrors([error.message]);
         }
       }
-      if (data?.code) {
-        if (typeof window !== 'undefined') {
-          setIsSuccess(true);
-          window.open(
-            `${callback}?code=${data.code}&state=${data.state}`,
-            '_self',
-          );
-        }
+      if (data) {
+        redirectToCallback({ code: data.code, state: data.state, callback });
       }
       setIsLoggingIn(false);
     },
@@ -82,7 +76,6 @@ export default function Form({
         platformId={platformId}
         callback={callback}
         setErrors={setErrors}
-        setIsSuccess={setIsSuccess}
         state={state}
       />
     );
@@ -160,7 +153,6 @@ export default function Form({
 
 type Props = {
   setErrors: (error: string[]) => void;
-  setIsSuccess: (isSuccess: boolean) => void;
   platformId: number;
   callback: string;
   disabled: boolean;
