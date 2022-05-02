@@ -11,7 +11,7 @@ export default function RequestEmailVerification() {
   const [isSuccess, setIsSuccess] = useState(false);
 
   return (
-    <Page errors={errors}>
+    <Page errors={errors} title={<Title title="Resend email verification" />}>
       {isSuccess ? (
         <Status
           status="Request submitted!"
@@ -22,10 +22,7 @@ export default function RequestEmailVerification() {
           }
         />
       ) : (
-        <>
-          <Title title="Resend email verification" />
-          <Form setErrors={setErrors} setIsSuccess={setIsSuccess} />
-        </>
+        <Form setErrors={setErrors} setIsSuccess={setIsSuccess} />
       )}
     </Page>
   );

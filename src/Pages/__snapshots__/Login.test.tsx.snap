@@ -12,13 +12,31 @@ exports[`Login renders 1`] = `
         class="css-1ryq4o3"
       >
         <div
-          class="css-10ib5jr"
+          class="css-1yjvs5a"
         >
           <p
             class="chakra-text css-odt1ir"
           >
             Login to your account
           </p>
+          <div
+            class="css-164r41r"
+          >
+            <p
+              class="chakra-text css-0"
+            >
+              Not a member yet?
+               
+              <a
+                class="chakra-link css-0"
+                href="/register/?platformId=1&callback=https://www.example.com&state=STATE"
+              >
+                <strong>
+                  Register now
+                </strong>
+              </a>
+            </p>
+          </div>
         </div>
         <form>
           <div
@@ -33,7 +51,6 @@ exports[`Login renders 1`] = `
               Email
             </label>
             <input
-              aria-describedby="field-1-helptext"
               aria-label="Email input"
               class="chakra-input css-0"
               id="email"
@@ -41,12 +58,6 @@ exports[`Login renders 1`] = `
               placeholder="Your email"
               value=""
             />
-            <div
-              class="chakra-form__helper-text css-0"
-              id="field-1-helptext"
-            >
-              We'll never share your email.
-            </div>
           </div>
           <div
             class="chakra-form-control css-164r41r"
@@ -60,6 +71,7 @@ exports[`Login renders 1`] = `
               Password
             </label>
             <input
+              aria-describedby="field-2-helptext"
               aria-label="Password input"
               class="chakra-input css-0"
               id="password"
@@ -68,16 +80,17 @@ exports[`Login renders 1`] = `
               type="password"
               value=""
             />
-          </div>
-          <div
-            class="css-1fhgjcy"
-          >
-            <a
-              class="chakra-link css-0"
-              href="/request-password-reset"
+            <div
+              class="chakra-form__helper-text css-0"
+              id="field-2-helptext"
             >
-              Forgot password?
-            </a>
+              <a
+                class="chakra-link css-0"
+                href="/request-password-reset"
+              >
+                Forgot password?
+              </a>
+            </div>
           </div>
           <div
             class="css-164r41r"
@@ -95,20 +108,8 @@ exports[`Login renders 1`] = `
           </div>
         </form>
         <div
-          class="chakra-stack css-1apmzls"
+          class="css-19ug521"
         >
-          <p>
-            Not a member yet?
-             
-            <a
-              class="chakra-link css-0"
-              href="/register/?platformId=1&callback=https://www.example.com&state=STATE"
-            >
-              <strong>
-                Register Now
-              </strong>
-            </a>
-          </p>
           <a
             class="chakra-link css-0"
             href="/request-email-verification"
@@ -116,9 +117,6 @@ exports[`Login renders 1`] = `
             Resend email verification
           </a>
         </div>
-        <div
-          class="chakra-stack css-untcqu"
-        />
       </div>
     </div>
     <div

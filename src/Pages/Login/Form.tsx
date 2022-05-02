@@ -6,7 +6,6 @@ import {
   FormHelperText,
   FormErrorMessage,
   Link,
-  VStack,
   Box,
 } from '@chakra-ui/react';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -96,9 +95,6 @@ export default function Form({
             variant="filled"
             placeholder="Your email"
           />
-          {!formik.errors.email && (
-            <FormHelperText>We&apos;ll never share your email.</FormHelperText>
-          )}
           {formik.errors.email && (
             <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
           )}
@@ -119,13 +115,13 @@ export default function Form({
             variant="filled"
             placeholder="Your password"
           />
+          <FormHelperText>
+            <Link href="/request-password-reset">Forgot password?</Link>
+          </FormHelperText>
           {formik.errors.password && (
             <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
           )}
         </FormControl>
-        <Box mt={4}>
-          <Link href="/request-password-reset">Forgot password?</Link>
-        </Box>
         <Box mt={8}>
           <FancyButton
             isLoading={isLoggingIn}
@@ -136,17 +132,11 @@ export default function Form({
           </FancyButton>
         </Box>
       </form>
-      <VStack mt={6} alignItems="left">
-        <p>
-          Not a member yet?{' '}
-          <Link href={`/register/${search}`}>
-            <strong>Register Now</strong>
-          </Link>
-        </p>
+      <Box mt={6}>
         <Link href="/request-email-verification">
           Resend email verification
         </Link>
-      </VStack>
+      </Box>
     </>
   );
 }

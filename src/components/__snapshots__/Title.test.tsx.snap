@@ -3,14 +3,18 @@
 exports[`Title renders 1`] = `
 <div>
   <div
-    class="css-10ib5jr"
+    class="css-1yjvs5a"
   >
     <p
       class="chakra-text css-odt1ir"
     >
       Title
     </p>
-    Sub title
+    <div
+      class="css-164r41r"
+    >
+      Sub title
+    </div>
   </div>
 </div>
 `;

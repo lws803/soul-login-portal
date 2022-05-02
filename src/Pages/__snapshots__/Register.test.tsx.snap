@@ -12,26 +12,32 @@ exports[`Register renders 1`] = `
         class="css-1ryq4o3"
       >
         <div
-          class="css-10ib5jr"
+          class="css-1yjvs5a"
         >
           <p
             class="chakra-text css-odt1ir"
           >
             Create new account
           </p>
-          <p
-            class="chakra-text css-0"
+          <div
+            class="css-164r41r"
           >
-            Already a member?
-             
-            <a
-              class="chakra-link css-epvm6"
-              href="/?platformId=1&callback=https://www.example.com"
-              target="_self"
+            <p
+              class="chakra-text css-0"
             >
-              Log in
-            </a>
-          </p>
+              Already a member?
+               
+              <a
+                class="chakra-link css-epvm6"
+                href="/?platformId=1&callback=https://www.example.com"
+                target="_self"
+              >
+                <strong>
+                  Log in
+                </strong>
+              </a>
+            </p>
+          </div>
         </div>
         <form>
           <div
@@ -124,9 +130,6 @@ exports[`Register renders 1`] = `
             </button>
           </div>
         </form>
-        <div
-          class="chakra-stack css-untcqu"
-        />
       </div>
     </div>
     <div

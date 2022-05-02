@@ -24,9 +24,6 @@ exports[`EmailConfirmation renders 1`] = `
             </span>
           </div>
         </div>
-        <div
-          class="chakra-stack css-untcqu"
-        />
       </div>
     </div>
     <div

@@ -5,7 +5,7 @@ import Page from './Page';
 describe(Page, () => {
   it('renders', () => {
     const { container } = render(
-      <Page errors={[]}>
+      <Page errors={[]} title="TITLE">
         <p>TEST</p>
       </Page>,
     );

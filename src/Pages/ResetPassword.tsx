@@ -13,21 +13,18 @@ export default function ResetPassword() {
   const [isSuccess, setIsSuccess] = useState(false);
 
   return (
-    <Page errors={errors}>
+    <Page errors={errors} title={<Title title="Reset new password" />}>
       {isSuccess ? (
         <Status
           status="Password reset!"
           message="Success! Please close this page and sign in again."
         />
       ) : (
-        <>
-          <Title title="Reset new password" />
-          <Form
-            setErrors={setErrors}
-            setIsSuccess={setIsSuccess}
-            token={query.get('token')}
-          />
-        </>
+        <Form
+          setErrors={setErrors}
+          setIsSuccess={setIsSuccess}
+          token={query.get('token')}
+        />
       )}
     </Page>
   );
