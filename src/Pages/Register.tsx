@@ -12,18 +12,22 @@ export default function Register() {
   const { search } = useLocation();
 
   return (
-    <Page errors={errors}>
-      <Title
-        title="Create new account"
-        subTitle={
-          <Text>
-            Already a member?{' '}
-            <Link href={`/${search}`} target="_self" whiteSpace="nowrap">
-              Log in
-            </Link>
-          </Text>
-        }
-      />
+    <Page
+      errors={errors}
+      title={
+        <Title
+          title="Create new account"
+          subTitle={
+            <Text>
+              Already a member?{' '}
+              <Link href={`/${search}`} target="_self" whiteSpace="nowrap">
+                <strong>Log in</strong>
+              </Link>
+            </Text>
+          }
+        />
+      }
+    >
       <Form setErrors={setErrors} />
     </Page>
   );

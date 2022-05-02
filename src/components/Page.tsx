@@ -6,15 +6,16 @@ import Footer from './Page/Footer';
 export default function Page({
   errors,
   children,
+  title,
 }: React.PropsWithChildren<Props>) {
   return (
     <Box>
       <Box paddingTop="40px" minHeight="100vh">
         <Box p={8} maxWidth="500px" marginLeft="auto" marginRight="auto">
-          {children}
-          <VStack spacing={2} mt={8}>
-            {errors.length > 0 &&
-              errors.map((error) => (
+          {title}
+          {errors.length > 0 && (
+            <VStack spacing={2} mb="32px">
+              {errors.map((error) => (
                 <Alert
                   status="error"
                   variant="solid"
@@ -25,7 +26,10 @@ export default function Page({
                   {error}
                 </Alert>
               ))}
-          </VStack>
+            </VStack>
+          )}
+
+          {children}
         </Box>
       </Box>
       <Footer />
@@ -35,4 +39,5 @@ export default function Page({
 
 type Props = {
   errors: string[];
+  title?: React.ReactNode;
 };

@@ -30,7 +30,7 @@ describe('Login', () => {
 
   it('navigates to register', () => {
     cy.visit(rootPage);
-    cy.contains('Register Now').click();
+    cy.contains('Register now').click();
     cy.location('pathname').should('eq', '/register/');
     cy.location('search').should(
       'eq',

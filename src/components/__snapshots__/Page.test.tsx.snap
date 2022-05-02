@@ -11,12 +11,10 @@ exports[`Page renders 1`] = `
       <div
         class="css-1ryq4o3"
       >
+        TITLE
         <p>
           TEST
         </p>
-        <div
-          class="chakra-stack css-untcqu"
-        />
       </div>
     </div>
     <div

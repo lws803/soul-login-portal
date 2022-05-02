@@ -11,7 +11,7 @@ export default function RequestPasswordReset() {
   const [isSuccess, setIsSuccess] = useState(false);
 
   return (
-    <Page errors={errors}>
+    <Page errors={errors} title={<Title title="Request new password" />}>
       {isSuccess ? (
         <Status
           status="Request submitted!"
@@ -22,10 +22,7 @@ export default function RequestPasswordReset() {
           }
         />
       ) : (
-        <>
-          <Title title="Request new password" />
-          <Form setErrors={setErrors} setIsSuccess={setIsSuccess} />
-        </>
+        <Form setErrors={setErrors} setIsSuccess={setIsSuccess} />
       )}
     </Page>
   );
