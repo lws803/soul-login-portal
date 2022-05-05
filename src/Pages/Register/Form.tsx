@@ -35,6 +35,7 @@ export default function Form({ setErrors }: Props) {
 
       const { data, error } = await register({ values });
       if (error) {
+        setIsRegistering(false);
         if (error.status === 400 && error.data.error === 'VALIDATION_ERROR') {
           formik.setErrors({
             password: 'Password is too weak!',
@@ -48,7 +49,6 @@ export default function Form({ setErrors }: Props) {
       if (data?.id) {
         navigate(`/${search}`);
       }
-      setIsRegistering(false);
     },
     validationSchema: Yup.object({
       email: Yup.string().email().required(),
@@ -72,6 +72,7 @@ export default function Form({ setErrors }: Props) {
           aria-label="Username input"
           variant="filled"
           placeholder="Your username"
+          disabled={isRegistering}
         />
         {!formik.errors.email && (
           <FormHelperText>Choose an awesome username!</FormHelperText>
@@ -94,6 +95,7 @@ export default function Form({ setErrors }: Props) {
           aria-label="Email input"
           variant="filled"
           placeholder="Your email"
+          disabled={isRegistering}
         />
         {!formik.errors.email && (
           <FormHelperText>We&apos;ll never share your email.</FormHelperText>
@@ -124,13 +126,18 @@ export default function Form({ setErrors }: Props) {
           aria-label="Password input"
           variant="filled"
           placeholder="Your password"
+          disabled={isRegistering}
         />
         {formik.errors.password && (
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
         )}
       </FormControl>
       <Box mt={8}>
-        <FancyButton isLoading={isRegistering} type="submit">
+        <FancyButton
+          isLoading={isRegistering}
+          disabled={isRegistering}
+          type="submit"
+        >
           Register
         </FancyButton>
       </Box>

@@ -45,6 +45,7 @@ export default function Form({
         state,
       });
       if (error) {
+        setIsLoggingIn(false);
         if (error.error === 'USER_NOT_FOUND') {
           navigate(`/register${search}`);
         } else if (error.error === 'PLATFORM_USER_NOT_FOUND') {
@@ -58,7 +59,6 @@ export default function Form({
       if (data) {
         redirectToCallback({ code: data.code, state: data.state, callback });
       }
-      setIsLoggingIn(false);
     },
     validationSchema: Yup.object({
       email: Yup.string().email().required(),
@@ -90,7 +90,7 @@ export default function Form({
             name="email"
             onChange={formik.handleChange}
             value={formik.values.email}
-            disabled={disabled}
+            disabled={disabled || isLoggingIn}
             aria-label="Email input"
             variant="filled"
             placeholder="Your email"
@@ -110,7 +110,7 @@ export default function Form({
             type="password"
             onChange={formik.handleChange}
             value={formik.values.password}
-            disabled={disabled}
+            disabled={disabled || isLoggingIn}
             aria-label="Password input"
             variant="filled"
             placeholder="Your password"
@@ -125,7 +125,7 @@ export default function Form({
         <Box mt={8}>
           <FancyButton
             isLoading={isLoggingIn}
-            disabled={disabled}
+            disabled={disabled || isLoggingIn}
             type="submit"
           >
             Login
