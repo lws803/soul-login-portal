@@ -2,32 +2,39 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import EmailConfirmation from './Pages/EmailConfirmation';
-import ResetPassword from './Pages/ResetPassword';
-import RequestPasswordReset from './Pages/RequestPasswordReset';
-import RequestEmailVerification from './Pages/RequestEmailVerification';
 import theme from './theme';
+
+const Login = React.lazy(() => import('./Pages/Login'));
+const Register = React.lazy(() => import('./Pages/Register'));
+const EmailConfirmation = React.lazy(() => import('./Pages/EmailConfirmation'));
+const ResetPassword = React.lazy(() => import('./Pages/ResetPassword'));
+const RequestPasswordReset = React.lazy(
+  () => import('./Pages/RequestPasswordReset'),
+);
+const RequestEmailVerification = React.lazy(
+  () => import('./Pages/RequestEmailVerification'),
+);
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/verify-email" element={<EmailConfirmation />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
-          <Route
-            path="/request-password-reset"
-            element={<RequestPasswordReset />}
-          />
-          <Route
-            path="/request-email-verification"
-            element={<RequestEmailVerification />}
-          />
-        </Routes>
+        <React.Suspense fallback="">
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/verify-email" element={<EmailConfirmation />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route
+              path="/request-password-reset"
+              element={<RequestPasswordReset />}
+            />
+            <Route
+              path="/request-email-verification"
+              element={<RequestEmailVerification />}
+            />
+          </Routes>
+        </React.Suspense>
       </BrowserRouter>
     </ChakraProvider>
   );
