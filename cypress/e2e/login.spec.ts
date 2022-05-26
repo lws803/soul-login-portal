@@ -13,7 +13,7 @@ describe('Login', () => {
     `https://api.soul-network.com/v1/auth/code` +
     `?platformId=${platformId}&callback=${encodeURIComponent(
       callback,
-    )}&state=${state}`;
+    )}&state=${state}&codeChallenge=${codeChallenge}`;
 
   it('can navigate to the login page.', () => {
     cy.visit(rootPage);
