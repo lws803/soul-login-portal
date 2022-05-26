@@ -29,7 +29,7 @@ exports[`Register renders 1`] = `
                
               <a
                 class="chakra-link css-epvm6"
-                href="/?platformId=1&callback=https://www.example.com&state=state&codeChallenge=codeChallenge"
+                href="/?platformId=1&callback=https://www.example.com&state=state&codeChallenge=CODE_CHALLENGE"
                 target="_self"
               >
                 <strong>
