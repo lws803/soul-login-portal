@@ -3,9 +3,12 @@
 describe('Login', () => {
   const state = 'STATE';
   const callback = 'http://test.localhost:3000';
+  const codeChallenge = 'CODE_CHALLENGE';
   const platformId = 2;
 
-  const rootPage = `/?platformId=${platformId}&callback=${callback}&state=${state}`;
+  const rootPage =
+    `/?platformId=${platformId}&callback=${callback}` +
+    `&state=${state}&codeChallenge=${codeChallenge}`;
   const authCodeEndpoint =
     `https://api.soul-network.com/v1/auth/code` +
     `?platformId=${platformId}&callback=${encodeURIComponent(
@@ -22,7 +25,8 @@ describe('Login', () => {
   it('shows an error when platformId, callback or state are not present and login is not clickable', () => {
     cy.visit('/');
     cy.document().contains(
-      'Insufficient parameters provided in the url, a callback, platformId and state must be specified.',
+      'Insufficient parameters provided in the url, a callback, platformId, state ' +
+        'and codeChallenge must be specified.',
     );
 
     cy.get('button:contains("Login")').should('be.disabled');
@@ -34,7 +38,7 @@ describe('Login', () => {
     cy.location('pathname').should('eq', '/register/');
     cy.location('search').should(
       'eq',
-      `?platformId=${platformId}&callback=${callback}&state=${state}`,
+      `?platformId=${platformId}&callback=${callback}&state=${state}&codeChallenge=${codeChallenge}`,
     );
   });
 
@@ -57,7 +61,8 @@ describe('Login', () => {
         method: 'POST',
         url:
           'https://api.soul-network.com/v1/auth/code?' +
-          `platformId=${platformId}&callback=http:%2F%2Ftest.localhost:3000&state=${state}`,
+          `platformId=${platformId}&callback=http:%2F%2Ftest.localhost:3000&state=${state}` +
+          `&codeChallenge=${codeChallenge}`,
       },
       { code, state },
     ).as('loginUser');
@@ -125,7 +130,8 @@ describe('Login', () => {
         method: 'POST',
         url:
           'https://api.soul-network.com/v1/auth/code?' +
-          `platformId=${platformId}&callback=http:%2F%2Ftest.localhost:3000&state=${state}`,
+          `platformId=${platformId}&callback=http:%2F%2Ftest.localhost:3000&state=${state}` +
+          `&codeChallenge=${codeChallenge}`,
       },
       { statusCode: 404, body: { error: 'PLATFORM_USER_NOT_FOUND' } },
     ).as('loginUser');
@@ -163,7 +169,8 @@ describe('Login', () => {
         method: 'POST',
         url:
           'https://api.soul-network.com/v1/auth/code?' +
-          `platformId=${platformId}&callback=http:%2F%2Ftest.localhost:3000&state=${state}`,
+          `platformId=${platformId}&callback=http:%2F%2Ftest.localhost:3000&state=${state}` +
+          `&codeChallenge=${codeChallenge}`,
       },
       { code, state },
     ).as('loginUser');

@@ -13,6 +13,7 @@ export default function JoinPlatform({
   callback,
   setErrors,
   state,
+  codeChallenge,
 }: Props) {
   const [accessToken, setAccessToken] = useState<string>();
   const [isJoining, setIsJoining] = useState(false);
@@ -39,6 +40,7 @@ export default function JoinPlatform({
       password,
       state,
       accessToken: accessToken!,
+      codeChallenge,
     });
     if (error) {
       setErrors([error.message]);
@@ -69,4 +71,5 @@ type Props = {
   callback: string;
   setErrors: (error: string[]) => void;
   state: string;
+  codeChallenge: string;
 };

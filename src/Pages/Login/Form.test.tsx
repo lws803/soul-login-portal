@@ -19,6 +19,7 @@ describe(Form, () => {
     callback: 'https://www.example.com',
     disabled: false,
     state: 'STATE',
+    codeChallenge: 'CODE_CHALLENGE',
   };
 
   it('renders', async () => {
@@ -66,6 +67,7 @@ describe(Form, () => {
           password: 'PASSWORD',
         },
         state: 'STATE',
+        codeChallenge: 'CODE_CHALLENGE',
       });
       expect(window.open).toHaveBeenCalled();
     });
