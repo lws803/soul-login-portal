@@ -13,7 +13,10 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe(Form, () => {
-  const props: React.ComponentProps<typeof Form> = { setErrors: jest.fn() };
+  const props: React.ComponentProps<typeof Form> = {
+    setErrors: jest.fn(),
+    disabled: false,
+  };
 
   it('renders', async () => {
     const { container } = render(

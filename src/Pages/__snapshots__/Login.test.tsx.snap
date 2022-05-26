@@ -29,7 +29,7 @@ exports[`Login renders 1`] = `
                
               <a
                 class="chakra-link css-0"
-                href="/register/?platformId=1&callback=https://www.example.com&state=STATE"
+                href="/register/?platformId=1&callback=https://www.example.com&state=STATE&codeChallenge=CODE_CHALLENGE"
               >
                 <strong>
                   Register now

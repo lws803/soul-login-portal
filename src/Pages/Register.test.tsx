@@ -5,7 +5,8 @@ import { MemoryRouter } from 'react-router-dom';
 import Register from './Register';
 
 describe(Register, () => {
-  const path = '/?platformId=1&callback=https://www.example.com';
+  const path =
+    '/?platformId=1&callback=https://www.example.com&state=state&codeChallenge=CODE_CHALLENGE';
 
   it('renders', async () => {
     const { container } = render(

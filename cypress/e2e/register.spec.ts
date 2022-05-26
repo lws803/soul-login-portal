@@ -2,10 +2,13 @@
 
 describe('Register', () => {
   const state = 'STATE';
+  const codeChallenge = 'CODE_CHALLENGE';
   const callback = 'http://test.localhost:3000';
   const platformId = 2;
 
-  const rootPage = `/register/?platformId=${platformId}&callback=${callback}&state=${state}`;
+  const rootPage =
+    `/register/?platformId=${platformId}&callback=${callback}&state=${state}` +
+    `&codeChallenge=${codeChallenge}`;
 
   it('can navigate to register page', () => {
     cy.visit('/register');
@@ -19,7 +22,8 @@ describe('Register', () => {
     cy.location('pathname').should('eq', '/');
     cy.location('search').should(
       'eq',
-      `?platformId=${platformId}&callback=${callback}&state=${state}`,
+      `?platformId=${platformId}&callback=${callback}&state=${state}` +
+        `&codeChallenge=${codeChallenge}`,
     );
   });
 
@@ -51,7 +55,8 @@ describe('Register', () => {
     cy.location('pathname').should('eq', '/');
     cy.location('search').should(
       'eq',
-      `?platformId=${platformId}&callback=${callback}&state=${state}`,
+      `?platformId=${platformId}&callback=${callback}&state=${state}` +
+        `&codeChallenge=${codeChallenge}`,
     );
   });
 

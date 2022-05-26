@@ -13,6 +13,7 @@ describe(JoinPlatform, () => {
     platformId: 1,
     callback: 'https://www.example.com',
     state: 'STATE',
+    codeChallenge: 'CODE_CHALLENGE',
   };
 
   beforeEach(() => {
@@ -50,6 +51,7 @@ describe(JoinPlatform, () => {
         password: 'PASSWORD',
         platformId: 1,
         state: 'STATE',
+        codeChallenge: 'CODE_CHALLENGE',
       });
 
       expect(utils.redirectToCallback).toHaveBeenCalledWith({

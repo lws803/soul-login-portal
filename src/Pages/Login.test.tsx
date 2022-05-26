@@ -7,7 +7,8 @@ import * as api from './Login/api';
 import * as utils from './Login/utils';
 
 describe(Login, () => {
-  const path = '/?platformId=1&callback=https://www.example.com&state=STATE';
+  const path =
+    '/?platformId=1&callback=https://www.example.com&state=STATE&codeChallenge=CODE_CHALLENGE';
 
   it('renders', async () => {
     const { container } = render(
@@ -27,7 +28,8 @@ describe(Login, () => {
     );
     expect(
       await findByText(
-        'Insufficient parameters provided in the url, a callback, platformId and state must be specified.',
+        'Insufficient parameters provided in the url, a callback, platformId, state and ' +
+          'codeChallenge must be specified.',
       ),
     ).toBeInTheDocument();
   });
@@ -67,6 +69,7 @@ describe(Login, () => {
           password: 'PASSWORD',
         },
         state: 'STATE',
+        codeChallenge: 'CODE_CHALLENGE',
       });
 
       expect(utils.redirectToCallback).toHaveBeenCalledWith({

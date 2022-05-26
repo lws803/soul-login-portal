@@ -14,12 +14,16 @@ export default function Login() {
   const { search } = useLocation();
 
   const insufficientParams =
-    !query.get('platformId') || !query.get('callback') || !query.get('state');
+    !query.get('platformId') ||
+    !query.get('callback') ||
+    !query.get('state') ||
+    !query.get('codeChallenge');
 
   useEffect(() => {
     if (insufficientParams) {
       setErrors([
-        'Insufficient parameters provided in the url, a callback, platformId and state must be specified.',
+        'Insufficient parameters provided in the url, a callback, platformId, state ' +
+          'and codeChallenge must be specified.',
       ]);
     }
   }, [query]);
@@ -47,6 +51,7 @@ export default function Login() {
         platformId={parseInt(query.get('platformId')!, 10)}
         disabled={insufficientParams}
         state={query.get('state')!}
+        codeChallenge={query.get('codeChallenge')!}
       />
     </Page>
   );

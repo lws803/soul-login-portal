@@ -24,6 +24,7 @@ export default function Form({
   callback,
   disabled,
   state,
+  codeChallenge,
 }: Props) {
   const navigate = useNavigate();
   const { search } = useLocation();
@@ -43,6 +44,7 @@ export default function Form({
         platformId,
         callback,
         state,
+        codeChallenge,
       });
       if (error) {
         setIsLoggingIn(false);
@@ -76,6 +78,7 @@ export default function Form({
         callback={callback}
         setErrors={setErrors}
         state={state}
+        codeChallenge={codeChallenge}
       />
     );
   }
@@ -147,4 +150,5 @@ type Props = {
   callback: string;
   disabled: boolean;
   state: string;
+  codeChallenge: string;
 };
