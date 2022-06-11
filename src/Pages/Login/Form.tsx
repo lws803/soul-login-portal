@@ -119,7 +119,9 @@ export default function Form({
             placeholder="Your password"
           />
           <FormHelperText>
-            <Link href="/request-password-reset">Forgot password?</Link>
+            <Link href="/request-password-reset" target="_blank">
+              Forgot password?
+            </Link>
           </FormHelperText>
           {formik.errors.password && (
             <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
@@ -136,7 +138,7 @@ export default function Form({
         </Box>
       </form>
       <Box mt={6}>
-        <Link href="/request-email-verification">
+        <Link href="/request-email-verification" target="_blank">
           Resend email verification
         </Link>
       </Box>

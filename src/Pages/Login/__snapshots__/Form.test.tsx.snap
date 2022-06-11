@@ -10,7 +10,7 @@ exports[`Form renders 1`] = `
       <label
         class="chakra-form__label css-uvho5g"
         for="email"
-        id="field-1-label"
+        id="field-:r0:-label"
       >
         Email
       </label>
@@ -30,12 +30,12 @@ exports[`Form renders 1`] = `
       <label
         class="chakra-form__label css-uvho5g"
         for="password"
-        id="field-2-label"
+        id="field-:r1:-label"
       >
         Password
       </label>
       <input
-        aria-describedby="field-2-helptext"
+        aria-describedby="field-:r1:-helptext"
         aria-label="Password input"
         class="chakra-input css-0"
         id="password"
@@ -46,11 +46,12 @@ exports[`Form renders 1`] = `
       />
       <div
         class="chakra-form__helper-text css-0"
-        id="field-2-helptext"
+        id="field-:r1:-helptext"
       >
         <a
           class="chakra-link css-0"
           href="/request-password-reset"
+          target="_blank"
         >
           Forgot password?
         </a>
@@ -77,6 +78,7 @@ exports[`Form renders 1`] = `
     <a
       class="chakra-link css-0"
       href="/request-email-verification"
+      target="_blank"
     >
       Resend email verification
     </a>

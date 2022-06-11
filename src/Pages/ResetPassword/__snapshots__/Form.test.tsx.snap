@@ -10,7 +10,7 @@ exports[`Form renders 1`] = `
       <label
         class="chakra-form__label css-uvho5g"
         for="password"
-        id="field-1-label"
+        id="field-:r0:-label"
       >
         Password
       </label>
@@ -28,7 +28,7 @@ exports[`Form renders 1`] = `
       class="chakra-stack css-nzla2i"
     >
       <button
-        class="chakra-button css-a0tdue"
+        class="chakra-button css-1k6167g"
         type="submit"
       >
         Reset password
