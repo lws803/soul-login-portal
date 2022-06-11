@@ -44,12 +44,16 @@ describe('Login', () => {
 
   it('navigates to request password reset', () => {
     cy.visit(rootPage);
+    cy.get('a').invoke('removeAttr', 'target');
+
     cy.contains('Forgot password?').click();
     cy.location('pathname').should('eq', '/request-password-reset');
   });
 
   it('navigates to resend email verification', () => {
     cy.visit(rootPage);
+    cy.get('a').invoke('removeAttr', 'target');
+
     cy.contains('Resend email verification').click();
     cy.location('pathname').should('eq', '/request-email-verification');
   });

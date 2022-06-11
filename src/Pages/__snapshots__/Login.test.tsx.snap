@@ -46,7 +46,7 @@ exports[`Login renders 1`] = `
             <label
               class="chakra-form__label css-uvho5g"
               for="email"
-              id="field-1-label"
+              id="field-:r0:-label"
             >
               Email
             </label>
@@ -66,12 +66,12 @@ exports[`Login renders 1`] = `
             <label
               class="chakra-form__label css-uvho5g"
               for="password"
-              id="field-2-label"
+              id="field-:r1:-label"
             >
               Password
             </label>
             <input
-              aria-describedby="field-2-helptext"
+              aria-describedby="field-:r1:-helptext"
               aria-label="Password input"
               class="chakra-input css-0"
               id="password"
@@ -82,11 +82,12 @@ exports[`Login renders 1`] = `
             />
             <div
               class="chakra-form__helper-text css-0"
-              id="field-2-helptext"
+              id="field-:r1:-helptext"
             >
               <a
                 class="chakra-link css-0"
                 href="/request-password-reset"
+                target="_blank"
               >
                 Forgot password?
               </a>
@@ -113,6 +114,7 @@ exports[`Login renders 1`] = `
           <a
             class="chakra-link css-0"
             href="/request-email-verification"
+            target="_blank"
           >
             Resend email verification
           </a>
@@ -123,29 +125,40 @@ exports[`Login renders 1`] = `
       class="css-l5skqa"
     >
       <div
-        class="chakra-stack css-12ogrgp"
+        class="css-18hh56p"
       >
-        <a
-          class="chakra-link css-epvm6"
-          href="https://github.com/soul-project/login-portal"
-          target="_blank"
+        <div
+          class="chakra-stack css-1o71ot0"
         >
-          Github
-        </a>
-        <a
-          class="chakra-link css-epvm6"
-          href="https://github.com/soul-project/soul"
-          target="_blank"
+          <a
+            class="chakra-link css-epvm6"
+            href="https://github.com/soul-project/login-portal"
+            target="_blank"
+          >
+            Github
+          </a>
+          <a
+            class="chakra-link css-epvm6"
+            href="https://github.com/soul-project/soul"
+            target="_blank"
+          >
+            Soul Network's Github
+          </a>
+          <a
+            class="chakra-link css-epvm6"
+            href="mailto:lws803@gmail.com"
+            target="_blank"
+          >
+            Contact me
+          </a>
+        </div>
+        <p
+          class="chakra-text css-1es5q94"
         >
-          Soul Network's Github
-        </a>
-        <a
-          class="chakra-link css-epvm6"
-          href="mailto:lws803@gmail.com"
-          target="_blank"
-        >
-          Contact me
-        </a>
+          Copyright © 
+          2022
+           Soul Network.
+        </p>
       </div>
     </div>
   </div>
