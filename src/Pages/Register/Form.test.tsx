@@ -16,6 +16,7 @@ describe(Form, () => {
   const props: React.ComponentProps<typeof Form> = {
     setErrors: jest.fn(),
     insufficientParams: false,
+    setIsSuccess: jest.fn(),
   };
 
   it('renders', async () => {
@@ -61,6 +62,44 @@ describe(Form, () => {
         },
       });
       expect(mockedUsedNavigate).toHaveBeenCalledWith('/?SEARCH');
+    });
+  });
+
+  it('registers successfully without params provided', async () => {
+    const setIsSuccess = jest.fn();
+    const register = jest
+      .spyOn(api, 'register')
+      .mockResolvedValue({ data: { id: 1 }, error: null });
+
+    const { getByLabelText, getByText } = render(
+      <MemoryRouter>
+        <Form {...props} insufficientParams setIsSuccess={setIsSuccess} />
+      </MemoryRouter>,
+    );
+
+    act(() => {
+      fireEvent.change(getByLabelText('Email input'), {
+        target: { value: 'TEST@EMAIL.COM' },
+      });
+      fireEvent.change(getByLabelText('Username input'), {
+        target: { value: 'USERNAME' },
+      });
+      fireEvent.change(getByLabelText('Password input'), {
+        target: { value: 'PASSWORD' },
+      });
+    });
+    fireEvent.click(getByText('Register'));
+
+    await waitFor(() => {
+      expect(register).toHaveBeenCalledWith({
+        values: {
+          email: 'TEST@EMAIL.COM',
+          password: 'PASSWORD',
+          username: 'USERNAME',
+        },
+      });
+      expect(setIsSuccess).toHaveBeenCalledWith(true);
+      expect(mockedUsedNavigate).not.toHaveBeenCalledWith('/?SEARCH');
     });
   });
 });

@@ -17,7 +17,11 @@ import FancyButton from 'src/components/FancyButton';
 
 import { register } from './api';
 
-export default function Form({ setErrors, insufficientParams }: Props) {
+export default function Form({
+  setErrors,
+  insufficientParams,
+  setIsSuccess,
+}: Props) {
   const navigate = useNavigate();
   const { search } = useLocation();
 
@@ -46,9 +50,9 @@ export default function Form({ setErrors, insufficientParams }: Props) {
           setErrors([error.data.message]);
         }
       }
-      if (data?.id && !insufficientParams) {
-        // TODO: Navigate elsewhere
-        navigate(`/${search}`);
+      if (data?.id) {
+        setIsSuccess(true);
+        if (!insufficientParams) navigate(`/${search}`);
       }
     },
     validationSchema: Yup.object({
@@ -149,4 +153,5 @@ export default function Form({ setErrors, insufficientParams }: Props) {
 type Props = {
   setErrors: (errors: string[]) => void;
   insufficientParams: boolean;
+  setIsSuccess: (isSuccess: boolean) => void;
 };
