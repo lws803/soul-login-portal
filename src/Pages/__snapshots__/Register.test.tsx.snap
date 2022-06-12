@@ -182,3 +182,170 @@ exports[`Register renders 1`] = `
   </div>
 </div>
 `;
+
+exports[`Register renders without params 1`] = `
+<div>
+  <div
+    class="css-0"
+  >
+    <div
+      class="css-1wiwcvy"
+    >
+      <div
+        class="css-1ryq4o3"
+      >
+        <div
+          class="css-1yjvs5a"
+        >
+          <p
+            class="chakra-text css-odt1ir"
+          >
+            Create new account
+          </p>
+          <div
+            class="css-164r41r"
+          />
+        </div>
+        <form>
+          <div
+            class="chakra-form-control css-0"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-uvho5g"
+              for="username"
+              id="field-:r3:-label"
+            >
+              Username
+            </label>
+            <input
+              aria-describedby="field-:r3:-helptext"
+              aria-label="Username input"
+              class="chakra-input css-0"
+              id="username"
+              name="username"
+              placeholder="Your username"
+              value=""
+            />
+            <div
+              class="chakra-form__helper-text css-0"
+              id="field-:r3:-helptext"
+            >
+              Choose an awesome username!
+            </div>
+          </div>
+          <div
+            class="chakra-form-control css-164r41r"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-uvho5g"
+              for="email"
+              id="field-:r4:-label"
+            >
+              Email
+            </label>
+            <input
+              aria-describedby="field-:r4:-helptext"
+              aria-label="Email input"
+              class="chakra-input css-0"
+              id="email"
+              name="email"
+              placeholder="Your email"
+              value=""
+            />
+            <div
+              class="chakra-form__helper-text css-0"
+              id="field-:r4:-helptext"
+            >
+              We'll never share your email.
+            </div>
+          </div>
+          <div
+            class="chakra-form-control css-164r41r"
+            role="group"
+          >
+            <label
+              class="chakra-form__label css-uvho5g"
+              for="password"
+              id="field-:r5:-label"
+            >
+              Password
+            </label>
+            <input
+              aria-label="Password input"
+              class="chakra-input css-0"
+              id="password"
+              name="password"
+              placeholder="Your password"
+              type="password"
+              value=""
+            />
+          </div>
+          <div
+            class="css-164r41r"
+          >
+            <button
+              class="css-y6mgpv"
+              type="submit"
+            >
+              <div
+                class="css-tkevr6"
+              >
+                Register
+              </div>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div
+      class="css-l5skqa"
+    >
+      <div
+        class="css-18hh56p"
+      >
+        <div
+          class="chakra-stack css-1o71ot0"
+        >
+          <a
+            class="chakra-link css-epvm6"
+            href="https://api.soul-network.com/docs"
+            target="_blank"
+          >
+            API Docs
+          </a>
+          <a
+            class="chakra-link css-epvm6"
+            href="https://github.com/soul-project/login-portal"
+            target="_blank"
+          >
+            Github
+          </a>
+          <a
+            class="chakra-link css-epvm6"
+            href="https://github.com/soul-project/soul"
+            target="_blank"
+          >
+            Soul Network's Github
+          </a>
+          <a
+            class="chakra-link css-epvm6"
+            href="mailto:lws803@gmail.com"
+            target="_blank"
+          >
+            Contact me
+          </a>
+        </div>
+        <p
+          class="chakra-text css-1m360k3"
+        >
+          Copyright © 
+          2022
+           Soul Network.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;

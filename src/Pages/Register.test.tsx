@@ -17,4 +17,14 @@ describe(Register, () => {
 
     expect(container).toMatchSnapshot();
   });
+
+  it('renders without params', async () => {
+    const { container } = render(
+      <MemoryRouter initialEntries={['/']}>
+        <Register />
+      </MemoryRouter>,
+    );
+
+    expect(container).toMatchSnapshot();
+  });
 });

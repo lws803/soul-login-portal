@@ -17,7 +17,11 @@ import FancyButton from 'src/components/FancyButton';
 
 import { register } from './api';
 
-export default function Form({ setErrors, disabled }: Props) {
+export default function Form({
+  setErrors,
+  insufficientParams,
+  setIsSuccess,
+}: Props) {
   const navigate = useNavigate();
   const { search } = useLocation();
 
@@ -47,7 +51,8 @@ export default function Form({ setErrors, disabled }: Props) {
         }
       }
       if (data?.id) {
-        navigate(`/${search}`);
+        setIsSuccess(true);
+        if (!insufficientParams) navigate(`/${search}`);
       }
     },
     validationSchema: Yup.object({
@@ -72,7 +77,7 @@ export default function Form({ setErrors, disabled }: Props) {
           aria-label="Username input"
           variant="filled"
           placeholder="Your username"
-          disabled={isRegistering || disabled}
+          disabled={isRegistering}
         />
         {!formik.errors.email && (
           <FormHelperText>Choose an awesome username!</FormHelperText>
@@ -95,7 +100,7 @@ export default function Form({ setErrors, disabled }: Props) {
           aria-label="Email input"
           variant="filled"
           placeholder="Your email"
-          disabled={isRegistering || disabled}
+          disabled={isRegistering}
         />
         {!formik.errors.email && (
           <FormHelperText>We&apos;ll never share your email.</FormHelperText>
@@ -126,7 +131,7 @@ export default function Form({ setErrors, disabled }: Props) {
           aria-label="Password input"
           variant="filled"
           placeholder="Your password"
-          disabled={isRegistering || disabled}
+          disabled={isRegistering}
         />
         {formik.errors.password && (
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
@@ -135,7 +140,7 @@ export default function Form({ setErrors, disabled }: Props) {
       <Box mt={8}>
         <FancyButton
           isLoading={isRegistering}
-          disabled={isRegistering || disabled}
+          disabled={isRegistering}
           type="submit"
         >
           Register
@@ -147,5 +152,6 @@ export default function Form({ setErrors, disabled }: Props) {
 
 type Props = {
   setErrors: (errors: string[]) => void;
-  disabled: boolean;
+  insufficientParams: boolean;
+  setIsSuccess: (isSuccess: boolean) => void;
 };

@@ -9,6 +9,7 @@ describe('Register', () => {
   const rootPage =
     `/register/?platformId=${platformId}&callback=${callback}&state=${state}` +
     `&codeChallenge=${codeChallenge}`;
+  const rootPageWithoutParams = '/register/';
 
   it('can navigate to register page', () => {
     cy.visit('/register');
@@ -58,6 +59,35 @@ describe('Register', () => {
       `?platformId=${platformId}&callback=${callback}&state=${state}` +
         `&codeChallenge=${codeChallenge}`,
     );
+  });
+
+  it('registers successfully when sufficient params are not provided', () => {
+    cy.intercept(
+      {
+        method: 'POST',
+        url: 'https://api.soul-network.com/v1/users',
+      },
+      {
+        id: 38,
+        username: 'username',
+        userHandle: 'username#38',
+        email: 'test@mail.com',
+        isActive: false,
+        createdAt: '2022-03-30T22:03:06.086Z',
+        updatedAt: '2022-03-30T22:03:06.000Z',
+      },
+    ).as('registerUser');
+
+    cy.visit(rootPageWithoutParams);
+    cy.get('input[name="username"]').type('username');
+    cy.get('input[name="email"]').type('test@mail.com');
+    cy.get('input[name="password"]').type('DESx!&X29x8L5Scj');
+
+    cy.get('button:contains("Register")').click();
+
+    cy.contains('Account registered!');
+    // does not redirect back to login
+    cy.location('pathname').should('not.eq', '/');
   });
 
   it('fails due to existing account', () => {
