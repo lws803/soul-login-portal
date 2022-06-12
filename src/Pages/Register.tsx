@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Text, Link } from '@chakra-ui/react';
 import { useLocation } from 'react-router-dom';
 
@@ -19,14 +19,14 @@ export default function Register() {
     !query.get('state') ||
     !query.get('codeChallenge');
 
-  useEffect(() => {
-    if (insufficientParams) {
-      setErrors([
-        'Insufficient parameters provided in the url, a callback, platformId, state ' +
-          'and codeChallenge must be specified.',
-      ]);
-    }
-  }, [query]);
+  // useEffect(() => {
+  //   if (insufficientParams) {
+  //     setErrors([
+  //       'Insufficient parameters provided in the url, a callback, platformId, state ' +
+  //         'and codeChallenge must be specified.',
+  //     ]);
+  //   }
+  // }, [query]);
 
   return (
     <Page
@@ -45,7 +45,7 @@ export default function Register() {
         />
       }
     >
-      <Form setErrors={setErrors} disabled={insufficientParams} />
+      <Form setErrors={setErrors} insufficientParams={insufficientParams} />
     </Page>
   );
 }
