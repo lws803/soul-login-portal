@@ -183,7 +183,7 @@ exports[`Register renders 1`] = `
 </div>
 `;
 
-exports[`Register renders without path 1`] = `
+exports[`Register renders without params 1`] = `
 <div>
   <div
     class="css-0"

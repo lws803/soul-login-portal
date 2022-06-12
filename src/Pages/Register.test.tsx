@@ -18,7 +18,7 @@ describe(Register, () => {
     expect(container).toMatchSnapshot();
   });
 
-  it('renders without path', async () => {
+  it('renders without params', async () => {
     const { container } = render(
       <MemoryRouter initialEntries={['/']}>
         <Register />
