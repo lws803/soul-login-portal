@@ -27,7 +27,7 @@ export default function Footer() {
             Contact me
           </Link>
         </Stack>
-        <Text textAlign={['left', 'center']} mt={[8, 4]}>
+        <Text textAlign={['left', 'center']} mt={[8, 4]} fontWeight="light">
           Copyright © {new Date().getFullYear()} Soul Network.
         </Text>
       </Box>
