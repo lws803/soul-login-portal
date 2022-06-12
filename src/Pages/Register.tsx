@@ -27,19 +27,19 @@ export default function Register() {
     <Page
       errors={errors}
       title={
-        !insufficientParams && (
-          <Title
-            title="Create new account"
-            subTitle={
+        <Title
+          title="Create new account"
+          subTitle={
+            !insufficientParams && (
               <Text>
                 Already a member?{' '}
                 <Link href={`/${search}`} target="_self" whiteSpace="nowrap">
                   <strong>Log in</strong>
                 </Link>
               </Text>
-            }
-          />
-        )
+            )
+          }
+        />
       }
     >
       {isSuccess ? (
