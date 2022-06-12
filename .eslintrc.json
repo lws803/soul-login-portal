@@ -21,7 +21,7 @@
     "sourceType": "module",
     "project": ["./tsconfig.json", "./cypress/tsconfig.json"]
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["react", "@typescript-eslint", "no-only-tests"],
   "rules": {
     "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
@@ -32,6 +32,7 @@
     "import/prefer-default-export": "off",
     "react/require-default-props": "off",
     "react/jsx-props-no-spreading": "off",
-    "@typescript-eslint/no-use-before-define": "off"
+    "@typescript-eslint/no-use-before-define": "off",
+    "no-only-tests/no-only-tests": "error"
   }
 }
