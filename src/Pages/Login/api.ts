@@ -98,7 +98,7 @@ export const joinPlatformAndLogin = async ({
       { email, password },
       {
         params: {
-          platform_id: platformId,
+          client_id: platformId,
           redirect_uri: callback,
           state,
           code_challenge: codeChallenge,
