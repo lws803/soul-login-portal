@@ -34,7 +34,7 @@ export default function EmailConfirmation() {
         {loading ? (
           <Spinner size="xl" />
         ) : (
-          <Text fontSize="lg" textAlign="center">
+          <Text fontSize="3xl" textAlign="center">
             Email confirmed!
           </Text>
         )}

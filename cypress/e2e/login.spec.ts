@@ -167,7 +167,7 @@ describe('Login', () => {
       {
         method: 'POST',
         url:
-          `http://api.network.com/v1/auth/code?platform_id=${platformId}` +
+          `http://api.network.com/v1/auth/code?client_id=${platformId}` +
           `&redirect_uri=http:%2F%2Ftest.localhost:3000&state=${state}&code_challenge=${codeChallenge}`,
       },
       { access_token: 'ACCESS_TOKEN' },
