@@ -53,7 +53,7 @@ export default function Form({
         } else if (error.error === 'PLATFORM_USER_NOT_FOUND') {
           setJoinPlatform(true);
         } else if (error.error === 'VALIDATION_ERROR') {
-          setErrors(['PlatformId and callback is not present.']);
+          setErrors(['client_id and redirect_uri is not present.']);
         } else {
           setErrors([error.message]);
         }

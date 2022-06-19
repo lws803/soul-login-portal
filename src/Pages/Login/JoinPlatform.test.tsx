@@ -19,7 +19,7 @@ describe(JoinPlatform, () => {
   beforeEach(() => {
     jest
       .spyOn(api, 'login')
-      .mockResolvedValue({ data: { accessToken: 'TOKEN' }, error: null });
+      .mockResolvedValue({ data: { access_token: 'TOKEN' }, error: null });
   });
 
   it('renders', async () => {

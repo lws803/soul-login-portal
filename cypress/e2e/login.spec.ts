@@ -7,13 +7,8 @@ describe('Login', () => {
   const platformId = 2;
 
   const rootPage =
-    `/?platformId=${platformId}&callback=${callback}` +
-    `&state=${state}&codeChallenge=${codeChallenge}`;
-  const authCodeEndpoint =
-    `https://api.soul-network.com/v1/auth/code` +
-    `?platformId=${platformId}&callback=${encodeURIComponent(
-      callback,
-    )}&state=${state}&codeChallenge=${codeChallenge}`;
+    `/?client_id=${platformId}&redirect_uri=${callback}` +
+    `&state=${state}&code_challenge=${codeChallenge}`;
 
   it('can navigate to the login page.', () => {
     cy.visit(rootPage);
@@ -25,8 +20,8 @@ describe('Login', () => {
   it('shows an error when platformId, callback or state are not present and login is not clickable', () => {
     cy.visit('/');
     cy.document().contains(
-      'Insufficient parameters provided in the url, a callback, platformId, state ' +
-        'and codeChallenge must be specified.',
+      'Insufficient parameters provided in the url, a redirect_uri, client_id, ' +
+        'state and code_challenge must be specified.',
     );
 
     cy.get('button:contains("Login")').should('be.disabled');
@@ -38,7 +33,7 @@ describe('Login', () => {
     cy.location('pathname').should('eq', '/register/');
     cy.location('search').should(
       'eq',
-      `?platformId=${platformId}&callback=${callback}&state=${state}&codeChallenge=${codeChallenge}`,
+      `?client_id=${platformId}&redirect_uri=${callback}&state=${state}&code_challenge=${codeChallenge}`,
     );
   });
 
@@ -64,9 +59,8 @@ describe('Login', () => {
       {
         method: 'POST',
         url:
-          'https://api.soul-network.com/v1/auth/code?' +
-          `platformId=${platformId}&callback=http:%2F%2Ftest.localhost:3000&state=${state}` +
-          `&codeChallenge=${codeChallenge}`,
+          `http://api.network.com/v1/auth/code?client_id=${platformId}` +
+          `&redirect_uri=http:%2F%2Ftest.localhost:3000&state=${state}&code_challenge=${codeChallenge}`,
       },
       { code, state },
     ).as('loginUser');
@@ -114,7 +108,12 @@ describe('Login', () => {
 
   it('redirects to register when user is not found', () => {
     cy.intercept(
-      { method: 'POST', url: authCodeEndpoint },
+      {
+        method: 'POST',
+        url:
+          `http://api.network.com/v1/auth/code?client_id=${platformId}` +
+          `&redirect_uri=http:%2F%2Ftest.localhost:3000&state=${state}&code_challenge=${codeChallenge}`,
+      },
       { statusCode: 404, body: { error: 'USER_NOT_FOUND' } },
     ).as('loginUser');
 
@@ -132,26 +131,23 @@ describe('Login', () => {
     cy.intercept(
       {
         method: 'POST',
-        url:
-          'https://api.soul-network.com/v1/auth/code?' +
-          `platformId=${platformId}&callback=http:%2F%2Ftest.localhost:3000&state=${state}` +
-          `&codeChallenge=${codeChallenge}`,
+        url: `http://api.network.com/v1/auth/code?*`,
       },
       { statusCode: 404, body: { error: 'PLATFORM_USER_NOT_FOUND' } },
     ).as('loginUser');
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://api.soul-network.com/v1/auth/login',
+        url: 'http://api.network.com/v1/auth/login',
       },
-      { accessToken: 'ACCESS_TOKEN' },
+      { access_token: 'ACCESS_TOKEN' },
     ).as('loginUserWithoutPlatform');
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://api.soul-network.com/v1/platforms/2/join',
+        url: 'http://api.network.com/v1/platforms/2/join',
       },
-      { accessToken: 'ACCESS_TOKEN' },
+      { access_token: 'ACCESS_TOKEN' },
     ).as('joinPlatform');
     cy.intercept(
       {
@@ -167,17 +163,15 @@ describe('Login', () => {
     cy.get('button:contains("Login")').click();
 
     cy.contains('Join Platform!');
-
     cy.intercept(
       {
         method: 'POST',
         url:
-          'https://api.soul-network.com/v1/auth/code?' +
-          `platformId=${platformId}&callback=http:%2F%2Ftest.localhost:3000&state=${state}` +
-          `&codeChallenge=${codeChallenge}`,
+          `http://api.network.com/v1/auth/code?platform_id=${platformId}` +
+          `&redirect_uri=http:%2F%2Ftest.localhost:3000&state=${state}&code_challenge=${codeChallenge}`,
       },
-      { code, state },
-    ).as('loginUser');
+      { access_token: 'ACCESS_TOKEN' },
+    ).as('joinPlatform');
 
     cy.get('button:contains("Join Platform!")').click();
 

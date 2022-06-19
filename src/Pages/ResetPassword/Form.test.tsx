@@ -35,7 +35,7 @@ describe(Form, () => {
 
     await waitFor(() => {
       expect(axios.post).toHaveBeenCalledWith(
-        'https://api.soul-network.com/v1/users/password-reset?token=TOKEN',
+        'http://api.network.com/v1/users/password-reset?token=TOKEN',
         { password: 'NEW_PASSWORD' },
       );
     });

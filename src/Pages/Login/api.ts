@@ -29,7 +29,14 @@ export const loginWithPlatform = async ({
     const { data } = await axios.post<LoginWithPlatformResponse>(
       `${BASE_URL}/v1/auth/code`,
       values,
-      { params: { platformId, callback, state, codeChallenge } },
+      {
+        params: {
+          client_id: platformId,
+          redirect_uri: callback,
+          state,
+          code_challenge: codeChallenge,
+        },
+      },
     );
     return { data, error: null };
   } catch ({ response: { data } }) {
@@ -61,7 +68,7 @@ export const login = async ({
 };
 
 type LoginResponse = {
-  accessToken: string;
+  access_token: string;
 };
 
 export const joinPlatformAndLogin = async ({
@@ -89,7 +96,14 @@ export const joinPlatformAndLogin = async ({
     const { data: codeData } = await axios.post<LoginWithPlatformResponse>(
       `${BASE_URL}/v1/auth/code`,
       { email, password },
-      { params: { platformId, callback, state, codeChallenge } },
+      {
+        params: {
+          platform_id: platformId,
+          redirect_uri: callback,
+          state,
+          code_challenge: codeChallenge,
+        },
+      },
     );
     return { data: codeData, error: null };
   } catch ({ response: { data } }) {

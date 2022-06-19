@@ -10,7 +10,7 @@ describe('RequestPasswordReset', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://api.soul-network.com/v1/users/request-password-reset-token?email=test@mail.com',
+        url: 'http://api.network.com/v1/users/request-password-reset-token?email=test%40mail.com',
       },
       {},
     ).as('requestPasswordReset');

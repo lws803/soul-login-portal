@@ -18,10 +18,10 @@ export default function Register() {
   const query = useQuery();
 
   const insufficientParams =
-    !query.get('platformId') ||
-    !query.get('callback') ||
+    !query.get('client_id') ||
+    !query.get('redirect_uri') ||
     !query.get('state') ||
-    !query.get('codeChallenge');
+    !query.get('code_challenge');
 
   return (
     <Page
