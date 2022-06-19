@@ -25,7 +25,7 @@ export default function JoinPlatform({
         setErrors([error.message]);
       }
       if (data) {
-        setAccessToken(data.accessToken);
+        setAccessToken(data.access_token);
       }
     };
     preLogin();

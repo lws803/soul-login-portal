@@ -7,8 +7,8 @@ describe('Register', () => {
   const platformId = 2;
 
   const rootPage =
-    `/register/?platformId=${platformId}&callback=${callback}&state=${state}` +
-    `&codeChallenge=${codeChallenge}`;
+    `/register/?client_id=${platformId}&redirect_uri=${callback}&state=${state}` +
+    `&code_challenge=${codeChallenge}`;
   const rootPageWithoutParams = '/register/';
 
   it('can navigate to register page', () => {
@@ -23,8 +23,8 @@ describe('Register', () => {
     cy.location('pathname').should('eq', '/');
     cy.location('search').should(
       'eq',
-      `?platformId=${platformId}&callback=${callback}&state=${state}` +
-        `&codeChallenge=${codeChallenge}`,
+      `?client_id=${platformId}&redirect_uri=${callback}&state=${state}` +
+        `&code_challenge=${codeChallenge}`,
     );
   });
 
@@ -32,16 +32,16 @@ describe('Register', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://api.soul-network.com/v1/users',
+        url: 'http://api.network.com/v1/users',
       },
       {
         id: 38,
         username: 'username',
-        userHandle: 'username#38',
+        user_handle: 'username#38',
         email: 'test@mail.com',
-        isActive: false,
-        createdAt: '2022-03-30T22:03:06.086Z',
-        updatedAt: '2022-03-30T22:03:06.000Z',
+        is_active: false,
+        created_at: '2022-03-30T22:03:06.086Z',
+        updated_at: '2022-03-30T22:03:06.000Z',
       },
     ).as('registerUser');
 
@@ -56,8 +56,8 @@ describe('Register', () => {
     cy.location('pathname').should('eq', '/');
     cy.location('search').should(
       'eq',
-      `?platformId=${platformId}&callback=${callback}&state=${state}` +
-        `&codeChallenge=${codeChallenge}`,
+      `?client_id=${platformId}&redirect_uri=${callback}&state=${state}` +
+        `&code_challenge=${codeChallenge}`,
     );
   });
 
@@ -65,16 +65,16 @@ describe('Register', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://api.soul-network.com/v1/users',
+        url: 'http://api.network.com/v1/users',
       },
       {
         id: 38,
         username: 'username',
-        userHandle: 'username#38',
+        user_handle: 'username#38',
         email: 'test@mail.com',
-        isActive: false,
-        createdAt: '2022-03-30T22:03:06.086Z',
-        updatedAt: '2022-03-30T22:03:06.000Z',
+        is_active: false,
+        created_at: '2022-03-30T22:03:06.086Z',
+        updated_at: '2022-03-30T22:03:06.000Z',
       },
     ).as('registerUser');
 
@@ -95,7 +95,7 @@ describe('Register', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://api.soul-network.com/v1/users',
+        url: 'http://api.network.com/v1/users',
       },
       {
         statusCode: 409,
@@ -121,7 +121,7 @@ describe('Register', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://api.soul-network.com/v1/users',
+        url: 'http://api.network.com/v1/users',
       },
       {
         statusCode: 400,

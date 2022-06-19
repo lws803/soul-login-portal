@@ -8,7 +8,7 @@ import * as utils from './Login/utils';
 
 describe(Login, () => {
   const path =
-    '/?platformId=1&callback=https://www.example.com&state=STATE&codeChallenge=CODE_CHALLENGE';
+    '/?client_id=1&redirect_uri=https://www.example.com&state=STATE&code_challenge=CODE_CHALLENGE';
 
   it('renders', async () => {
     const { container } = render(
@@ -28,8 +28,8 @@ describe(Login, () => {
     );
     expect(
       await findByText(
-        'Insufficient parameters provided in the url, a callback, platformId, state and ' +
-          'codeChallenge must be specified.',
+        'Insufficient parameters provided in the url, a redirect_uri, client_id, ' +
+          'state and code_challenge must be specified.',
       ),
     ).toBeInTheDocument();
   });

@@ -106,7 +106,7 @@ describe(Form, () => {
       error: { error: 'PLATFORM_USER_NOT_FOUND', message: '' },
     });
     jest.spyOn(api, 'login').mockResolvedValue({
-      data: { accessToken: 'ACCESS_TOKEN' },
+      data: { access_token: 'ACCESS_TOKEN' },
       error: null,
     });
 

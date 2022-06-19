@@ -21,7 +21,7 @@ describe(EmailConfirmation, () => {
 
     expect(container).toMatchSnapshot();
     expect(emailConfirmationCall).toHaveBeenCalledWith(
-      'https://api.soul-network.com/v1/users/verify-confirmation-token?token=CODE',
+      'http://api.network.com/v1/users/verify-confirmation-token?token=CODE',
     );
   });
 });
