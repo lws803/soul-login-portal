@@ -55,11 +55,12 @@ describe('Login', () => {
 
   it('log in successfully', () => {
     const code = 'AUTH_CODE';
-    // TODO: Find a better way to improve the intercepts and make it more seamless
     cy.intercept(
       {
         method: 'POST',
-        url: 'http://api.network.com/v1/auth/code*',
+        url:
+          `http://api.network.com/v1/auth/code?client_id=${platformId}` +
+          `&redirect_uri=http:%2F%2Ftest.localhost:3000&state=${state}&code_challenge=${codeChallenge}`,
       },
       { code, state },
     ).as('loginUser');
@@ -107,7 +108,12 @@ describe('Login', () => {
 
   it('redirects to register when user is not found', () => {
     cy.intercept(
-      { method: 'POST', url: 'http://api.network.com/v1/auth/code?*' },
+      {
+        method: 'POST',
+        url:
+          `http://api.network.com/v1/auth/code?client_id=${platformId}` +
+          `&redirect_uri=http:%2F%2Ftest.localhost:3000&state=${state}&code_challenge=${codeChallenge}`,
+      },
       { statusCode: 404, body: { error: 'USER_NOT_FOUND' } },
     ).as('loginUser');
 
@@ -125,7 +131,7 @@ describe('Login', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: 'http://api.network.com/v1/auth/code?*',
+        url: `http://api.network.com/v1/auth/code?*`,
       },
       { statusCode: 404, body: { error: 'PLATFORM_USER_NOT_FOUND' } },
     ).as('loginUser');
@@ -157,14 +163,15 @@ describe('Login', () => {
     cy.get('button:contains("Login")').click();
 
     cy.contains('Join Platform!');
-
     cy.intercept(
       {
         method: 'POST',
-        url: 'http://api.network.com/v1/auth/code?*',
+        url:
+          `http://api.network.com/v1/auth/code?platform_id=${platformId}` +
+          `&redirect_uri=http:%2F%2Ftest.localhost:3000&state=${state}&code_challenge=${codeChallenge}`,
       },
-      { code, state },
-    ).as('loginUser');
+      { access_token: 'ACCESS_TOKEN' },
+    ).as('joinPlatform');
 
     cy.get('button:contains("Join Platform!")').click();
 
