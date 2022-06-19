@@ -29,7 +29,14 @@ export const loginWithPlatform = async ({
     const { data } = await axios.post<LoginWithPlatformResponse>(
       `${BASE_URL}/v1/auth/code`,
       values,
-      { params: { platformId, callback, state, codeChallenge } },
+      {
+        params: {
+          client_id: platformId,
+          redirect_uri: callback,
+          state,
+          code_challenge: codeChallenge,
+        },
+      },
     );
     return { data, error: null };
   } catch ({ response: { data } }) {

@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://api.soul-network.com';
+export const BASE_URL = 'http://localhost:3001';
