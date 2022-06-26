@@ -110,3 +110,31 @@ export const joinPlatformAndLogin = async ({
     return { data: null, error: data as ApiError };
   }
 };
+
+type PlatformData = {
+  id: number;
+  name: string;
+  name_handle: string;
+  is_verified: boolean;
+};
+
+export const getPlatformDetails = async ({
+  platformId,
+}: {
+  platformId: number;
+}) => {
+  try {
+    const { data: platform } = await axios.get<PlatformData>(
+      `${BASE_URL}/v1/platforms/${platformId}`,
+    );
+
+    return {
+      data: {
+        name: platform.name_handle,
+      },
+      error: null,
+    };
+  } catch ({ response: { data } }) {
+    return { data: null, error: data as ApiError };
+  }
+};

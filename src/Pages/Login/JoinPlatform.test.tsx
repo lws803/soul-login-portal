@@ -20,6 +20,9 @@ describe(JoinPlatform, () => {
     jest
       .spyOn(api, 'login')
       .mockResolvedValue({ data: { access_token: 'TOKEN' }, error: null });
+    jest
+      .spyOn(api, 'getPlatformDetails')
+      .mockResolvedValue({ data: { name: 'TEST#1' }, error: null });
   });
 
   it('renders', async () => {

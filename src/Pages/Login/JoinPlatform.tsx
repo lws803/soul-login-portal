@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Center } from '@chakra-ui/react';
+import { Text, VStack } from '@chakra-ui/react';
 
 import FancyButton from 'src/components/FancyButton';
 
-import { login, joinPlatformAndLogin } from './api';
+import { login, joinPlatformAndLogin, getPlatformDetails } from './api';
 import { redirectToCallback } from './utils';
 
 export default function JoinPlatform({
@@ -14,8 +14,10 @@ export default function JoinPlatform({
   setErrors,
   state,
   codeChallenge,
+  ...props
 }: Props) {
   const [accessToken, setAccessToken] = useState<string>();
+  const [platformName, setPlatformName] = useState<string>();
   const [isJoining, setIsJoining] = useState(false);
 
   useEffect(() => {
@@ -30,6 +32,19 @@ export default function JoinPlatform({
     };
     preLogin();
   }, [email, password, setErrors]);
+
+  useEffect(() => {
+    const getPlatform = async () => {
+      const { data, error } = await getPlatformDetails({ platformId });
+      if (error) {
+        setErrors([error.message]);
+      }
+      if (data) {
+        setPlatformName(data.name);
+      }
+    };
+    getPlatform();
+  }, [platformId]);
 
   const joinPlatform = async () => {
     setIsJoining(true);
@@ -52,7 +67,17 @@ export default function JoinPlatform({
   };
 
   return (
-    <Center width="100%">
+    <VStack spacing="32px" {...props}>
+      <Text
+        fontSize="4xl"
+        whiteSpace="nowrap"
+        overflow="hidden"
+        textOverflow="ellipsis"
+        maxW="300px"
+        fontWeight="bold"
+      >
+        {platformName}
+      </Text>
       <FancyButton
         onClick={joinPlatform}
         isLoading={!accessToken || isJoining}
@@ -60,7 +85,7 @@ export default function JoinPlatform({
       >
         Join Platform!
       </FancyButton>
-    </Center>
+    </VStack>
   );
 }
 
@@ -72,4 +97,4 @@ type Props = {
   setErrors: (error: string[]) => void;
   state: string;
   codeChallenge: string;
-};
+} & React.ComponentProps<typeof VStack>;
