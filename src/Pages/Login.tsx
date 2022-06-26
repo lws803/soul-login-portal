@@ -11,6 +11,7 @@ import useQuery from '../hooks/useQuery';
 export default function Login() {
   const query = useQuery();
   const [errors, setErrors] = useState<string[]>([]);
+  const [joinPlatform, setJoinPlatform] = useState(false);
   const { search } = useLocation();
 
   const insufficientParams =
@@ -32,17 +33,19 @@ export default function Login() {
     <Page
       errors={errors}
       title={
-        <Title
-          title="Login to your account"
-          subTitle={
-            <Text>
-              Not a member yet?{' '}
-              <Link href={`/register/${search}`}>
-                <strong>Register now</strong>
-              </Link>
-            </Text>
-          }
-        />
+        !joinPlatform && (
+          <Title
+            title="Login to your account"
+            subTitle={
+              <Text>
+                Not a member yet?{' '}
+                <Link href={`/register/${search}`}>
+                  <strong>Register now</strong>
+                </Link>
+              </Text>
+            }
+          />
+        )
       }
     >
       <Form
@@ -52,6 +55,8 @@ export default function Login() {
         disabled={insufficientParams}
         state={query.get('state')!}
         codeChallenge={query.get('code_challenge')!}
+        setJoinPlatform={setJoinPlatform}
+        joinPlatform={joinPlatform}
       />
     </Page>
   );

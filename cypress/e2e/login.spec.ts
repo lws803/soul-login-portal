@@ -152,6 +152,13 @@ describe('Login', () => {
     cy.intercept(
       {
         method: 'GET',
+        url: 'http://api.network.com/v1/platforms/2',
+      },
+      { name_handle: 'PLATFORM_NAME#1' },
+    ).as('getPlatformInfo');
+    cy.intercept(
+      {
+        method: 'GET',
         url: 'http://test.localhost:3000/*',
       },
       { code, state },
@@ -163,6 +170,7 @@ describe('Login', () => {
     cy.get('button:contains("Login")').click();
 
     cy.contains('Join Platform!');
+    cy.contains('PLATFORM_NAME#1');
     cy.intercept(
       {
         method: 'POST',

@@ -3,8 +3,13 @@
 exports[`JoinPlatform renders 1`] = `
 <div>
   <div
-    class="css-1lads1q"
+    class="chakra-stack css-dvtbfj"
   >
+    <p
+      class="chakra-text css-1uvlqji"
+    >
+      TEST#1
+    </p>
     <button
       aria-label="Join platform button"
       class="css-y6mgpv"

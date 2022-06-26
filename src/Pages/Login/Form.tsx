@@ -25,10 +25,11 @@ export default function Form({
   disabled,
   state,
   codeChallenge,
+  setJoinPlatform,
+  joinPlatform,
 }: Props) {
   const navigate = useNavigate();
   const { search } = useLocation();
-  const [joinPlatform, setJoinPlatform] = useState(false);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   const formik = useFormik({
@@ -153,4 +154,6 @@ type Props = {
   disabled: boolean;
   state: string;
   codeChallenge: string;
+  setJoinPlatform: (joinPlatform: boolean) => void;
+  joinPlatform: boolean;
 };

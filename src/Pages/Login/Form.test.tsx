@@ -20,6 +20,8 @@ describe(Form, () => {
     disabled: false,
     state: 'STATE',
     codeChallenge: 'CODE_CHALLENGE',
+    setJoinPlatform: jest.fn(),
+    joinPlatform: false,
   };
 
   it('renders', async () => {
@@ -101,6 +103,8 @@ describe(Form, () => {
   });
 
   it('shows join platform button', async () => {
+    const setJoinPlatform = jest.fn();
+
     jest.spyOn(api, 'loginWithPlatform').mockResolvedValue({
       data: null,
       error: { error: 'PLATFORM_USER_NOT_FOUND', message: '' },
@@ -110,9 +114,9 @@ describe(Form, () => {
       error: null,
     });
 
-    const { getByLabelText, getByText, findByText } = render(
+    const { getByLabelText, getByText } = render(
       <MemoryRouter>
-        <Form {...props} />
+        <Form {...props} setJoinPlatform={setJoinPlatform} />
       </MemoryRouter>,
     );
 
@@ -126,6 +130,8 @@ describe(Form, () => {
     });
     fireEvent.click(getByText('Login'));
 
-    expect(await findByText('Join Platform!')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(setJoinPlatform).toHaveBeenCalledWith(true);
+    });
   });
 });
