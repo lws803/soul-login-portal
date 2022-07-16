@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -15,7 +14,7 @@ import * as Yup from 'yup';
 import FancyButton from 'src/components/FancyButton';
 
 import JoinPlatform from './JoinPlatform';
-import { loginWithPlatform } from './api';
+import { joinPlatformAndLogin, login, loginWithPlatform } from './api';
 import { redirectToCallback } from './utils';
 
 export default function Form({
@@ -30,39 +29,76 @@ export default function Form({
 }: Props) {
   const navigate = useNavigate();
   const { search } = useLocation();
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
+
+  const loginAndJoinDefaultPlatform = async (args: LoginCredentials) => {
+    const { data: preLoginData } = await login({
+      email: args.email,
+      password: args.password,
+    });
+    if (preLoginData?.access_token) {
+      const { data } = await joinPlatformAndLogin({
+        platformId,
+        callback,
+        state,
+        codeChallenge,
+        email: args.email,
+        password: args.password,
+        accessToken: preLoginData.access_token,
+      });
+      return data;
+    }
+    return null;
+  };
+
+  const handleSubmit = async (values: LoginCredentials) => {
+    setErrors([]);
+    const { data, error } = await loginWithPlatform({
+      values,
+      platformId,
+      callback,
+      state,
+      codeChallenge,
+    });
+    if (data) {
+      redirectToCallback({ code: data.code, state: data.state, callback });
+    }
+    if (error) {
+      if (error.error === 'USER_NOT_FOUND') {
+        navigate(`/register${search}`);
+        return;
+      }
+      if (error.error === 'PLATFORM_USER_NOT_FOUND') {
+        if (platformId === 2) {
+          const loginResponse = await loginAndJoinDefaultPlatform({
+            email: values.email,
+            password: values.password,
+          });
+          if (loginResponse) {
+            redirectToCallback({
+              code: loginResponse.code,
+              state: loginResponse.state,
+              callback,
+            });
+            return;
+          }
+        }
+        setJoinPlatform(true);
+        return;
+      }
+      if (error.error === 'VALIDATION_ERROR') {
+        setErrors(['Required params are not present.']);
+        return;
+      }
+      setErrors([error.message]);
+    }
+  };
 
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
-    onSubmit: async (values) => {
-      setErrors([]);
-      setIsLoggingIn(true);
-      const { data, error } = await loginWithPlatform({
-        values,
-        platformId,
-        callback,
-        state,
-        codeChallenge,
-      });
-      if (error) {
-        setIsLoggingIn(false);
-        if (error.error === 'USER_NOT_FOUND') {
-          navigate(`/register${search}`);
-        } else if (error.error === 'PLATFORM_USER_NOT_FOUND') {
-          setJoinPlatform(true);
-        } else if (error.error === 'VALIDATION_ERROR') {
-          setErrors(['client_id and redirect_uri is not present.']);
-        } else {
-          setErrors([error.message]);
-        }
-      }
-      if (data) {
-        redirectToCallback({ code: data.code, state: data.state, callback });
-      }
-    },
+    onSubmit: handleSubmit,
     validationSchema: Yup.object({
       email: Yup.string().email().required(),
       password: Yup.string().required(),
@@ -94,7 +130,7 @@ export default function Form({
             name="email"
             onChange={formik.handleChange}
             value={formik.values.email}
-            disabled={disabled || isLoggingIn}
+            disabled={disabled || formik.isSubmitting}
             aria-label="Email input"
             variant="filled"
             placeholder="Your email"
@@ -114,7 +150,7 @@ export default function Form({
             type="password"
             onChange={formik.handleChange}
             value={formik.values.password}
-            disabled={disabled || isLoggingIn}
+            disabled={disabled || formik.isSubmitting}
             aria-label="Password input"
             variant="filled"
             placeholder="Your password"
@@ -130,8 +166,8 @@ export default function Form({
         </FormControl>
         <Box mt={8}>
           <FancyButton
-            isLoading={isLoggingIn}
-            disabled={disabled || isLoggingIn}
+            isLoading={formik.isSubmitting}
+            disabled={disabled || formik.isSubmitting}
             type="submit"
           >
             Login
@@ -157,3 +193,5 @@ type Props = {
   setJoinPlatform: (joinPlatform: boolean) => void;
   joinPlatform: boolean;
 };
+
+type LoginCredentials = { email: string; password: string };
