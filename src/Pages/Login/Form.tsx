@@ -12,6 +12,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 import FancyButton from 'src/components/FancyButton';
+import { SOUL_DEFAULT_PLATFORM_ID } from 'src/constants';
 
 import JoinPlatform from './JoinPlatform';
 import { joinPlatformAndLogin, login, loginWithPlatform } from './api';
@@ -57,15 +58,17 @@ export default function Form({
       state,
       codeChallenge,
     });
-    if (data) {
+    if (data)
       redirectToCallback({ code: data.code, state: data.state, callback });
-    }
     if (error) {
       if (error.error === 'USER_NOT_FOUND') {
         navigate(`/register${search}`);
         return;
       }
-      if (error.error === 'PLATFORM_USER_NOT_FOUND' && platformId === 2) {
+      if (
+        error.error === 'PLATFORM_USER_NOT_FOUND' &&
+        platformId === SOUL_DEFAULT_PLATFORM_ID
+      ) {
         const loginResponse = await loginAndJoinDefaultPlatform({
           email: values.email,
           password: values.password,
