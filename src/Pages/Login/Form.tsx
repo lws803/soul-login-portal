@@ -35,19 +35,17 @@ export default function Form({
       email: args.email,
       password: args.password,
     });
-    if (preLoginData?.access_token) {
-      const { data } = await joinPlatformAndLogin({
-        platformId,
-        callback,
-        state,
-        codeChallenge,
-        email: args.email,
-        password: args.password,
-        accessToken: preLoginData.access_token,
-      });
-      return data;
-    }
-    return null;
+    if (!preLoginData?.access_token) return null;
+    const { data } = await joinPlatformAndLogin({
+      platformId,
+      callback,
+      state,
+      codeChallenge,
+      email: args.email,
+      password: args.password,
+      accessToken: preLoginData.access_token,
+    });
+    return data;
   };
 
   const handleSubmit = async (values: LoginCredentials) => {
@@ -67,24 +65,21 @@ export default function Form({
         navigate(`/register${search}`);
         return;
       }
-      if (error.error === 'PLATFORM_USER_NOT_FOUND') {
-        if (platformId === 2) {
-          const loginResponse = await loginAndJoinDefaultPlatform({
-            email: values.email,
-            password: values.password,
+      if (error.error === 'PLATFORM_USER_NOT_FOUND' && platformId === 2) {
+        const loginResponse = await loginAndJoinDefaultPlatform({
+          email: values.email,
+          password: values.password,
+        });
+        if (loginResponse) {
+          redirectToCallback({
+            code: loginResponse.code,
+            state: loginResponse.state,
+            callback,
           });
-          if (loginResponse) {
-            redirectToCallback({
-              code: loginResponse.code,
-              state: loginResponse.state,
-              callback,
-            });
-            return;
-          }
+          return;
         }
-        setJoinPlatform(true);
-        return;
       }
+      if (error.error === 'PLATFORM_USER_NOT_FOUND') setJoinPlatform(true);
       if (error.error === 'VALIDATION_ERROR') {
         setErrors(['Required params are not present.']);
         return;

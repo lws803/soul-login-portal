@@ -4,7 +4,7 @@ describe('Login', () => {
   const state = 'STATE';
   const callback = 'http://test.localhost:3000';
   const codeChallenge = 'CODE_CHALLENGE';
-  const platformId = 2;
+  const platformId = 1;
 
   const rootPage =
     `/?client_id=${platformId}&redirect_uri=${callback}` +
@@ -145,14 +145,14 @@ describe('Login', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: 'http://api.network.com/v1/platforms/2/join',
+        url: 'http://api.network.com/v1/platforms/1/join',
       },
       { access_token: 'ACCESS_TOKEN' },
     ).as('joinPlatform');
     cy.intercept(
       {
         method: 'GET',
-        url: 'http://api.network.com/v1/platforms/2',
+        url: 'http://api.network.com/v1/platforms/1',
       },
       { name_handle: 'PLATFORM_NAME#1' },
     ).as('getPlatformInfo');
@@ -179,11 +179,58 @@ describe('Login', () => {
           `&redirect_uri=http:%2F%2Ftest.localhost:3000&state=${state}&code_challenge=${codeChallenge}`,
       },
       { access_token: 'ACCESS_TOKEN' },
-    ).as('joinPlatform');
+    ).as('loginUser');
 
+    cy.get('@joinPlatform.all').should('have.length', 0);
     cy.get('button:contains("Join Platform!")').click();
+    cy.get('@joinPlatform.all').should('have.length', 1);
 
     cy.contains(code);
     cy.contains(state);
+  });
+
+  it('automatically joins default platform when user has not joined', () => {
+    const defaultPlatformId = 2;
+
+    const rootPageDefaultPlatform =
+      `/?client_id=${defaultPlatformId}&redirect_uri=${callback}` +
+      `&state=${state}&code_challenge=${codeChallenge}`;
+
+    cy.intercept(
+      {
+        method: 'POST',
+        url: `http://api.network.com/v1/auth/code?*`,
+      },
+      { statusCode: 404, body: { error: 'PLATFORM_USER_NOT_FOUND' } },
+    ).as('loginUser');
+    cy.intercept(
+      {
+        method: 'POST',
+        url: 'http://api.network.com/v1/auth/login',
+      },
+      { access_token: 'ACCESS_TOKEN' },
+    ).as('loginUserWithoutPlatform');
+    cy.intercept(
+      {
+        method: 'POST',
+        url: 'http://api.network.com/v1/platforms/2/join',
+      },
+      { access_token: 'ACCESS_TOKEN' },
+    ).as('joinPlatform');
+    cy.intercept(
+      {
+        method: 'GET',
+        url: 'http://api.network.com/v1/platforms/2',
+      },
+      { name_handle: 'PLATFORM_NAME#1' },
+    ).as('getPlatformInfo');
+
+    cy.visit(rootPageDefaultPlatform);
+    cy.get('input[name="email"]').type('test@mail.com');
+    cy.get('input[name="password"]').type('password');
+    cy.get('button:contains("Login")').click();
+
+    cy.wait('@joinPlatform');
+    cy.get('@joinPlatform.all').should('have.length', 1);
   });
 });
