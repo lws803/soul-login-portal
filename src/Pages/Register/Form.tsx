@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -25,8 +24,6 @@ export default function Form({
   const navigate = useNavigate();
   const { search } = useLocation();
 
-  const [isRegistering, setIsRegistering] = useState(false);
-
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -35,11 +32,9 @@ export default function Form({
     },
     onSubmit: async (values) => {
       setErrors([]);
-      setIsRegistering(true);
 
       const { data, error } = await register({ values });
       if (error) {
-        setIsRegistering(false);
         if (error.status === 400 && error.data.error === 'VALIDATION_ERROR') {
           formik.setErrors({
             password: 'Password is too weak!',
@@ -77,7 +72,7 @@ export default function Form({
           aria-label="Username input"
           variant="filled"
           placeholder="Your username"
-          disabled={isRegistering}
+          disabled={formik.isSubmitting}
         />
         {!formik.errors.email && (
           <FormHelperText>Choose an awesome username!</FormHelperText>
@@ -100,7 +95,7 @@ export default function Form({
           aria-label="Email input"
           variant="filled"
           placeholder="Your email"
-          disabled={isRegistering}
+          disabled={formik.isSubmitting}
         />
         {!formik.errors.email && (
           <FormHelperText>We&apos;ll never share your email.</FormHelperText>
@@ -131,7 +126,7 @@ export default function Form({
           aria-label="Password input"
           variant="filled"
           placeholder="Your password"
-          disabled={isRegistering}
+          disabled={formik.isSubmitting}
         />
         {formik.errors.password && (
           <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
@@ -139,8 +134,8 @@ export default function Form({
       </FormControl>
       <Box mt={8}>
         <FancyButton
-          isLoading={isRegistering}
-          disabled={isRegistering}
+          isLoading={formik.isSubmitting}
+          disabled={formik.isSubmitting}
           type="submit"
         >
           Register

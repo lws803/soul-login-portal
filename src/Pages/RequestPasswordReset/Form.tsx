@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -13,15 +12,12 @@ import {
 import { sendPasswordReset } from './api';
 
 export default function Form({ setErrors, setIsSuccess }: Props) {
-  const [isSending, setIsSending] = useState(false);
-
   const formik = useFormik({
     initialValues: {
       email: '',
     },
     onSubmit: async (values) => {
       setErrors([]);
-      setIsSending(true);
       const { error } = await sendPasswordReset(values);
 
       if (error) {
@@ -29,7 +25,6 @@ export default function Form({ setErrors, setIsSuccess }: Props) {
       } else {
         setIsSuccess(true);
       }
-      setIsSending(false);
     },
     validationSchema: Yup.object({
       email: Yup.string().email().required(),
@@ -60,7 +55,7 @@ export default function Form({ setErrors, setIsSuccess }: Props) {
       <HStack mt={8}>
         <Button
           type="submit"
-          isLoading={isSending}
+          isLoading={formik.isSubmitting}
           loadingText="Sending password reset email"
           width="100%"
           bg="soul.pink.light"
