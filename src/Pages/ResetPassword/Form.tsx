@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -8,40 +7,34 @@ import {
   Button,
   Progress,
 } from '@chakra-ui/react';
-import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import zxcvbn from 'zxcvbn';
 
-import { BASE_URL } from 'src/constants';
+import { resetPassword } from './api';
 
 export default function Form({ token, setErrors, setIsSuccess }: Props) {
-  const [isResetting, setIsResetting] = useState(false);
-
   const formik = useFormik({
     initialValues: {
       password: '',
     },
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       setErrors([]);
-      setIsResetting(true);
+      const { error } = await resetPassword({
+        token: token!,
+        newPassword: values.password,
+      });
 
-      // TODO: Refactor this
-      axios
-        .post(`${BASE_URL}/v1/users/password-reset?token=${token}`, values)
-        .then(() => setIsSuccess(true))
-        .catch(({ response: { data, status } }) => {
-          if (status === 400 && data.error === 'VALIDATION_ERROR') {
-            formik.setErrors({
-              password: 'Password is too weak!',
-            });
-          } else {
-            setErrors([data.message]);
-          }
-        })
-        .finally(() => {
-          setIsResetting(false);
-        });
+      if (!error) setIsSuccess(true);
+      if (error) {
+        if (error.error === 'VALIDATION_ERROR') {
+          formik.setErrors({
+            password: 'Password is too weak!',
+          });
+        } else {
+          setErrors([error.message]);
+        }
+      }
     },
     validationSchema: Yup.object({
       password: Yup.string().required(),
@@ -81,7 +74,7 @@ export default function Form({ token, setErrors, setIsSuccess }: Props) {
       <HStack mt={8}>
         <Button
           type="submit"
-          isLoading={isResetting}
+          isLoading={formik.isSubmitting}
           disabled={!token}
           bg="soul.pink.light"
           _hover={{ bg: 'soul.pink.dark' }}
