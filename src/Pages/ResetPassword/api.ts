@@ -15,7 +15,7 @@ export const resetPassword = async ({
 }) => {
   try {
     await axios.post(`${BASE_URL}/v1/users/password-reset?token=${token}`, {
-      newPassword,
+      password: newPassword,
     });
     return { error: null };
   } catch ({ response: { data } }) {
