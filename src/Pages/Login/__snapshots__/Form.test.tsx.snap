@@ -2,7 +2,9 @@
 
 exports[`Form renders 1`] = `
 <div>
-  <form>
+  <form
+    action="#"
+  >
     <div
       class="chakra-form-control css-0"
       role="group"
@@ -17,7 +19,7 @@ exports[`Form renders 1`] = `
       <input
         aria-label="Email input"
         class="chakra-input css-0"
-        id="email"
+        id="field-:r0:"
         name="email"
         placeholder="Your email"
         value=""
@@ -38,7 +40,7 @@ exports[`Form renders 1`] = `
         aria-describedby="field-:r1:-helptext"
         aria-label="Password input"
         class="chakra-input css-0"
-        id="password"
+        id="field-:r1:"
         name="password"
         placeholder="Your password"
         type="password"
@@ -71,17 +73,17 @@ exports[`Form renders 1`] = `
         </div>
       </button>
     </div>
-  </form>
-  <div
-    class="css-19ug521"
-  >
-    <a
-      class="chakra-link css-0"
-      href="/request-email-verification"
-      target="_blank"
+    <div
+      class="css-19ug521"
     >
-      Resend email verification
-    </a>
-  </div>
+      <a
+        class="chakra-link css-0"
+        href="/request-email-verification"
+        target="_blank"
+      >
+        Resend email verification
+      </a>
+    </div>
+  </form>
 </div>
 `;

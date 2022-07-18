@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import * as Yup from 'yup';
 import zxcvbn from 'zxcvbn';
-import { useFormik } from 'formik';
+import { Formik, Form as FormikForm, Field, FieldProps } from 'formik';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import FancyButton from 'src/components/FancyButton';
@@ -24,124 +24,128 @@ export default function Form({
   const navigate = useNavigate();
   const { search } = useLocation();
 
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-      username: '',
-    },
-    onSubmit: async (values) => {
-      setErrors([]);
-
-      const { data, error } = await register({ values });
-      if (error) {
-        if (error.status === 400 && error.data.error === 'VALIDATION_ERROR') {
-          formik.setErrors({
-            password: 'Password is too weak!',
-          });
-        } else if (error.status === 409) {
-          formik.setErrors({ email: error.data.message });
-        } else {
-          setErrors([error.data.message]);
-        }
-      }
-      if (data?.id) {
-        setIsSuccess(true);
-        if (!insufficientParams) navigate(`/${search}`);
-      }
-    },
-    validationSchema: Yup.object({
-      email: Yup.string().email().required(),
-      username: Yup.string().required(),
-      password: Yup.string().required(),
-    }),
-    validateOnChange: false,
-  });
-
   return (
-    <form onSubmit={(e) => formik.handleSubmit(e as any)}>
-      <FormControl
-        isInvalid={!!formik.errors.username && formik.touched.username}
-      >
-        <FormLabel htmlFor="username">Username</FormLabel>
-        <Input
-          id="username"
-          name="username"
-          onChange={formik.handleChange}
-          value={formik.values.username}
-          aria-label="Username input"
-          variant="filled"
-          placeholder="Your username"
-          disabled={formik.isSubmitting}
-        />
-        {!formik.errors.email && (
-          <FormHelperText>Choose an awesome username!</FormHelperText>
-        )}
-        {formik.errors.username && (
-          <FormErrorMessage>{formik.errors.username}</FormErrorMessage>
-        )}
-      </FormControl>
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
+        username: '',
+      }}
+      onSubmit={async (values, action) => {
+        setErrors([]);
 
-      <FormControl
-        isInvalid={!!formik.errors.email && formik.touched.email}
-        marginTop={8}
-      >
-        <FormLabel htmlFor="email">Email</FormLabel>
-        <Input
-          id="email"
-          name="email"
-          onChange={formik.handleChange}
-          value={formik.values.email}
-          aria-label="Email input"
-          variant="filled"
-          placeholder="Your email"
-          disabled={formik.isSubmitting}
-        />
-        {!formik.errors.email && (
-          <FormHelperText>We&apos;ll never share your email.</FormHelperText>
-        )}
-        {formik.errors.email && (
-          <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
-        )}
-      </FormControl>
-      <FormControl
-        isInvalid={!!formik.errors.password && formik.touched.password}
-        marginTop={8}
-      >
-        <FormLabel htmlFor="password">Password</FormLabel>
-        {formik.values.password.length > 0 && (
-          <Progress
-            value={((zxcvbn(formik.values.password).score + 1) / 5) * 100}
-            colorScheme="soul.green"
-            size="xs"
-            mb={1}
-          />
-        )}
-        <Input
-          id="password"
-          name="password"
-          type="password"
-          onChange={formik.handleChange}
-          value={formik.values.password}
-          aria-label="Password input"
-          variant="filled"
-          placeholder="Your password"
-          disabled={formik.isSubmitting}
-        />
-        {formik.errors.password && (
-          <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
-        )}
-      </FormControl>
-      <Box mt={8}>
-        <FancyButton
-          isLoading={formik.isSubmitting}
-          disabled={formik.isSubmitting}
-          type="submit"
-        >
-          Register
-        </FancyButton>
-      </Box>
-    </form>
+        const { data, error } = await register({ values });
+        if (error) {
+          if (error.status === 400 && error.data.error === 'VALIDATION_ERROR') {
+            action.setErrors({
+              password: 'Password is too weak!',
+            });
+          } else if (error.status === 409) {
+            action.setErrors({ email: error.data.message });
+          } else {
+            setErrors([error.data.message]);
+          }
+        }
+        if (data?.id) {
+          setIsSuccess(true);
+          if (!insufficientParams) navigate(`/${search}`);
+        }
+      }}
+      validationSchema={Yup.object({
+        email: Yup.string().email().required(),
+        username: Yup.string().required(),
+        password: Yup.string().required(),
+      })}
+      validateOnChange={false}
+    >
+      {({ isSubmitting }) => (
+        <FormikForm>
+          <Field name="username">
+            {({ field, form }: FieldProps<string>) => (
+              <FormControl
+                isInvalid={!!form.errors.username && !!form.touched.username}
+              >
+                <FormLabel htmlFor="username">Username</FormLabel>
+                <Input
+                  {...field}
+                  aria-label="Username input"
+                  variant="filled"
+                  placeholder="Your username"
+                  disabled={isSubmitting}
+                />
+                <FormHelperText>Choose an awesome username!</FormHelperText>
+                {form.errors.username && (
+                  <FormErrorMessage>{form.errors.username}</FormErrorMessage>
+                )}
+              </FormControl>
+            )}
+          </Field>
+          <Field name="email">
+            {({ field, form }: FieldProps<string>) => (
+              <FormControl
+                isInvalid={!!form.errors.email && !!form.touched.email}
+                marginTop={8}
+              >
+                <FormLabel htmlFor="email">Email</FormLabel>
+                <Input
+                  {...field}
+                  aria-label="Email input"
+                  variant="filled"
+                  placeholder="Your email"
+                  disabled={isSubmitting}
+                />
+                {!form.errors.email && (
+                  <FormHelperText>
+                    We&apos;ll never share your email.
+                  </FormHelperText>
+                )}
+                {form.errors.email && (
+                  <FormErrorMessage>{form.errors.email}</FormErrorMessage>
+                )}
+              </FormControl>
+            )}
+          </Field>
+          <Field name="password">
+            {({ field, form }: FieldProps<string>) => (
+              <FormControl
+                isInvalid={!!form.errors.password && !!form.touched.password}
+                marginTop={8}
+              >
+                <FormLabel htmlFor="password">Password</FormLabel>
+                {field.value.length > 0 && (
+                  <Progress
+                    value={((zxcvbn(field.value).score + 1) / 5) * 100}
+                    colorScheme="soul.green"
+                    size="xs"
+                    mb={1}
+                  />
+                )}
+                <Input
+                  {...field}
+                  type="password"
+                  aria-label="Password input"
+                  variant="filled"
+                  placeholder="Your password"
+                  disabled={isSubmitting}
+                />
+                {form.errors.password && (
+                  <FormErrorMessage>{form.errors.password}</FormErrorMessage>
+                )}
+              </FormControl>
+            )}
+          </Field>
+          <Box mt={8}>
+            <FancyButton
+              isLoading={isSubmitting}
+              disabled={isSubmitting}
+              type="submit"
+            >
+              Register
+            </FancyButton>
+          </Box>
+        </FormikForm>
+      )}
+    </Formik>
   );
 }
 

@@ -2,7 +2,9 @@
 
 exports[`Form renders 1`] = `
 <div>
-  <form>
+  <form
+    action="#"
+  >
     <div
       class="chakra-form-control css-164r41r"
       role="group"
@@ -17,7 +19,7 @@ exports[`Form renders 1`] = `
       <input
         aria-label="Email input"
         class="chakra-input css-0"
-        id="email"
+        id="field-:r0:"
         name="email"
         placeholder="Enter your email"
         value=""
