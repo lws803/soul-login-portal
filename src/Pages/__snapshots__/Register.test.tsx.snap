@@ -39,7 +39,9 @@ exports[`Register renders 1`] = `
             </p>
           </div>
         </div>
-        <form>
+        <form
+          action="#"
+        >
           <div
             class="chakra-form-control css-0"
             role="group"
@@ -55,7 +57,7 @@ exports[`Register renders 1`] = `
               aria-describedby="field-:r0:-helptext"
               aria-label="Username input"
               class="chakra-input css-0"
-              id="username"
+              id="field-:r0:"
               name="username"
               placeholder="Your username"
               value=""
@@ -82,7 +84,7 @@ exports[`Register renders 1`] = `
               aria-describedby="field-:r1:-helptext"
               aria-label="Email input"
               class="chakra-input css-0"
-              id="email"
+              id="field-:r1:"
               name="email"
               placeholder="Your email"
               value=""
@@ -108,7 +110,7 @@ exports[`Register renders 1`] = `
             <input
               aria-label="Password input"
               class="chakra-input css-0"
-              id="password"
+              id="field-:r2:"
               name="password"
               placeholder="Your password"
               type="password"
@@ -206,7 +208,9 @@ exports[`Register renders without params 1`] = `
             class="css-164r41r"
           />
         </div>
-        <form>
+        <form
+          action="#"
+        >
           <div
             class="chakra-form-control css-0"
             role="group"
@@ -222,7 +226,7 @@ exports[`Register renders without params 1`] = `
               aria-describedby="field-:r3:-helptext"
               aria-label="Username input"
               class="chakra-input css-0"
-              id="username"
+              id="field-:r3:"
               name="username"
               placeholder="Your username"
               value=""
@@ -249,7 +253,7 @@ exports[`Register renders without params 1`] = `
               aria-describedby="field-:r4:-helptext"
               aria-label="Email input"
               class="chakra-input css-0"
-              id="email"
+              id="field-:r4:"
               name="email"
               placeholder="Your email"
               value=""
@@ -275,7 +279,7 @@ exports[`Register renders without params 1`] = `
             <input
               aria-label="Password input"
               class="chakra-input css-0"
-              id="password"
+              id="field-:r5:"
               name="password"
               placeholder="Your password"
               type="password"
