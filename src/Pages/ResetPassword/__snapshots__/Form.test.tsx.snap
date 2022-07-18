@@ -2,7 +2,9 @@
 
 exports[`Form renders 1`] = `
 <div>
-  <form>
+  <form
+    action="#"
+  >
     <div
       class="chakra-form-control css-0"
       role="group"
@@ -17,7 +19,7 @@ exports[`Form renders 1`] = `
       <input
         aria-label="Password input"
         class="chakra-input css-0"
-        id="password"
+        id="field-:r0:"
         name="password"
         placeholder="Enter your new password"
         type="password"
