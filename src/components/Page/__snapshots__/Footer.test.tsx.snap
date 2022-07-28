@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer renders 1`] = `
+<div>
+  <div
+    class="css-l5skqa"
+  >
+    <div
+      class="css-18hh56p"
+    >
+      <div
+        class="chakra-stack css-1o71ot0"
+      >
+        <a
+          class="chakra-link css-epvm6"
+          href="https://api.soul-network.com/docs"
+          target="_blank"
+        >
+          API Docs
+        </a>
+        <a
+          class="chakra-link css-epvm6"
+          href="https://github.com/soul-project"
+          target="_blank"
+        >
+          Soul's organization Github
+        </a>
+        <a
+          class="chakra-link css-epvm6"
+          href="mailto:lws803@gmail.com"
+          target="_blank"
+        >
+          Contact me
+        </a>
+      </div>
+      <p
+        class="chakra-text css-1m360k3"
+      >
+        Copyright © 
+        2022
+         Soul.
+      </p>
+    </div>
+  </div>
+</div>
+`;

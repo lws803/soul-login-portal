@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import axios from 'axios';
 
@@ -20,8 +20,10 @@ describe(EmailConfirmation, () => {
     );
 
     expect(container).toMatchSnapshot();
-    expect(emailConfirmationCall).toHaveBeenCalledWith(
-      'http://api.network.com/v1/users/verify-confirmation-token?token=CODE',
-    );
+    await waitFor(() => {
+      expect(emailConfirmationCall).toHaveBeenCalledWith(
+        'http://api.network.com/v1/users/verify-confirmation-token?token=CODE',
+      );
+    });
   });
 });

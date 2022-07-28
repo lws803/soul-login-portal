@@ -13,18 +13,11 @@ export default function Footer() {
             API Docs
           </Link>
           <Link
-            href="https://github.com/soul-project/login-portal"
+            href="https://github.com/soul-project"
             target="_blank"
             whiteSpace="nowrap"
           >
-            Github
-          </Link>
-          <Link
-            href="https://github.com/soul-project/soul"
-            target="_blank"
-            whiteSpace="nowrap"
-          >
-            Soul Network&apos;s Github
+            Soul&apos;s organization Github
           </Link>
           <Link
             href="mailto:lws803@gmail.com"
@@ -35,7 +28,7 @@ export default function Footer() {
           </Link>
         </Stack>
         <Text textAlign={['left', 'center']} mt={[8, 4]} fontWeight="light">
-          Copyright © {new Date().getFullYear()} Soul Network.
+          Copyright © {new Date().getFullYear()} Soul.
         </Text>
       </Box>
     </Center>

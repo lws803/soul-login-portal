@@ -4,7 +4,7 @@ import Footer from './Footer';
 
 describe(Footer, () => {
   it('renders', () => {
-    const { getByText } = render(<Footer />);
-    expect(getByText('Github')).toBeInTheDocument();
+    const { container } = render(<Footer />);
+    expect(container).toMatchSnapshot();
   });
 });
