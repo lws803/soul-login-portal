@@ -159,6 +159,13 @@ exports[`Register renders 1`] = `
           </a>
           <a
             class="chakra-link css-epvm6"
+            href="https://discord.gg/kuGNRembKZ"
+            target="_blank"
+          >
+            Discord server
+          </a>
+          <a
+            class="chakra-link css-epvm6"
             href="mailto:lws803@gmail.com"
             target="_blank"
           >
@@ -318,6 +325,13 @@ exports[`Register renders without params 1`] = `
             target="_blank"
           >
             Soul's organization Github
+          </a>
+          <a
+            class="chakra-link css-epvm6"
+            href="https://discord.gg/kuGNRembKZ"
+            target="_blank"
+          >
+            Discord server
           </a>
           <a
             class="chakra-link css-epvm6"
