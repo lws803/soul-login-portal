@@ -4,6 +4,8 @@
 [![e2e tests](https://github.com/soul-project/login-portal/actions/workflows/e2e.yml/badge.svg)](https://github.com/soul-project/login-portal/actions/workflows/e2e.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/lws803)
+
 Soul Login portal to support application OAuth2.0
 
 <img src="resources/screenshot.png" height="500px" />
