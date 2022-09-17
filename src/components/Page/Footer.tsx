@@ -13,6 +13,13 @@ export default function Footer() {
             API Docs
           </Link>
           <Link
+            href="https://status.soul-network.com"
+            target="_blank"
+            whiteSpace="nowrap"
+          >
+            Status
+          </Link>
+          <Link
             href="https://github.com/soul-project"
             target="_blank"
             whiteSpace="nowrap"

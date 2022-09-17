@@ -77,6 +77,13 @@ exports[`RequestEmailVerification renders 1`] = `
           </a>
           <a
             class="chakra-link css-epvm6"
+            href="https://status.soul-network.com"
+            target="_blank"
+          >
+            Status
+          </a>
+          <a
+            class="chakra-link css-epvm6"
             href="https://github.com/soul-project"
             target="_blank"
           >
