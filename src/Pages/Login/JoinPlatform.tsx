@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Center, HStack, Spinner, Text, VStack } from '@chakra-ui/react';
+import {
+  Center,
+  HStack,
+  Spinner,
+  Text,
+  Tooltip,
+  VStack,
+} from '@chakra-ui/react';
 import { CheckCircleIcon } from '@chakra-ui/icons';
 
 import FancyButton from 'src/components/FancyButton';
@@ -95,11 +102,14 @@ export default function JoinPlatform({
             {platform.name}
           </Text>
           {platform.isVerified && (
-            <CheckCircleIcon
-              flexShrink={0}
-              color="soul.green.200"
-              aria-label="Verified marker"
-            />
+            <Tooltip label="This platform is verified" flexShrink={0}>
+              <span>
+                <CheckCircleIcon
+                  color="soul.green.200"
+                  aria-label="Verified marker"
+                />
+              </span>
+            </Tooltip>
           )}
         </HStack>
         <Text
