@@ -90,7 +90,7 @@ export default function JoinPlatform({
   return (
     <VStack spacing="32px" {...props}>
       <VStack justifyContent="center">
-        <HStack justifyContent="center" w="500px">
+        <HStack justifyContent="center" w={['90vw', '90vw', '500px', '500px']}>
           <Text
             fontSize="3xl"
             whiteSpace="nowrap"
@@ -117,7 +117,7 @@ export default function JoinPlatform({
           whiteSpace="nowrap"
           overflow="hidden"
           textOverflow="ellipsis"
-          w="500px"
+          w={['90vw', '90vw', '500px', '500px']}
           textAlign="center"
         >
           {platform.nameHandle}
