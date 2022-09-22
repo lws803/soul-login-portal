@@ -4,7 +4,11 @@ export default function Footer() {
   return (
     <Center bgColor="#2C2E33">
       <Box margin="16px 0px" padding="8px 16px" width="100%">
-        <Stack direction={['column', 'row']} gap={4} justifyContent="center">
+        <Stack
+          direction={['column', 'column', 'row']}
+          gap={4}
+          justifyContent="center"
+        >
           <Link
             href="https://api.soul-network.com/docs"
             target="_blank"
