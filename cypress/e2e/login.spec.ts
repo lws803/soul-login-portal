@@ -154,7 +154,11 @@ describe('Login', () => {
         method: 'GET',
         url: 'http://api.network.com/v1/platforms/1',
       },
-      { name_handle: 'PLATFORM_NAME#1' },
+      {
+        name_handle: 'PLATFORM_NAME#1',
+        name: 'PLATFORM_NAME',
+        is_verified: true,
+      },
     ).as('getPlatformInfo');
     cy.intercept(
       {
@@ -171,6 +175,9 @@ describe('Login', () => {
 
     cy.contains('Join Platform!');
     cy.contains('PLATFORM_NAME#1');
+    cy.contains('PLATFORM_NAME');
+    cy.get(`[aria-label="Verified marker"]`).should('be.visible');
+
     cy.intercept(
       {
         method: 'POST',
@@ -183,6 +190,8 @@ describe('Login', () => {
 
     cy.get('@joinPlatform.all').should('have.length', 0);
     cy.get('button:contains("Join Platform!")').click();
+
+    cy.wait('@joinPlatform');
     cy.get('@joinPlatform.all').should('have.length', 1);
 
     cy.contains(code);
@@ -222,7 +231,11 @@ describe('Login', () => {
         method: 'GET',
         url: 'http://api.network.com/v1/platforms/2',
       },
-      { name_handle: 'PLATFORM_NAME#1' },
+      {
+        name_handle: 'PLATFORM_NAME#1',
+        name: 'PLATFORM_NAME',
+        is_verified: true,
+      },
     ).as('getPlatformInfo');
 
     cy.visit(rootPageDefaultPlatform);

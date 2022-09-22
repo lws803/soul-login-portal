@@ -118,11 +118,19 @@ type PlatformData = {
   is_verified: boolean;
 };
 
+export type Platform = {
+  name: string;
+  nameHandle: string;
+  isVerified: boolean;
+};
+
 export const getPlatformDetails = async ({
   platformId,
 }: {
   platformId: number;
-}) => {
+}): Promise<
+  { data: Platform; error: null } | { data: null; error: ApiError }
+> => {
   try {
     const { data: platform } = await axios.get<PlatformData>(
       `${BASE_URL}/v1/platforms/${platformId}`,
@@ -130,7 +138,9 @@ export const getPlatformDetails = async ({
 
     return {
       data: {
-        name: platform.name_handle,
+        name: platform.name,
+        nameHandle: platform.name_handle,
+        isVerified: platform.is_verified,
       },
       error: null,
     };

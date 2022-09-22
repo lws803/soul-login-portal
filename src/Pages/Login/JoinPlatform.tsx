@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Text, VStack } from '@chakra-ui/react';
+import { Center, HStack, Spinner, Text, VStack } from '@chakra-ui/react';
+import { CheckCircleIcon } from '@chakra-ui/icons';
 
 import FancyButton from 'src/components/FancyButton';
 
-import { login, joinPlatformAndLogin, getPlatformDetails } from './api';
+import {
+  login,
+  joinPlatformAndLogin,
+  getPlatformDetails,
+  Platform,
+} from './api';
 import { redirectToCallback } from './utils';
 
 export default function JoinPlatform({
@@ -17,7 +23,7 @@ export default function JoinPlatform({
   ...props
 }: Props) {
   const [accessToken, setAccessToken] = useState<string>();
-  const [platformName, setPlatformName] = useState<string>();
+  const [platform, setPlatform] = useState<Platform>();
   const [isJoining, setIsJoining] = useState(false);
 
   useEffect(() => {
@@ -40,7 +46,7 @@ export default function JoinPlatform({
         setErrors([error.message]);
       }
       if (data) {
-        setPlatformName(data.name);
+        setPlatform(data);
       }
     };
     getPlatform();
@@ -66,18 +72,47 @@ export default function JoinPlatform({
     setIsJoining(false);
   };
 
+  if (!platform) {
+    return (
+      <Center>
+        <Spinner />
+      </Center>
+    );
+  }
+
   return (
     <VStack spacing="32px" {...props}>
-      <Text
-        fontSize="4xl"
-        whiteSpace="nowrap"
-        overflow="hidden"
-        textOverflow="ellipsis"
-        maxW="300px"
-        fontWeight="bold"
-      >
-        {platformName}
-      </Text>
+      <VStack justifyContent="center">
+        <HStack justifyContent="center" w="500px">
+          <Text
+            fontSize="3xl"
+            whiteSpace="nowrap"
+            overflow="hidden"
+            textOverflow="ellipsis"
+            fontWeight="bold"
+            flexShrink={1}
+          >
+            {platform.name}
+          </Text>
+          {platform.isVerified && (
+            <CheckCircleIcon
+              flexShrink={0}
+              color="soul.green.200"
+              aria-label="Verified marker"
+            />
+          )}
+        </HStack>
+        <Text
+          color="soul.mutedGrey"
+          whiteSpace="nowrap"
+          overflow="hidden"
+          textOverflow="ellipsis"
+          w="500px"
+          textAlign="center"
+        >
+          {platform.nameHandle}
+        </Text>
+      </VStack>
       <FancyButton
         onClick={joinPlatform}
         isLoading={!accessToken || isJoining}

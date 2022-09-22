@@ -5,11 +5,35 @@ exports[`JoinPlatform renders 1`] = `
   <div
     class="chakra-stack css-dvtbfj"
   >
-    <p
-      class="chakra-text css-1uvlqji"
+    <div
+      class="chakra-stack css-1jxjhsf"
     >
-      TEST#1
-    </p>
+      <div
+        class="chakra-stack css-5gwu2s"
+      >
+        <p
+          class="chakra-text css-1n5khlh"
+        >
+          TEST
+        </p>
+        <svg
+          aria-label="Verified marker"
+          class="chakra-icon css-1rcwe32"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <p
+        class="chakra-text css-1wz8w4o"
+      >
+        TEST#1
+      </p>
+    </div>
     <button
       aria-label="Join platform button"
       class="css-y6mgpv"
