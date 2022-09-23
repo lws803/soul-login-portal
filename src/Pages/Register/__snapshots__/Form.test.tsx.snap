@@ -29,7 +29,7 @@ exports[`Form renders 1`] = `
         class="chakra-form__helper-text css-0"
         id="field-:r0:-helptext"
       >
-        Choose an awesome username!
+        Choose a unique and awesome username!
       </div>
     </div>
     <div

@@ -90,7 +90,7 @@ describe('Register', () => {
     cy.location('pathname').should('not.eq', '/');
   });
 
-  it('fails due to existing account', () => {
+  it('fails due to existing email', () => {
     const email = 'test@mail.com';
     cy.intercept(
       {
@@ -101,7 +101,7 @@ describe('Register', () => {
         statusCode: 409,
         body: {
           message: `A user with the email address: ${email} already exists. Please login or use a different email address.`,
-          error: 'DUPLICATE_USER_EXISTS',
+          error: 'DUPLICATE_USER_EMAIL_EXISTS',
         },
       },
     ).as('registerUser');
@@ -114,6 +114,36 @@ describe('Register', () => {
     cy.get('button:contains("Register")').click();
     cy.contains(
       `A user with the email address: ${email} already exists. Please login or use a different email address.`,
+    );
+  });
+
+  it('fails due to existing username', () => {
+    const username = 'username';
+    cy.intercept(
+      {
+        method: 'POST',
+        url: 'http://api.network.com/v1/users',
+      },
+      {
+        statusCode: 409,
+        body: {
+          message:
+            `A user with the username: ${username} already exists. ` +
+            'Please login or user a different username.',
+          error: 'DUPLICATE_USERNAME_EXISTS',
+        },
+      },
+    ).as('registerUser');
+
+    cy.visit(rootPage);
+    cy.get('input[name="username"]').type(username);
+    cy.get('input[name="email"]').type('test@mail.com');
+    cy.get('input[name="password"]').type('DESx!&X29x8L5Scj');
+
+    cy.get('button:contains("Register")').click();
+    cy.contains(
+      `A user with the username: ${username} already exists. ` +
+        'Please login or user a different username.',
     );
   });
 
