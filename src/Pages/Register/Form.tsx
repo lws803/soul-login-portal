@@ -60,7 +60,7 @@ export default function Form({
         email: Yup.string().email().required(),
         username: Yup.string()
           .required()
-          .matches(/[a-z0-9-]/, {
+          .matches(/^[a-z0-9-]*$/, {
             message:
               'Username can only contain lowercase alphanumeric characters with the exception of hyphens.',
           }),
