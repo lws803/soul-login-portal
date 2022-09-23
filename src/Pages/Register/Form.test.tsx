@@ -45,7 +45,7 @@ describe(Form, () => {
         target: { value: 'TEST@EMAIL.COM' },
       });
       fireEvent.change(getByLabelText('Username input'), {
-        target: { value: 'USERNAME' },
+        target: { value: 'username' },
       });
       fireEvent.change(getByLabelText('Password input'), {
         target: { value: 'PASSWORD' },
@@ -58,7 +58,7 @@ describe(Form, () => {
         values: {
           email: 'TEST@EMAIL.COM',
           password: 'PASSWORD',
-          username: 'USERNAME',
+          username: 'username',
         },
       });
       expect(mockedUsedNavigate).toHaveBeenCalledWith('/?SEARCH');
@@ -82,7 +82,7 @@ describe(Form, () => {
         target: { value: 'TEST@EMAIL.COM' },
       });
       fireEvent.change(getByLabelText('Username input'), {
-        target: { value: 'USERNAME' },
+        target: { value: 'username' },
       });
       fireEvent.change(getByLabelText('Password input'), {
         target: { value: 'PASSWORD' },
@@ -95,7 +95,7 @@ describe(Form, () => {
         values: {
           email: 'TEST@EMAIL.COM',
           password: 'PASSWORD',
-          username: 'USERNAME',
+          username: 'username',
         },
       });
       expect(setIsSuccess).toHaveBeenCalledWith(true);

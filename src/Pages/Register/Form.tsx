@@ -41,7 +41,12 @@ export default function Form({
               password: 'Password is too weak!',
             });
           } else if (error.status === 409) {
-            action.setErrors({ email: error.data.message });
+            if (error.data.error === 'DUPLICATE_USER_EMAIL_EXISTS') {
+              action.setErrors({ email: error.data.message });
+            }
+            if (error.data.error === 'DUPLICATE_USERNAME_EXISTS') {
+              action.setErrors({ username: error.data.message });
+            }
           } else {
             setErrors([error.data.message]);
           }
@@ -53,10 +58,14 @@ export default function Form({
       }}
       validationSchema={Yup.object({
         email: Yup.string().email().required(),
-        username: Yup.string().required(),
+        username: Yup.string()
+          .required()
+          .matches(/[a-z0-9-]/, {
+            message:
+              'Username can only contain lowercase alphanumeric characters with the exception of hyphens.',
+          }),
         password: Yup.string().required(),
       })}
-      validateOnChange={false}
     >
       {({ isSubmitting }) => (
         <FormikForm>
@@ -73,7 +82,9 @@ export default function Form({
                   placeholder="Your username"
                   disabled={isSubmitting}
                 />
-                <FormHelperText>Choose an awesome username!</FormHelperText>
+                <FormHelperText>
+                  Choose a unique and awesome username!
+                </FormHelperText>
                 {form.errors.username && (
                   <FormErrorMessage>{form.errors.username}</FormErrorMessage>
                 )}
