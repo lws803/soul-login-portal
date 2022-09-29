@@ -8,11 +8,9 @@ WORKDIR /app
 
 ENV PATH /app/node_modules/.bin:$PATH
 
-COPY package.json package-lock.json ./
+COPY . ./
 
 RUN npm ci
-
-COPY . ./
 
 RUN REACT_APP_ENVIRONMENT=$REACT_APP_ENVIRONMENT REACT_APP_SENTRY_DSN=$REACT_APP_SENTRY_DSN REACT_APP_API_URL=$REACT_APP_API_URL npm run build
 EXPOSE 3001
