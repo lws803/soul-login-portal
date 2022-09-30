@@ -9,7 +9,7 @@
     "airbnb",
     "airbnb-typescript",
     "eslint:recommended",
-    "plugin:prettier/recommended",
+    "prettier",
     "plugin:@typescript-eslint/eslint-recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -23,7 +23,6 @@
   },
   "plugins": ["react", "@typescript-eslint", "no-only-tests"],
   "rules": {
-    "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
     "react/jsx-filename-extension": [
       2,
