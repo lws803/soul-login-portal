@@ -10,7 +10,8 @@
     "serve": "serve -s build -l 3001",
     "check-types": "tsc",
     "lint:eslint": "eslint src",
-    "lint": "npm run lint:eslint && npm run check-types",
+    "lint:prettier": "prettier --check src",
+    "lint": "concurrently --group --timings 'npm run lint:eslint' 'npm run check-types' 'npm run lint:prettier'",
     "cy:open": "cypress open",
     "cy:headless": "cypress run"
   },
@@ -68,6 +69,7 @@
     "@types/zxcvbn": "^4.4.1",
     "@typescript-eslint/eslint-plugin": "^5.12.0",
     "@typescript-eslint/parser": "^5.12.0",
+    "concurrently": "^7.4.0",
     "cypress": "^10.8.0",
     "eslint": "^8.9.0",
     "eslint-config-airbnb": "^19.0.4",
