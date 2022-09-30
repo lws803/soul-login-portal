@@ -36,6 +36,147 @@ exports[`JoinPlatform renders 1`] = `
         TEST#1
       </p>
     </div>
+    <div
+      class="css-do7e2g"
+    >
+      <div
+        class="chakra-stack css-xtejj8"
+      >
+        <p
+          class="chakra-text css-0"
+        >
+          Joining this platform will allow the platform and it's developers to:
+        </p>
+        <hr
+          aria-orientation="horizontal"
+          class="chakra-divider css-1upb9tn"
+        />
+        <div
+          class="chakra-stack css-111m4e8"
+        >
+          <div
+            class="chakra-stack css-84zodg"
+          >
+            <svg
+              aria-label="Scope checked"
+              class="chakra-icon css-1rcwe32"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
+                fill="currentColor"
+              />
+            </svg>
+            <p
+              class="chakra-text css-1rfq100"
+            >
+              Access your account information.
+            </p>
+          </div>
+          <div
+            class="chakra-stack css-84zodg"
+          >
+            <svg
+              aria-label="Scope checked"
+              class="chakra-icon css-1rcwe32"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
+                fill="currentColor"
+              />
+            </svg>
+            <p
+              class="chakra-text css-1rfq100"
+            >
+              Modify your account.
+            </p>
+          </div>
+          <div
+            class="chakra-stack css-84zodg"
+          >
+            <svg
+              aria-label="Scope checked"
+              class="chakra-icon css-1rcwe32"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
+                fill="currentColor"
+              />
+            </svg>
+            <p
+              class="chakra-text css-1rfq100"
+            >
+              Access your user connections.
+            </p>
+          </div>
+          <div
+            class="chakra-stack css-84zodg"
+          >
+            <svg
+              aria-label="Scope checked"
+              class="chakra-icon css-1rcwe32"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
+                fill="currentColor"
+              />
+            </svg>
+            <p
+              class="chakra-text css-1rfq100"
+            >
+              Modify your user connections.
+            </p>
+          </div>
+          <div
+            class="chakra-stack css-84zodg"
+          >
+            <svg
+              aria-label="Scope checked"
+              class="chakra-icon css-1rcwe32"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
+                fill="currentColor"
+              />
+            </svg>
+            <p
+              class="chakra-text css-1rfq100"
+            >
+              Access your membership on this platform.
+            </p>
+          </div>
+          <div
+            class="chakra-stack css-84zodg"
+          >
+            <svg
+              aria-label="Scope checked"
+              class="chakra-icon css-1rcwe32"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
+                fill="currentColor"
+              />
+            </svg>
+            <p
+              class="chakra-text css-1rfq100"
+            >
+              Modify your membership on this platform.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
     <button
       aria-label="Join platform button"
       class="css-y6mgpv"
