@@ -19,7 +19,7 @@ export default function Scopes() {
         <Divider />
         <VStack alignItems="left" overflowY="auto" maxHeight="30vh">
           <ScopeRow title="Access your account information." />
-          <ScopeRow title="Modify your account." />
+          <ScopeRow title="Modify your account." isNotChecked />
           <ScopeRow title="Access your user connections." />
           <ScopeRow title="Modify your user connections." />
           <ScopeRow title="Access your membership on this platform." />

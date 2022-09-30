@@ -78,13 +78,13 @@ exports[`JoinPlatform renders 1`] = `
             class="chakra-stack css-84zodg"
           >
             <svg
-              aria-label="Scope checked"
-              class="chakra-icon css-1rcwe32"
+              aria-label="Scope not checked"
+              class="chakra-icon css-onkibi"
               focusable="false"
               viewBox="0 0 24 24"
             >
               <path
-                d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z"
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm6.31-3.1L7.1 5.69C8.45 4.63 10.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z"
                 fill="currentColor"
               />
             </svg>
