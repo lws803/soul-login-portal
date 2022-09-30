@@ -1,13 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  Center,
-  HStack,
-  Spinner,
-  Text,
-  Tooltip,
-  VStack,
-} from '@chakra-ui/react';
-import { CheckCircleIcon } from '@chakra-ui/icons';
+import { Center, Spinner, Text, VStack } from '@chakra-ui/react';
 
 import FancyButton from 'src/components/FancyButton';
 
@@ -18,6 +10,8 @@ import {
   Platform,
 } from './api';
 import { redirectToCallback } from './utils';
+import Title from './JoinPlatform/Title';
+import Scopes from './JoinPlatform/Scopes';
 
 export default function JoinPlatform({
   email,
@@ -90,28 +84,7 @@ export default function JoinPlatform({
   return (
     <VStack spacing="32px" {...props}>
       <VStack justifyContent="center">
-        <HStack justifyContent="center" w={['90vw', '90vw', '500px', '500px']}>
-          <Text
-            fontSize="3xl"
-            whiteSpace="nowrap"
-            overflow="hidden"
-            textOverflow="ellipsis"
-            fontWeight="bold"
-            flexShrink={1}
-          >
-            {platform.name}
-          </Text>
-          {platform.isVerified && (
-            <Tooltip label="This platform is verified" flexShrink={0}>
-              <span>
-                <CheckCircleIcon
-                  color="soul.green.200"
-                  aria-label="Verified marker"
-                />
-              </span>
-            </Tooltip>
-          )}
-        </HStack>
+        <Title platform={platform} />
         <Text
           color="soul.mutedGrey"
           whiteSpace="nowrap"
@@ -123,6 +96,7 @@ export default function JoinPlatform({
           {platform.nameHandle}
         </Text>
       </VStack>
+      <Scopes />
       <FancyButton
         onClick={joinPlatform}
         isLoading={!accessToken || isJoining}
