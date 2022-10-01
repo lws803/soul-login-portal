@@ -3,17 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ChakraProvider, ColorModeProvider } from '@chakra-ui/react';
 
 import theme from './theme';
-
-const Login = React.lazy(() => import('./Pages/Login'));
-const Register = React.lazy(() => import('./Pages/Register'));
-const EmailConfirmation = React.lazy(() => import('./Pages/EmailConfirmation'));
-const ResetPassword = React.lazy(() => import('./Pages/ResetPassword'));
-const RequestPasswordReset = React.lazy(
-  () => import('./Pages/RequestPasswordReset'),
-);
-const RequestEmailVerification = React.lazy(
-  () => import('./Pages/RequestEmailVerification'),
-);
+import RequestEmailVerification from './Pages/RequestEmailVerification';
+import RequestPasswordReset from './Pages/RequestPasswordReset';
+import EmailConfirmation from './Pages/EmailConfirmation';
+import ResetPassword from './Pages/ResetPassword';
+import Register from './Pages/Register';
+import Login from './Pages/Login';
 
 function App() {
   return (
