@@ -8,14 +8,14 @@ import Form from './Register/Form';
 
 import Page from '../components/Page';
 import Title from '../components/Title';
-import useQuery from '../hooks/useQuery';
+import useQueryParams from '../hooks/useQueryParams';
 
 export default function Register() {
   const [errors, setErrors] = useState<string[]>([]);
   const [isSuccess, setIsSuccess] = useState(false);
 
   const { search } = useLocation();
-  const query = useQuery();
+  const query = useQueryParams();
 
   const insufficientParams =
     !query.get('client_id') ||

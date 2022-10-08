@@ -1,9 +1,12 @@
 import React from 'react';
 import { render, act, fireEvent, waitFor } from '@testing-library/react';
+import { AxiosResponse } from 'axios';
+
+import * as api from 'src/modules/passwordReset';
 
 import Form from './Form';
-import * as api from './api';
 
+// TODO: Fix this test
 describe(Form, () => {
   const props: React.ComponentProps<typeof Form> = {
     setErrors: jest.fn(),
@@ -18,8 +21,11 @@ describe(Form, () => {
   it('requests for email verification', async () => {
     const setIsSuccess = jest.fn();
     const sendEmailConfirmation = jest
-      .spyOn(api, 'sendPasswordReset')
-      .mockResolvedValue({ error: null });
+      .spyOn(api, 'requestPasswordReset')
+      .mockResolvedValue({ data: null, status: 200 } as AxiosResponse<
+        any,
+        any
+      >);
 
     const { getByLabelText, getByText } = render(
       <Form {...props} setIsSuccess={setIsSuccess} />,

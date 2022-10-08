@@ -8,23 +8,25 @@ import {
   HStack,
   Button,
 } from '@chakra-ui/react';
-
-import { sendPasswordReset } from './api';
+import { useMutation } from '@tanstack/react-query';
+import { requestPasswordReset } from 'src/modules/passwordReset';
+import { ApiError } from 'src/shared/apiTypes';
 
 export default function Form({ setErrors, setIsSuccess }: Props) {
+  const { mutate: dispatchPasswordRequest } = useMutation<
+    unknown,
+    ApiError,
+    string
+  >((email) => requestPasswordReset(email), {
+    onMutate: () => setErrors([]),
+    onError: (error) => setErrors([error.message]),
+    onSuccess: () => setIsSuccess(true),
+  });
+
   return (
     <Formik
       initialValues={{ email: '' }}
-      onSubmit={async (values) => {
-        setErrors([]);
-        const { error } = await sendPasswordReset(values);
-
-        if (error) {
-          setErrors([error.message]);
-        } else {
-          setIsSuccess(true);
-        }
-      }}
+      onSubmit={(values) => dispatchPasswordRequest(values.email)}
       validationSchema={Yup.object({
         email: Yup.string().email().required(),
       })}
