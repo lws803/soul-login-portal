@@ -4,13 +4,13 @@ import { Center, Spinner, Text } from '@chakra-ui/react';
 
 import { BASE_URL } from '../constants';
 import Page from '../components/Page';
-import useQuery from '../hooks/useQuery';
+import useQueryParams from '../hooks/useQuery';
 
 export default function EmailConfirmation() {
   const [errors, setErrors] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const query = useQuery();
+  const query = useQueryParams();
 
   useEffect(() => {
     setLoading(true);

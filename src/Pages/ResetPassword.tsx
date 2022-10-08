@@ -4,11 +4,11 @@ import Form from './ResetPassword/Form';
 
 import Status from '../components/Status';
 import Page from '../components/Page';
-import useQuery from '../hooks/useQuery';
+import useQueryParams from '../hooks/useQuery';
 import Title from '../components/Title';
 
 export default function ResetPassword() {
-  const query = useQuery();
+  const query = useQueryParams();
   const [errors, setErrors] = useState<string[]>([]);
   const [isSuccess, setIsSuccess] = useState(false);
 

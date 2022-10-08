@@ -6,10 +6,10 @@ import Form from './Login/Form';
 
 import Title from '../components/Title';
 import Page from '../components/Page';
-import useQuery from '../hooks/useQuery';
+import useQueryParams from '../hooks/useQuery';
 
 export default function Login() {
-  const query = useQuery();
+  const query = useQueryParams();
   const [errors, setErrors] = useState<string[]>([]);
   const [joinPlatform, setJoinPlatform] = useState(false);
   const { search } = useLocation();
