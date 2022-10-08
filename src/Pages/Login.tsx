@@ -6,7 +6,7 @@ import Form from './Login/Form';
 
 import Title from '../components/Title';
 import Page from '../components/Page';
-import useQueryParams from '../hooks/useQuery';
+import useQueryParams from '../hooks/useQueryParams';
 
 export default function Login() {
   const query = useQueryParams();

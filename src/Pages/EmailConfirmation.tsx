@@ -4,7 +4,7 @@ import { Center, Spinner, Text } from '@chakra-ui/react';
 
 import { BASE_URL } from '../constants';
 import Page from '../components/Page';
-import useQueryParams from '../hooks/useQuery';
+import useQueryParams from '../hooks/useQueryParams';
 
 export default function EmailConfirmation() {
   const [errors, setErrors] = useState<string[]>([]);

@@ -8,7 +8,7 @@ import Form from './Register/Form';
 
 import Page from '../components/Page';
 import Title from '../components/Title';
-import useQueryParams from '../hooks/useQuery';
+import useQueryParams from '../hooks/useQueryParams';
 
 export default function Register() {
   const [errors, setErrors] = useState<string[]>([]);

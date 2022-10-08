@@ -4,7 +4,7 @@ import Form from './ResetPassword/Form';
 
 import Status from '../components/Status';
 import Page from '../components/Page';
-import useQueryParams from '../hooks/useQuery';
+import useQueryParams from '../hooks/useQueryParams';
 import Title from '../components/Title';
 
 export default function ResetPassword() {
